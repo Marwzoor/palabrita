@@ -1,0 +1,3002 @@
+[
+  {
+    "word": "de",
+    "translation": "av, från",
+    "sentence_es": "El libro es de María.",
+    "sentence_sv": "Boken är från María."
+  },
+  {
+    "word": "que",
+    "translation": "att, som",
+    "sentence_es": "Creo que es importante.",
+    "sentence_sv": "Jag tror att det är viktigt."
+  },
+  {
+    "word": "no",
+    "translation": "nej",
+    "sentence_es": "No quiero ir al cine.",
+    "sentence_sv": "Jag vill inte gå på bio."
+  },
+  {
+    "word": "a",
+    "translation": "till, på, i",
+    "sentence_es": "Voy a la escuela.",
+    "sentence_sv": "Jag går till skolan."
+  },
+  {
+    "word": "la",
+    "translation": "den/det (bestämd artikel, femininum)",
+    "sentence_es": "La casa es grande.",
+    "sentence_sv": "Huset är stort."
+  },
+  {
+    "word": "el",
+    "translation": "den, det (bestämd artikel, maskulinum singular)",
+    "sentence_es": "El perro corre rápido.",
+    "sentence_sv": "Hunden springer snabbt."
+  },
+  {
+    "word": "y",
+    "translation": "och",
+    "sentence_es": "Tengo un perro y un gato.",
+    "sentence_sv": "Jag har en hund och en katt."
+  },
+  {
+    "word": "es",
+    "translation": "är",
+    "sentence_es": "Él es mi amigo.",
+    "sentence_sv": "Han är min vän."
+  },
+  {
+    "word": "en",
+    "translation": "i, på",
+    "sentence_es": "Estoy en la casa.",
+    "sentence_sv": "Jag är i huset."
+  },
+  {
+    "word": "lo",
+    "translation": "det (neutralt artikel/pronomen)",
+    "sentence_es": "Lo importante es estudiar.",
+    "sentence_sv": "Det viktiga är att studera."
+  },
+  {
+    "word": "un",
+    "translation": "en/ett",
+    "sentence_es": "Tengo un libro.",
+    "sentence_sv": "Jag har en bok."
+  },
+  {
+    "word": "por",
+    "translation": "för, genom, på grund av",
+    "sentence_es": "Caminamos por el parque.",
+    "sentence_sv": "Vi promenerar genom parken."
+  },
+  {
+    "word": "qué",
+    "translation": "vad",
+    "sentence_es": "¿Qué quieres comer?",
+    "sentence_sv": "Vad vill du äta?"
+  },
+  {
+    "word": "me",
+    "translation": "mig",
+    "sentence_es": "Él me ayuda con la tarea.",
+    "sentence_sv": "Han hjälper mig med läxan."
+  },
+  {
+    "word": "una",
+    "translation": "en/ett (feminin form, obestämd artikel)",
+    "sentence_es": "Ella tiene una casa.",
+    "sentence_sv": "Hon har ett hus."
+  },
+  {
+    "word": "los",
+    "translation": "de (bestämda pluralformen för maskulina substantiv)",
+    "sentence_es": "Los libros están en la mesa.",
+    "sentence_sv": "Böckerna ligger på bordet."
+  },
+  {
+    "word": "se",
+    "translation": "sig",
+    "sentence_es": "Él se lava las manos.",
+    "sentence_sv": "Han tvättar sig händerna."
+  },
+  {
+    "word": "te",
+    "translation": "te",
+    "sentence_es": "Me gusta beber té por la mañana.",
+    "sentence_sv": "Jag tycker om att dricka te på morgonen."
+  },
+  {
+    "word": "con",
+    "translation": "med",
+    "sentence_es": "Voy al parque con mis amigos.",
+    "sentence_sv": "Jag går till parken med mina vänner."
+  },
+  {
+    "word": "para",
+    "translation": "för",
+    "sentence_es": "Este regalo es para ti.",
+    "sentence_sv": "Den här presenten är för dig."
+  },
+  {
+    "word": "está",
+    "translation": "är (tillfälligt, befintligt)",
+    "sentence_es": "Ella está en casa.",
+    "sentence_sv": "Hon är hemma."
+  },
+  {
+    "word": "mi",
+    "translation": "min",
+    "sentence_es": "Este es mi libro.",
+    "sentence_sv": "Det här är min bok."
+  },
+  {
+    "word": "pero",
+    "translation": "men",
+    "sentence_es": "Quiero ir al parque, pero está lloviendo.",
+    "sentence_sv": "Jag vill gå till parken, men det regnar."
+  },
+  {
+    "word": "sí",
+    "translation": "ja",
+    "sentence_es": "Sí, quiero ir al cine.",
+    "sentence_sv": "Ja, jag vill gå på bio."
+  },
+  {
+    "word": "si",
+    "translation": "om",
+    "sentence_es": "Si estudias, aprobarás el examen.",
+    "sentence_sv": "Om du studerar kommer du att klara provet."
+  },
+  {
+    "word": "bien",
+    "translation": "bra",
+    "sentence_es": "Estoy bien, gracias.",
+    "sentence_sv": "Jag mår bra, tack."
+  },
+  {
+    "word": "eso",
+    "translation": "det där",
+    "sentence_es": "¿Qué es eso?",
+    "sentence_sv": "Vad är det där?"
+  },
+  {
+    "word": "su",
+    "translation": "hans/hennes/din/er/deras",
+    "sentence_es": "Ella cuida su perro.",
+    "sentence_sv": "Hon tar hand om sin hund."
+  },
+  {
+    "word": "las",
+    "translation": "de (bestämda artikeln, feminin plural)",
+    "sentence_es": "Las flores son bonitas.",
+    "sentence_sv": "Blommorna är vackra."
+  },
+  {
+    "word": "yo",
+    "translation": "jag",
+    "sentence_es": "Yo soy estudiante.",
+    "sentence_sv": "Jag är student."
+  },
+  {
+    "word": "del",
+    "translation": "av, från",
+    "sentence_es": "El libro es del profesor.",
+    "sentence_sv": "Boken är från läraren."
+  },
+  {
+    "word": "como",
+    "translation": "som, hur",
+    "sentence_es": "¿Cómo estás?",
+    "sentence_sv": "Hur mår du?"
+  },
+  {
+    "word": "aquí",
+    "translation": "här",
+    "sentence_es": "Estoy aquí esperando por ti.",
+    "sentence_sv": "Jag är här och väntar på dig."
+  },
+  {
+    "word": "tu",
+    "translation": "din/ditt",
+    "sentence_es": "¿Dónde está tu libro?",
+    "sentence_sv": "Var är din bok?"
+  },
+  {
+    "word": "al",
+    "translation": "till (på) + det",
+    "sentence_es": "Voy al mercado.",
+    "sentence_sv": "Jag går till marknaden."
+  },
+  {
+    "word": "más",
+    "translation": "mer",
+    "sentence_es": "Quiero más comida.",
+    "sentence_sv": "Jag vill ha mer mat."
+  },
+  {
+    "word": "le",
+    "translation": "honom, henne, den, det (indirekt objektpronomen)",
+    "sentence_es": "Le di un regalo a mi amigo.",
+    "sentence_sv": "Jag gav en present till min vän."
+  },
+  {
+    "word": "esto",
+    "translation": "det här",
+    "sentence_es": "Esto es muy importante.",
+    "sentence_sv": "Det här är mycket viktigt."
+  },
+  {
+    "word": "todo",
+    "translation": "allt",
+    "sentence_es": "He terminado todo mi trabajo.",
+    "sentence_sv": "Jag har avslutat allt mitt arbete."
+  },
+  {
+    "word": "ya",
+    "translation": "redan / nu",
+    "sentence_es": "Ya he terminado mi tarea.",
+    "sentence_sv": "Jag har redan gjort klart min uppgift."
+  },
+  {
+    "word": "estoy",
+    "translation": "jag är",
+    "sentence_es": "Estoy en casa.",
+    "sentence_sv": "Jag är hemma."
+  },
+  {
+    "word": "ahora",
+    "translation": "nu",
+    "sentence_es": "Estoy ocupado ahora.",
+    "sentence_sv": "Jag är upptagen nu."
+  },
+  {
+    "word": "muy",
+    "translation": "mycket",
+    "sentence_es": "Este libro es muy interesante.",
+    "sentence_sv": "Den här boken är mycket intressant."
+  },
+  {
+    "word": "ha",
+    "translation": "har",
+    "sentence_es": "Ella ha terminado su tarea.",
+    "sentence_sv": "Hon har gjort klart sin läxa."
+  },
+  {
+    "word": "esta",
+    "translation": "den här/det här (feminin form)",
+    "sentence_es": "Esta casa es muy bonita.",
+    "sentence_sv": "Det här huset är mycket fint."
+  },
+  {
+    "word": "así",
+    "translation": "så",
+    "sentence_es": "Así es como lo hacemos.",
+    "sentence_sv": "Så här gör vi det."
+  },
+  {
+    "word": "vamos",
+    "translation": "vi går / vi åker / låt oss gå",
+    "sentence_es": "¡Vamos al parque!",
+    "sentence_sv": "Vi går till parken!"
+  },
+  {
+    "word": "algo",
+    "translation": "något",
+    "sentence_es": "Quiero comer algo.",
+    "sentence_sv": "Jag vill äta något."
+  },
+  {
+    "word": "hay",
+    "translation": "det finns",
+    "sentence_es": "Hay un libro en la mesa.",
+    "sentence_sv": "Det finns en bok på bordet."
+  },
+  {
+    "word": "bueno",
+    "translation": "bra",
+    "sentence_es": "Este libro es bueno.",
+    "sentence_sv": "Den här boken är bra."
+  },
+  {
+    "word": "tengo",
+    "translation": "jag har",
+    "sentence_es": "Tengo un libro.",
+    "sentence_sv": "Jag har en bok."
+  },
+  {
+    "word": "él",
+    "translation": "han",
+    "sentence_es": "Él está en casa.",
+    "sentence_sv": "Han är hemma."
+  },
+  {
+    "word": "cuando",
+    "translation": "när",
+    "sentence_es": "Cuando llegues, llámame.",
+    "sentence_sv": "När du kommer, ring mig."
+  },
+  {
+    "word": "estás",
+    "translation": "är (du är)",
+    "sentence_es": "¿Dónde estás ahora?",
+    "sentence_sv": "Var är du nu?"
+  },
+  {
+    "word": "sé",
+    "translation": "jag vet",
+    "sentence_es": "Sé la respuesta correcta.",
+    "sentence_sv": "Jag vet det rätta svaret."
+  },
+  {
+    "word": "tú",
+    "translation": "du",
+    "sentence_es": "Tú eres mi amigo.",
+    "sentence_sv": "Du är min vän."
+  },
+  {
+    "word": "nos",
+    "translation": "oss",
+    "sentence_es": "Ellos nos ayudan con la tarea.",
+    "sentence_sv": "De hjälper oss med läxan."
+  },
+  {
+    "word": "nada",
+    "translation": "ingenting",
+    "sentence_es": "No tengo nada que hacer.",
+    "sentence_sv": "Jag har ingenting att göra."
+  },
+  {
+    "word": "cómo",
+    "translation": "hur",
+    "sentence_es": "¿Cómo estás?",
+    "sentence_sv": "Hur mår du?"
+  },
+  {
+    "word": "este",
+    "translation": "den här / detta / denna",
+    "sentence_es": "Este libro es muy interesante.",
+    "sentence_sv": "Den här boken är mycket intressant."
+  },
+  {
+    "word": "o",
+    "translation": "eller",
+    "sentence_es": "¿Quieres té o café?",
+    "sentence_sv": "Vill du ha te eller kaffe?"
+  },
+  {
+    "word": "he",
+    "translation": "jag har",
+    "sentence_es": "He comido una manzana.",
+    "sentence_sv": "Jag har ätit ett äpple."
+  },
+  {
+    "word": "ser",
+    "translation": "att vara",
+    "sentence_es": "Ella es profesora.",
+    "sentence_sv": "Hon är lärare."
+  },
+  {
+    "word": "tiene",
+    "translation": "har",
+    "sentence_es": "Ella tiene un perro.",
+    "sentence_sv": "Hon har en hund."
+  },
+  {
+    "word": "puedo",
+    "translation": "jag kan",
+    "sentence_es": "¿Puedo ayudarte?",
+    "sentence_sv": "Kan jag hjälpa dig?"
+  },
+  {
+    "word": "ella",
+    "translation": "hon",
+    "sentence_es": "Ella es mi amiga.",
+    "sentence_sv": "Hon är min vän."
+  },
+  {
+    "word": "quiero",
+    "translation": "jag vill",
+    "sentence_es": "Quiero aprender español.",
+    "sentence_sv": "Jag vill lära mig spanska."
+  },
+  {
+    "word": "hacer",
+    "translation": "göra",
+    "sentence_es": "Voy a hacer la tarea.",
+    "sentence_sv": "Jag ska göra läxan."
+  },
+  {
+    "word": "fue",
+    "translation": "var",
+    "sentence_es": "Él fue a la tienda.",
+    "sentence_sv": "Han gick till affären."
+  },
+  {
+    "word": "gracias",
+    "translation": "tack",
+    "sentence_es": "Gracias por tu ayuda.",
+    "sentence_sv": "Tack för din hjälp."
+  },
+  {
+    "word": "vez",
+    "translation": "gång",
+    "sentence_es": "Esta es la primera vez que visito España.",
+    "sentence_sv": "Det här är första gången jag besöker Spanien."
+  },
+  {
+    "word": "era",
+    "translation": "era, tidsålder",
+    "sentence_es": "La era digital ha cambiado nuestras vidas.",
+    "sentence_sv": "Den digitala eran har förändrat våra liv."
+  },
+  {
+    "word": "soy",
+    "translation": "jag är",
+    "sentence_es": "Soy estudiante.",
+    "sentence_sv": "Jag är student."
+  },
+  {
+    "word": "sólo",
+    "translation": "bara",
+    "sentence_es": "Quiero sólo un café.",
+    "sentence_sv": "Jag vill bara ha en kaffe."
+  },
+  {
+    "word": "todos",
+    "translation": "alla",
+    "sentence_es": "Todos están aquí.",
+    "sentence_sv": "Alla är här."
+  },
+  {
+    "word": "porque",
+    "translation": "för att",
+    "sentence_es": "No fui a la fiesta porque estaba cansado.",
+    "sentence_sv": "Jag gick inte på festen för att jag var trött."
+  },
+  {
+    "word": "son",
+    "translation": "är (de/ni är)",
+    "sentence_es": "Ellos son mis amigos.",
+    "sentence_sv": "De är mina vänner."
+  },
+  {
+    "word": "tienes",
+    "translation": "du har",
+    "sentence_es": "¿Tienes un libro?",
+    "sentence_sv": "Har du en bok?"
+  },
+  {
+    "word": "creo",
+    "translation": "jag tror",
+    "sentence_es": "Creo que mañana lloverá.",
+    "sentence_sv": "Jag tror att det kommer att regna imorgon."
+  },
+  {
+    "word": "voy",
+    "translation": "jag går/jag åker",
+    "sentence_es": "Yo voy al mercado.",
+    "sentence_sv": "Jag går till marknaden."
+  },
+  {
+    "word": "sabes",
+    "translation": "du vet",
+    "sentence_es": "¿Sabes dónde está la biblioteca?",
+    "sentence_sv": "Vet du var biblioteket är?"
+  },
+  {
+    "word": "estaba",
+    "translation": "var",
+    "sentence_es": "Ella estaba en la casa.",
+    "sentence_sv": "Hon var i huset."
+  },
+  {
+    "word": "puede",
+    "translation": "kan",
+    "sentence_es": "Él puede correr rápido.",
+    "sentence_sv": "Han kan springa snabbt."
+  },
+  {
+    "word": "eres",
+    "translation": "du är",
+    "sentence_es": "Tú eres mi amigo.",
+    "sentence_sv": "Du är min vän."
+  },
+  {
+    "word": "ese",
+    "translation": "den där",
+    "sentence_es": "Me gusta ese libro.",
+    "sentence_sv": "Jag gillar den där boken."
+  },
+  {
+    "word": "usted",
+    "translation": "ni (hövligt tilltal)",
+    "sentence_es": "¿Cómo está usted?",
+    "sentence_sv": "Hur mår ni?"
+  },
+  {
+    "word": "entonces",
+    "translation": "då / alltså / dåså",
+    "sentence_es": "Si no tienes hambre, entonces no comas.",
+    "sentence_sv": "Om du inte är hungrig, då ska du inte äta."
+  },
+  {
+    "word": "hola",
+    "translation": "hej",
+    "sentence_es": "Hola, ¿cómo estás?",
+    "sentence_sv": "Hej, hur mår du?"
+  },
+  {
+    "word": "solo",
+    "translation": "ensam",
+    "sentence_es": "Estoy solo en casa.",
+    "sentence_sv": "Jag är ensam hemma."
+  },
+  {
+    "word": "verdad",
+    "translation": "sanning",
+    "sentence_es": "La verdad es importante en la vida.",
+    "sentence_sv": "Sanningen är viktig i livet."
+  },
+  {
+    "word": "casa",
+    "translation": "hus",
+    "sentence_es": "La casa es grande.",
+    "sentence_sv": "Huset är stort."
+  },
+  {
+    "word": "tan",
+    "translation": "så (används för att uttrycka grad eller intensitet)",
+    "sentence_es": "Ella es tan inteligente.",
+    "sentence_sv": "Hon är så intelligent."
+  },
+  {
+    "word": "quién",
+    "translation": "vem",
+    "sentence_es": "¿Quién es tu amigo?",
+    "sentence_sv": "Vem är din vän?"
+  },
+  {
+    "word": "sus",
+    "translation": "hans/hennes/deras (plural, possessiv pronomen)",
+    "sentence_es": "Ella cuida mucho sus libros.",
+    "sentence_sv": "Hon tar mycket hand om sina böcker."
+  },
+  {
+    "word": "tiempo",
+    "translation": "tid",
+    "sentence_es": "No tengo tiempo para descansar hoy.",
+    "sentence_sv": "Jag har inte tid att vila idag."
+  },
+  {
+    "word": "dos",
+    "translation": "två",
+    "sentence_es": "Tengo dos gatos en casa.",
+    "sentence_sv": "Jag har två katter hemma."
+  },
+  {
+    "word": "esa",
+    "translation": "den där",
+    "sentence_es": "Esa casa es muy bonita.",
+    "sentence_sv": "Den där huset är mycket fint."
+  },
+  {
+    "word": "nunca",
+    "translation": "aldrig",
+    "sentence_es": "Nunca he visitado España.",
+    "sentence_sv": "Jag har aldrig besökt Spanien."
+  },
+  {
+    "word": "dónde",
+    "translation": "var",
+    "sentence_es": "¿Dónde está el libro?",
+    "sentence_sv": "Var är boken?"
+  },
+  {
+    "word": "va",
+    "translation": "han/hon/den/det går, åker",
+    "sentence_es": "Ella va al mercado.",
+    "sentence_sv": "Hon går till marknaden."
+  },
+  {
+    "word": "oh",
+    "translation": "åh",
+    "sentence_es": "¡Oh, qué sorpresa verte aquí!",
+    "sentence_sv": "Åh, vilken överraskning att se dig här!"
+  },
+  {
+    "word": "favor",
+    "translation": "tjänst",
+    "sentence_es": "¿Me puedes hacer un favor?",
+    "sentence_sv": "Kan du göra mig en tjänst?"
+  },
+  {
+    "word": "mucho",
+    "translation": "mycket",
+    "sentence_es": "Tengo mucho trabajo hoy.",
+    "sentence_sv": "Jag har mycket arbete idag."
+  },
+  {
+    "word": "mí",
+    "translation": "mig",
+    "sentence_es": "Este regalo es para mí.",
+    "sentence_sv": "Den här presenten är till mig."
+  },
+  {
+    "word": "quieres",
+    "translation": "du vill ha / du vill",
+    "sentence_es": "¿Quieres un café?",
+    "sentence_sv": "Vill du ha en kaffe?"
+  },
+  {
+    "word": "siento",
+    "translation": "jag känner / jag beklagar",
+    "sentence_es": "Lo siento mucho por llegar tarde.",
+    "sentence_sv": "Jag beklagar mycket att jag kommer för sent."
+  },
+  {
+    "word": "señor",
+    "translation": "herr",
+    "sentence_es": "El señor está en la oficina.",
+    "sentence_sv": "Herrn är på kontoret."
+  },
+  {
+    "word": "mejor",
+    "translation": "bättre",
+    "sentence_es": "Este libro es mejor que el otro.",
+    "sentence_sv": "Den här boken är bättre än den andra."
+  },
+  {
+    "word": "hace",
+    "translation": "gör",
+    "sentence_es": "Él hace su tarea todos los días.",
+    "sentence_sv": "Han gör sin läxa varje dag."
+  },
+  {
+    "word": "has",
+    "translation": "du har",
+    "sentence_es": "Tú has terminado el trabajo.",
+    "sentence_sv": "Du har avslutat arbetet."
+  },
+  {
+    "word": "decir",
+    "translation": "säga",
+    "sentence_es": "Ella quiere decir la verdad.",
+    "sentence_sv": "Hon vill säga sanningen."
+  },
+  {
+    "word": "también",
+    "translation": "också",
+    "sentence_es": "Yo también quiero ir al cine.",
+    "sentence_sv": "Jag vill också gå på bio."
+  },
+  {
+    "word": "sobre",
+    "translation": "om, på, kuvert",
+    "sentence_es": "El libro está sobre la mesa.",
+    "sentence_sv": "Boken ligger på bordet."
+  },
+  {
+    "word": "dios",
+    "translation": "gud",
+    "sentence_es": "Dios es amor.",
+    "sentence_sv": "Gud är kärlek."
+  },
+  {
+    "word": "sin",
+    "translation": "utan",
+    "sentence_es": "No puedo vivir sin ti.",
+    "sentence_sv": "Jag kan inte leva utan dig."
+  },
+  {
+    "word": "tenemos",
+    "translation": "vi har",
+    "sentence_es": "Tenemos una casa grande.",
+    "sentence_sv": "Vi har ett stort hus."
+  },
+  {
+    "word": "están",
+    "translation": "de är (befinner sig)",
+    "sentence_es": "Ellos están en la escuela.",
+    "sentence_sv": "De är i skolan."
+  },
+  {
+    "word": "ti",
+    "translation": "dig",
+    "sentence_es": "Este regalo es para ti.",
+    "sentence_sv": "Den här presenten är till dig."
+  },
+  {
+    "word": "puedes",
+    "translation": "du kan",
+    "sentence_es": "¿Puedes ayudarme con esta tarea?",
+    "sentence_sv": "Kan du hjälpa mig med denna uppgift?"
+  },
+  {
+    "word": "ver",
+    "translation": "se",
+    "sentence_es": "Quiero ver la película esta noche.",
+    "sentence_sv": "Jag vill se filmen ikväll."
+  },
+  {
+    "word": "hombre",
+    "translation": "man",
+    "sentence_es": "El hombre está leyendo un libro.",
+    "sentence_sv": "Mannen läser en bok."
+  },
+  {
+    "word": "vida",
+    "translation": "liv",
+    "sentence_es": "La vida es hermosa.",
+    "sentence_sv": "Livet är vackert."
+  },
+  {
+    "word": "alguien",
+    "translation": "någon",
+    "sentence_es": "¿Hay alguien en casa?",
+    "sentence_sv": "Finns det någon hemma?"
+  },
+  {
+    "word": "cosas",
+    "translation": "saker",
+    "sentence_es": "Tengo muchas cosas en mi mochila.",
+    "sentence_sv": "Jag har många saker i min ryggsäck."
+  },
+  {
+    "word": "siempre",
+    "translation": "alltid",
+    "sentence_es": "Ella siempre llega a tiempo.",
+    "sentence_sv": "Hon kommer alltid i tid."
+  },
+  {
+    "word": "hasta",
+    "translation": "tills, ända till, även",
+    "sentence_es": "Voy a esperar hasta las ocho.",
+    "sentence_sv": "Jag ska vänta tills klockan åtta."
+  },
+  {
+    "word": "ahí",
+    "translation": "där",
+    "sentence_es": "El libro está ahí.",
+    "sentence_sv": "Boken är där."
+  },
+  {
+    "word": "ir",
+    "translation": "gå, åka",
+    "sentence_es": "Voy al mercado.",
+    "sentence_sv": "Jag går till marknaden."
+  },
+  {
+    "word": "años",
+    "translation": "år",
+    "sentence_es": "Tengo veinte años.",
+    "sentence_sv": "Jag är tjugo år gammal."
+  },
+  {
+    "word": "antes",
+    "translation": "före, innan",
+    "sentence_es": "Llegué antes de la reunión.",
+    "sentence_sv": "Jag kom före mötet."
+  },
+  {
+    "word": "estar",
+    "translation": "att vara (tillfälligt, läge, känsla)",
+    "sentence_es": "Estoy en casa.",
+    "sentence_sv": "Jag är hemma."
+  },
+  {
+    "word": "ni",
+    "translation": "inte ens",
+    "sentence_es": "Ni siquiera vino a la fiesta.",
+    "sentence_sv": "Han/hon kom inte ens till festen."
+  },
+  {
+    "word": "poco",
+    "translation": "lite",
+    "sentence_es": "Tengo poco tiempo.",
+    "sentence_sv": "Jag har lite tid."
+  },
+  {
+    "word": "día",
+    "translation": "dag",
+    "sentence_es": "Hoy es un día soleado.",
+    "sentence_sv": "Idag är en solig dag."
+  },
+  {
+    "word": "uno",
+    "translation": "ett",
+    "sentence_es": "Tengo uno libro.",
+    "sentence_sv": "Jag har en bok."
+  },
+  {
+    "word": "noche",
+    "translation": "natt",
+    "sentence_es": "La noche es muy tranquila.",
+    "sentence_sv": "Natten är mycket lugn."
+  },
+  {
+    "word": "hecho",
+    "translation": "faktum, gjort",
+    "sentence_es": "Este es un hecho importante.",
+    "sentence_sv": "Det här är ett viktigt faktum."
+  },
+  {
+    "word": "mis",
+    "translation": "mina",
+    "sentence_es": "Estos son mis libros.",
+    "sentence_sv": "Det här är mina böcker."
+  },
+  {
+    "word": "estamos",
+    "translation": "vi är",
+    "sentence_es": "Estamos en la escuela.",
+    "sentence_sv": "Vi är i skolan."
+  },
+  {
+    "word": "otra",
+    "translation": "annan",
+    "sentence_es": "Quiero comprar otra camisa.",
+    "sentence_sv": "Jag vill köpa en annan skjorta."
+  },
+  {
+    "word": "acuerdo",
+    "translation": "överenskommelse",
+    "sentence_es": "Llegaron a un acuerdo después de la reunión.",
+    "sentence_sv": "De nådde en överenskommelse efter mötet."
+  },
+  {
+    "word": "trabajo",
+    "translation": "arbete",
+    "sentence_es": "Tengo mucho trabajo hoy.",
+    "sentence_sv": "Jag har mycket arbete idag."
+  },
+  {
+    "word": "nosotros",
+    "translation": "vi",
+    "sentence_es": "Nosotros vamos al parque.",
+    "sentence_sv": "Vi går till parken."
+  },
+  {
+    "word": "parece",
+    "translation": "verkar",
+    "sentence_es": "Él parece cansado hoy.",
+    "sentence_sv": "Han verkar trött idag."
+  },
+  {
+    "word": "gente",
+    "translation": "folk",
+    "sentence_es": "La gente está en el parque.",
+    "sentence_sv": "Folk är i parken."
+  },
+  {
+    "word": "sea",
+    "translation": "hav",
+    "sentence_es": "El mar es muy azul.",
+    "sentence_sv": "Havet är mycket blått."
+  },
+  {
+    "word": "padre",
+    "translation": "far",
+    "sentence_es": "Mi padre es muy amable.",
+    "sentence_sv": "Min far är mycket snäll."
+  },
+  {
+    "word": "mira",
+    "translation": "titta",
+    "sentence_es": "Mira el cielo, está muy bonito hoy.",
+    "sentence_sv": "Titta på himlen, den är mycket vacker idag."
+  },
+  {
+    "word": "mismo",
+    "translation": "samma",
+    "sentence_es": "Tengo el mismo libro que tú.",
+    "sentence_sv": "Jag har samma bok som du."
+  },
+  {
+    "word": "dijo",
+    "translation": "han/hon sa",
+    "sentence_es": "Ella dijo la verdad.",
+    "sentence_sv": "Hon sa sanningen."
+  },
+  {
+    "word": "nadie",
+    "translation": "ingen",
+    "sentence_es": "Nadie sabe la respuesta.",
+    "sentence_sv": "Ingen vet svaret."
+  },
+  {
+    "word": "quiere",
+    "translation": "vill, älskar",
+    "sentence_es": "Ella quiere un helado.",
+    "sentence_sv": "Hon vill ha en glass."
+  },
+  {
+    "word": "podría",
+    "translation": "skulle kunna",
+    "sentence_es": "Podría ayudarte con tu tarea.",
+    "sentence_sv": "Jag skulle kunna hjälpa dig med din läxa."
+  },
+  {
+    "word": "hablar",
+    "translation": "tala",
+    "sentence_es": "Yo hablo español.",
+    "sentence_sv": "Jag talar spanska."
+  },
+  {
+    "word": "vas",
+    "translation": "du går",
+    "sentence_es": "Tú vas al supermercado.",
+    "sentence_sv": "Du går till stormarknaden."
+  },
+  {
+    "word": "ellos",
+    "translation": "de (maskulina eller blandade grupper)",
+    "sentence_es": "Ellos están en el parque.",
+    "sentence_sv": "De är i parken."
+  },
+  {
+    "word": "sr.",
+    "translation": "herr",
+    "sentence_es": "El Sr. Pérez es mi profesor.",
+    "sentence_sv": "Herr Pérez är min lärare."
+  },
+  {
+    "word": "tal",
+    "translation": "nummer",
+    "sentence_es": "El número cinco es mi favorito.",
+    "sentence_sv": "Numret fem är min favorit."
+  },
+  {
+    "word": "pasa",
+    "translation": "passerar / händer / russin (beroende på sammanhang)",
+    "sentence_es": "¿Qué pasa aquí?",
+    "sentence_sv": "Vad händer här?"
+  },
+  {
+    "word": "fuera",
+    "translation": "ute, utanför",
+    "sentence_es": "Estoy fuera de la casa.",
+    "sentence_sv": "Jag är utanför huset."
+  },
+  {
+    "word": "después",
+    "translation": "efteråt",
+    "sentence_es": "Vamos a comer después de la película.",
+    "sentence_sv": "Vi ska äta efter filmen."
+  },
+  {
+    "word": "han",
+    "translation": "han (3:e person singular av verbet haber i presens perfekt)",
+    "sentence_es": "Ellos han comido mucho hoy.",
+    "sentence_sv": "De har ätit mycket idag."
+  },
+  {
+    "word": "desde",
+    "translation": "från, sedan",
+    "sentence_es": "Vivo en esta ciudad desde 2010.",
+    "sentence_sv": "Jag har bott i den här staden sedan 2010."
+  },
+  {
+    "word": "dinero",
+    "translation": "pengar",
+    "sentence_es": "Necesito dinero para comprar comida.",
+    "sentence_sv": "Jag behöver pengar för att köpa mat."
+  },
+  {
+    "word": "mundo",
+    "translation": "värld",
+    "sentence_es": "El mundo es muy grande.",
+    "sentence_sv": "Världen är mycket stor."
+  },
+  {
+    "word": "claro",
+    "translation": "klart",
+    "sentence_es": "El cielo está claro hoy.",
+    "sentence_sv": "Himlen är klar idag."
+  },
+  {
+    "word": "momento",
+    "translation": "ögonblick",
+    "sentence_es": "Espera un momento, por favor.",
+    "sentence_sv": "Vänta ett ögonblick, tack."
+  },
+  {
+    "word": "les",
+    "translation": "dem (indirekt objekt pronomen, tredje person plural)",
+    "sentence_es": "Les doy los libros a ellos.",
+    "sentence_sv": "Jag ger dem böckerna."
+  },
+  {
+    "word": "tener",
+    "translation": "att ha",
+    "sentence_es": "Yo tengo un libro.",
+    "sentence_sv": "Jag har en bok."
+  },
+  {
+    "word": "estado",
+    "translation": "tillstånd, stat",
+    "sentence_es": "El estado de la puerta es cerrado.",
+    "sentence_sv": "Dörrens tillstånd är stängt."
+  },
+  {
+    "word": "otro",
+    "translation": "annan",
+    "sentence_es": "Quiero otro libro.",
+    "sentence_sv": "Jag vill ha en annan bok."
+  },
+  {
+    "word": "había",
+    "translation": "det fanns / fanns",
+    "sentence_es": "Había un perro en el parque.",
+    "sentence_sv": "Det fanns en hund i parken."
+  },
+  {
+    "word": "mañana",
+    "translation": "imorgon",
+    "sentence_es": "Voy a estudiar mañana.",
+    "sentence_sv": "Jag ska studera imorgon."
+  },
+  {
+    "word": "tenía",
+    "translation": "hade",
+    "sentence_es": "Cuando era niño, tenía un perro.",
+    "sentence_sv": "När jag var barn hade jag en hund."
+  },
+  {
+    "word": "madre",
+    "translation": "mor",
+    "sentence_es": "Mi madre cocina muy bien.",
+    "sentence_sv": "Min mor lagar mat mycket bra."
+  },
+  {
+    "word": "vale",
+    "translation": "okej",
+    "sentence_es": "¿Quieres venir con nosotros? Vale.",
+    "sentence_sv": "Vill du följa med oss? Okej."
+  },
+  {
+    "word": "lugar",
+    "translation": "plats",
+    "sentence_es": "Este es un lugar muy bonito.",
+    "sentence_sv": "Det här är en mycket fin plats."
+  },
+  {
+    "word": "haciendo",
+    "translation": "gör",
+    "sentence_es": "Estoy haciendo la tarea.",
+    "sentence_sv": "Jag gör läxan."
+  },
+  {
+    "word": "donde",
+    "translation": "där",
+    "sentence_es": "¿Dónde está el libro?",
+    "sentence_sv": "Var är boken?"
+  },
+  {
+    "word": "seguro",
+    "translation": "säker",
+    "sentence_es": "Estoy seguro de que todo saldrá bien.",
+    "sentence_sv": "Jag är säker på att allt kommer att gå bra."
+  },
+  {
+    "word": "sabe",
+    "translation": "vet",
+    "sentence_es": "Ella sabe la respuesta.",
+    "sentence_sv": "Hon vet svaret."
+  },
+  {
+    "word": "podemos",
+    "translation": "vi kan",
+    "sentence_es": "Podemos ir al parque mañana.",
+    "sentence_sv": "Vi kan gå till parken imorgon."
+  },
+  {
+    "word": "tus",
+    "translation": "dina",
+    "sentence_es": "¿Dónde están tus libros?",
+    "sentence_sv": "Var är dina böcker?"
+  },
+  {
+    "word": "espera",
+    "translation": "väntan",
+    "sentence_es": "La espera fue larga pero valió la pena.",
+    "sentence_sv": "Väntan var lång men det var värt det."
+  },
+  {
+    "word": "nuevo",
+    "translation": "ny",
+    "sentence_es": "Tengo un coche nuevo.",
+    "sentence_sv": "Jag har en ny bil."
+  },
+  {
+    "word": "sido",
+    "translation": "vara (particip av verbet ser, 'att vara')",
+    "sentence_es": "Él ha sido un buen amigo.",
+    "sentence_sv": "Han har varit en god vän."
+  },
+  {
+    "word": "cosa",
+    "translation": "sak",
+    "sentence_es": "Esta cosa es muy interesante.",
+    "sentence_sv": "Den här saken är mycket intressant."
+  },
+  {
+    "word": "hijo",
+    "translation": "son",
+    "sentence_es": "Mi hijo juega en el parque.",
+    "sentence_sv": "Min son leker i parken."
+  },
+  {
+    "word": "allí",
+    "translation": "där",
+    "sentence_es": "El libro está allí en la mesa.",
+    "sentence_sv": "Boken är där på bordet."
+  },
+  {
+    "word": "menos",
+    "translation": "mindre, minus, mindre än",
+    "sentence_es": "Tengo menos tiempo hoy.",
+    "sentence_sv": "Jag har mindre tid idag."
+  },
+  {
+    "word": "tipo",
+    "translation": "typ",
+    "sentence_es": "¿Qué tipo de música te gusta?",
+    "sentence_sv": "Vilken typ av musik gillar du?"
+  },
+  {
+    "word": "amigo",
+    "translation": "vän",
+    "sentence_es": "Mi amigo es muy amable.",
+    "sentence_sv": "Min vän är mycket snäll."
+  },
+  {
+    "word": "gran",
+    "translation": "stor",
+    "sentence_es": "Ella tiene una gran casa.",
+    "sentence_sv": "Hon har ett stort hus."
+  },
+  {
+    "word": "nuestro",
+    "translation": "vår",
+    "sentence_es": "Este es nuestro coche.",
+    "sentence_sv": "Det här är vår bil."
+  },
+  {
+    "word": "mujer",
+    "translation": "kvinna",
+    "sentence_es": "La mujer está leyendo un libro.",
+    "sentence_sv": "Kvinnan läser en bok."
+  },
+  {
+    "word": "mamá",
+    "translation": "mamma",
+    "sentence_es": "Mi mamá cocina muy bien.",
+    "sentence_sv": "Min mamma lagar mycket god mat."
+  },
+  {
+    "word": "luego",
+    "translation": "sedan",
+    "sentence_es": "Voy a estudiar y luego cenar.",
+    "sentence_sv": "Jag ska studera och sedan äta middag."
+  },
+  {
+    "word": "papá",
+    "translation": "pappa",
+    "sentence_es": "Mi papá es muy amable.",
+    "sentence_sv": "Min pappa är mycket snäll."
+  },
+  {
+    "word": "días",
+    "translation": "dagar",
+    "sentence_es": "Los días son más largos en verano.",
+    "sentence_sv": "Dagarna är längre på sommaren."
+  },
+  {
+    "word": "dice",
+    "translation": "säger",
+    "sentence_es": "Él dice la verdad.",
+    "sentence_sv": "Han säger sanningen."
+  },
+  {
+    "word": "hoy",
+    "translation": "idag",
+    "sentence_es": "Hoy hace mucho sol.",
+    "sentence_sv": "Idag är det mycket sol."
+  },
+  {
+    "word": "tres",
+    "translation": "tre",
+    "sentence_es": "Tengo tres libros en mi mochila.",
+    "sentence_sv": "Jag har tre böcker i min ryggsäck."
+  },
+  {
+    "word": "buena",
+    "translation": "bra",
+    "sentence_es": "Ella es una buena amiga.",
+    "sentence_sv": "Hon är en bra vän."
+  },
+  {
+    "word": "necesito",
+    "translation": "jag behöver",
+    "sentence_es": "Necesito ayuda con mi tarea.",
+    "sentence_sv": "Jag behöver hjälp med min läxa."
+  },
+  {
+    "word": "dije",
+    "translation": "jag sade",
+    "sentence_es": "Ayer dije la verdad.",
+    "sentence_sv": "Igår sade jag sanningen."
+  },
+  {
+    "word": "oye",
+    "translation": "hör",
+    "sentence_es": "Oye, ¿puedes ayudarme?",
+    "sentence_sv": "Hör, kan du hjälpa mig?"
+  },
+  {
+    "word": "gusta",
+    "translation": "gillar (det/den)",
+    "sentence_es": "Me gusta el chocolate.",
+    "sentence_sv": "Jag gillar choklad."
+  },
+  {
+    "word": "quería",
+    "translation": "ville ha / älskade / önskade (imperfekt av 'querer')",
+    "sentence_es": "Cuando era niño, quería ser astronauta.",
+    "sentence_sv": "När jag var barn ville jag bli astronaut."
+  },
+  {
+    "word": "será",
+    "translation": "kommer att vara",
+    "sentence_es": "Mañana será un día soleado.",
+    "sentence_sv": "Imorgon kommer det att bli en solig dag."
+  },
+  {
+    "word": "haber",
+    "translation": "att ha (hjälpverb), finnas, förekomma",
+    "sentence_es": "Tiene que haber una solución.",
+    "sentence_sv": "Det måste finnas en lösning."
+  },
+  {
+    "word": "parte",
+    "translation": "del",
+    "sentence_es": "Esta es la parte más importante del libro.",
+    "sentence_sv": "Det här är den viktigaste delen av boken."
+  },
+  {
+    "word": "todas",
+    "translation": "alla (feminint plural)",
+    "sentence_es": "Todas las niñas están en el parque.",
+    "sentence_sv": "Alla flickorna är i parken."
+  },
+  {
+    "word": "crees",
+    "translation": "du tror",
+    "sentence_es": "¿Crees en los milagros?",
+    "sentence_sv": "Tror du på mirakel?"
+  },
+  {
+    "word": "buen",
+    "translation": "bra",
+    "sentence_es": "Él es un buen amigo.",
+    "sentence_sv": "Han är en bra vän."
+  },
+  {
+    "word": "conmigo",
+    "translation": "med mig",
+    "sentence_es": "¿Quieres venir conmigo al cine?",
+    "sentence_sv": "Vill du följa med mig till bion?"
+  },
+  {
+    "word": "nombre",
+    "translation": "namn",
+    "sentence_es": "Mi nombre es Ana.",
+    "sentence_sv": "Mitt namn är Ana."
+  },
+  {
+    "word": "mierda",
+    "translation": "skit",
+    "sentence_es": "¡Esto es una mierda!",
+    "sentence_sv": "Det här är skit!"
+  },
+  {
+    "word": "nuestra",
+    "translation": "vår",
+    "sentence_es": "Esta es nuestra casa.",
+    "sentence_sv": "Det här är vårt hus."
+  },
+  {
+    "word": "mal",
+    "translation": "dåligt, ont, illa",
+    "sentence_es": "Me siento mal hoy.",
+    "sentence_sv": "Jag mår dåligt idag."
+  },
+  {
+    "word": "debe",
+    "translation": "bör, måste, ska",
+    "sentence_es": "Él debe estudiar para el examen.",
+    "sentence_sv": "Han måste studera till provet."
+  },
+  {
+    "word": "realmente",
+    "translation": "verkligen",
+    "sentence_es": "Realmente me gusta este libro.",
+    "sentence_sv": "Jag gillar verkligen den här boken."
+  },
+  {
+    "word": "estas",
+    "translation": "dessa/dessa är (femininum, plural)",
+    "sentence_es": "Estas flores son muy bonitas.",
+    "sentence_sv": "Dessa blommor är mycket vackra."
+  },
+  {
+    "word": "aún",
+    "translation": "ännu",
+    "sentence_es": "Aún no he terminado mi tarea.",
+    "sentence_sv": "Jag har ännu inte gjort klart min läxa."
+  },
+  {
+    "word": "mío",
+    "translation": "min",
+    "sentence_es": "Este libro es mío.",
+    "sentence_sv": "Den här boken är min."
+  },
+  {
+    "word": "toda",
+    "translation": "hela",
+    "sentence_es": "Ella comió toda la manzana.",
+    "sentence_sv": "Hon åt hela äpplet."
+  },
+  {
+    "word": "hacerlo",
+    "translation": "göra det",
+    "sentence_es": "Quiero hacerlo hoy.",
+    "sentence_sv": "Jag vill göra det idag."
+  },
+  {
+    "word": "cada",
+    "translation": "varje",
+    "sentence_es": "Cada día estudio español.",
+    "sentence_sv": "Varje dag studerar jag spanska."
+  },
+  {
+    "word": "visto",
+    "translation": "sett",
+    "sentence_es": "He visto una película interesante.",
+    "sentence_sv": "Jag har sett en intressant film."
+  },
+  {
+    "word": "importa",
+    "translation": "är viktigt / spelar roll",
+    "sentence_es": "No importa lo que digas.",
+    "sentence_sv": "Det spelar ingen roll vad du säger."
+  },
+  {
+    "word": "contigo",
+    "translation": "med dig",
+    "sentence_es": "Quiero ir al cine contigo.",
+    "sentence_sv": "Jag vill gå på bio med dig."
+  },
+  {
+    "word": "tienen",
+    "translation": "de har",
+    "sentence_es": "Ellos tienen un perro grande.",
+    "sentence_sv": "De har en stor hund."
+  },
+  {
+    "word": "hemos",
+    "translation": "vi har",
+    "sentence_es": "Hemos terminado el trabajo.",
+    "sentence_sv": "Vi har avslutat arbetet."
+  },
+  {
+    "word": "razón",
+    "translation": "anledning, orsak, förnuft",
+    "sentence_es": "Tienes razón en lo que dices.",
+    "sentence_sv": "Du har rätt i det du säger."
+  },
+  {
+    "word": "alguna",
+    "translation": "någon, någon (feminin form)",
+    "sentence_es": "¿Tienes alguna pregunta?",
+    "sentence_sv": "Har du någon fråga?"
+  },
+  {
+    "word": "tanto",
+    "translation": "så mycket, så många",
+    "sentence_es": "No tengo tanto dinero.",
+    "sentence_sv": "Jag har inte så mycket pengar."
+  },
+  {
+    "word": "saber",
+    "translation": "veta",
+    "sentence_es": "Yo sé la respuesta.",
+    "sentence_sv": "Jag vet svaret."
+  },
+  {
+    "word": "hizo",
+    "translation": "gjorde",
+    "sentence_es": "Ella hizo su tarea ayer.",
+    "sentence_sv": "Hon gjorde sin läxa igår."
+  },
+  {
+    "word": "veces",
+    "translation": "gånger",
+    "sentence_es": "He visitado ese lugar muchas veces.",
+    "sentence_sv": "Jag har besökt den platsen många gånger."
+  },
+  {
+    "word": "serio",
+    "translation": "allvarlig",
+    "sentence_es": "Él es un hombre serio.",
+    "sentence_sv": "Han är en allvarlig man."
+  },
+  {
+    "word": "ven",
+    "translation": "kom",
+    "sentence_es": "Ven aquí, por favor.",
+    "sentence_sv": "Kom hit, tack."
+  },
+  {
+    "word": "idea",
+    "translation": "idé",
+    "sentence_es": "Tengo una idea para el proyecto.",
+    "sentence_sv": "Jag har en idé för projektet."
+  },
+  {
+    "word": "eh",
+    "translation": "öh",
+    "sentence_es": "¿Eh? No entendí lo que dijiste.",
+    "sentence_sv": "Öh? Jag förstod inte vad du sa."
+  },
+  {
+    "word": "tarde",
+    "translation": "eftermiddag",
+    "sentence_es": "Llegué tarde a la escuela.",
+    "sentence_sv": "Jag kom för sent till skolan."
+  },
+  {
+    "word": "problema",
+    "translation": "problem",
+    "sentence_es": "Tengo un problema con mi computadora.",
+    "sentence_sv": "Jag har ett problem med min dator."
+  },
+  {
+    "word": "hora",
+    "translation": "timme",
+    "sentence_es": "La película dura dos horas.",
+    "sentence_sv": "Filmen varar i två timmar."
+  },
+  {
+    "word": "cierto",
+    "translation": "sant, viss",
+    "sentence_es": "Es cierto que hace frío hoy.",
+    "sentence_sv": "Det är sant att det är kallt idag."
+  },
+  {
+    "word": "dicho",
+    "translation": "sagt",
+    "sentence_es": "El dicho popular es muy conocido.",
+    "sentence_sv": "Det populära talesättet är mycket känt."
+  },
+  {
+    "word": "quien",
+    "translation": "vem",
+    "sentence_es": "¿Quién eres?",
+    "sentence_sv": "Vem är du?"
+  },
+  {
+    "word": "demasiado",
+    "translation": "för mycket",
+    "sentence_es": "Hay demasiada comida en la mesa.",
+    "sentence_sv": "Det finns för mycket mat på bordet."
+  },
+  {
+    "word": "amor",
+    "translation": "kärlek",
+    "sentence_es": "El amor es muy importante en la vida.",
+    "sentence_sv": "Kärlek är mycket viktigt i livet."
+  },
+  {
+    "word": "entre",
+    "translation": "mellan",
+    "sentence_es": "El libro está entre la mesa y la silla.",
+    "sentence_sv": "Boken är mellan bordet och stolen."
+  },
+  {
+    "word": "ve",
+    "translation": "se",
+    "sentence_es": "Ella ve la película.",
+    "sentence_sv": "Hon ser filmen."
+  },
+  {
+    "word": "pasado",
+    "translation": "förfluten, förflutna; gångna (tidsform: dåtid)",
+    "sentence_es": "El pasado es importante para entender el presente.",
+    "sentence_sv": "Det förflutna är viktigt för att förstå nutiden."
+  },
+  {
+    "word": "familia",
+    "translation": "familj",
+    "sentence_es": "Mi familia es muy unida.",
+    "sentence_sv": "Min familj är mycket sammansvetsad."
+  },
+  {
+    "word": "estos",
+    "translation": "de här/dessa",
+    "sentence_es": "Estos libros son interesantes.",
+    "sentence_sv": "De här böckerna är intressanta."
+  },
+  {
+    "word": "policía",
+    "translation": "polis",
+    "sentence_es": "La policía llegó rápidamente al lugar del accidente.",
+    "sentence_sv": "Polisen kom snabbt till olycksplatsen."
+  },
+  {
+    "word": "debería",
+    "translation": "börde/skulle behöva",
+    "sentence_es": "Debería estudiar más para el examen.",
+    "sentence_sv": "Jag borde plugga mer inför provet."
+  },
+  {
+    "word": "ustedes",
+    "translation": "ni (artigt eller formellt tilltal, plural)",
+    "sentence_es": "¿Ustedes quieren café?",
+    "sentence_sv": "Vill ni ha kaffe?"
+  },
+  {
+    "word": "chica",
+    "translation": "flicka",
+    "sentence_es": "La chica está en el parque.",
+    "sentence_sv": "Flickan är i parken."
+  },
+  {
+    "word": "esos",
+    "translation": "de där",
+    "sentence_es": "Esos libros son interesantes.",
+    "sentence_sv": "De där böckerna är intressanta."
+  },
+  {
+    "word": "chicos",
+    "translation": "pojkar",
+    "sentence_es": "Los chicos juegan en el parque.",
+    "sentence_sv": "Pojkarna leker i parken."
+  },
+  {
+    "word": "cuenta",
+    "translation": "räkning / konto / berättelse",
+    "sentence_es": "Por favor, paga la cuenta.",
+    "sentence_sv": "Var snäll och betala notan."
+  },
+  {
+    "word": "haces",
+    "translation": "du gör",
+    "sentence_es": "¿Qué haces ahora?",
+    "sentence_sv": "Vad gör du nu?"
+  },
+  {
+    "word": "todavía",
+    "translation": "fortfarande",
+    "sentence_es": "Todavía estoy trabajando.",
+    "sentence_sv": "Jag arbetar fortfarande."
+  },
+  {
+    "word": "salir",
+    "translation": "gå ut / lämna",
+    "sentence_es": "Vamos a salir esta noche.",
+    "sentence_sv": "Vi ska gå ut ikväll."
+  },
+  {
+    "word": "algún",
+    "translation": "någon",
+    "sentence_es": "¿Tienes algún libro interesante?",
+    "sentence_sv": "Har du någon intressant bok?"
+  },
+  {
+    "word": "vaya",
+    "translation": "gå, åka, vilken (uttryck för förvåning)",
+    "sentence_es": "¡Vaya día que hemos tenido!",
+    "sentence_sv": "Vilken dag vi har haft!"
+  },
+  {
+    "word": "unos",
+    "translation": "några",
+    "sentence_es": "Tengo unos libros en mi mochila.",
+    "sentence_sv": "Jag har några böcker i min ryggsäck."
+  },
+  {
+    "word": "veo",
+    "translation": "jag ser",
+    "sentence_es": "Veo un pájaro en el árbol.",
+    "sentence_sv": "Jag ser en fågel i trädet."
+  },
+  {
+    "word": "amigos",
+    "translation": "vänner",
+    "sentence_es": "Mis amigos y yo vamos al parque.",
+    "sentence_sv": "Mina vänner och jag går till parken."
+  },
+  {
+    "word": "hermano",
+    "translation": "bror",
+    "sentence_es": "Mi hermano es muy amable.",
+    "sentence_sv": "Min bror är väldigt snäll."
+  },
+  {
+    "word": "pensé",
+    "translation": "jag tänkte",
+    "sentence_es": "Pensé que ibas a venir.",
+    "sentence_sv": "Jag tänkte att du skulle komma."
+  },
+  {
+    "word": "sabía",
+    "translation": "visste",
+    "sentence_es": "Ella sabía la respuesta.",
+    "sentence_sv": "Hon visste svaret."
+  },
+  {
+    "word": "cabeza",
+    "translation": "huvud",
+    "sentence_es": "Me duele la cabeza.",
+    "sentence_sv": "Jag har ont i huvudet."
+  },
+  {
+    "word": "ah",
+    "translation": "ah",
+    "sentence_es": "¡Ah, ahora entiendo!",
+    "sentence_sv": "Ah, nu förstår jag!"
+  },
+  {
+    "word": "cariño",
+    "translation": "kärlek; ömhet",
+    "sentence_es": "Te tengo mucho cariño.",
+    "sentence_sv": "Jag har mycket kärlek för dig."
+  },
+  {
+    "word": "digo",
+    "translation": "jag säger",
+    "sentence_es": "Yo digo la verdad.",
+    "sentence_sv": "Jag säger sanningen."
+  },
+  {
+    "word": "van",
+    "translation": "de går",
+    "sentence_es": "Ellos van al mercado.",
+    "sentence_sv": "De går till marknaden."
+  },
+  {
+    "word": "hombres",
+    "translation": "män",
+    "sentence_es": "Los hombres están trabajando en el parque.",
+    "sentence_sv": "Männen arbetar i parken."
+  },
+  {
+    "word": "buenas",
+    "translation": "bra, goda (feminin plural)",
+    "sentence_es": "Buenas tardes, ¿cómo estás?",
+    "sentence_sv": "God eftermiddag, hur mår du?"
+  },
+  {
+    "word": "somos",
+    "translation": "vi är",
+    "sentence_es": "Somos amigos desde la infancia.",
+    "sentence_sv": "Vi har varit vänner sedan barndomen."
+  },
+  {
+    "word": "cualquier",
+    "translation": "vilken som helst",
+    "sentence_es": "Puedes elegir cualquier libro que te guste.",
+    "sentence_sv": "Du kan välja vilken bok som helst som du tycker om."
+  },
+  {
+    "word": "forma",
+    "translation": "form, form, sätt",
+    "sentence_es": "La forma de la escultura es muy interesante.",
+    "sentence_sv": "Skulpturens form är mycket intressant."
+  },
+  {
+    "word": "mientras",
+    "translation": "medan",
+    "sentence_es": "Escucho música mientras estudio.",
+    "sentence_sv": "Jag lyssnar på musik medan jag studerar."
+  },
+  {
+    "word": "lado",
+    "translation": "sida",
+    "sentence_es": "El libro está al lado de la mesa.",
+    "sentence_sv": "Boken är på sidan av bordet."
+  },
+  {
+    "word": "debo",
+    "translation": "jag måste",
+    "sentence_es": "Debo estudiar para el examen.",
+    "sentence_sv": "Jag måste studera till provet."
+  },
+  {
+    "word": "sería",
+    "translation": "skulle vara",
+    "sentence_es": "Sería genial visitar España algún día.",
+    "sentence_sv": "Det skulle vara fantastiskt att besöka Spanien någon dag."
+  },
+  {
+    "word": "caso",
+    "translation": "fall",
+    "sentence_es": "En este caso, debemos actuar con cuidado.",
+    "sentence_sv": "I det här fallet måste vi agera försiktigt."
+  },
+  {
+    "word": "pueden",
+    "translation": "de kan",
+    "sentence_es": "Ellos pueden correr rápido.",
+    "sentence_sv": "De kan springa snabbt."
+  },
+  {
+    "word": "pasó",
+    "translation": "hände",
+    "sentence_es": "¿Qué pasó ayer en la fiesta?",
+    "sentence_sv": "Vad hände igår på festen?"
+  },
+  {
+    "word": "primera",
+    "translation": "första",
+    "sentence_es": "Ella llegó en la primera posición.",
+    "sentence_sv": "Hon kom på första plats."
+  },
+  {
+    "word": "genial",
+    "translation": "genial, lysande",
+    "sentence_es": "Tu idea es realmente genial.",
+    "sentence_sv": "Din idé är verkligen lysande."
+  },
+  {
+    "word": "chico",
+    "translation": "pojke",
+    "sentence_es": "El chico está jugando en el parque.",
+    "sentence_sv": "Pojken leker i parken."
+  },
+  {
+    "word": "supuesto",
+    "translation": "antagande; förmodan; givet fall",
+    "sentence_es": "En el supuesto de que llueva, llevaremos paraguas.",
+    "sentence_sv": "I det antagandet att det regnar, tar vi med oss paraplyer."
+  },
+  {
+    "word": "hice",
+    "translation": "jag gjorde",
+    "sentence_es": "Ayer hice mi tarea.",
+    "sentence_sv": "Igår gjorde jag min läxa."
+  },
+  {
+    "word": "pues",
+    "translation": "så, alltså, därför",
+    "sentence_es": "No puedo ir al cine, pues estoy ocupado.",
+    "sentence_sv": "Jag kan inte gå på bio, eftersom jag är upptagen."
+  },
+  {
+    "word": "adiós",
+    "translation": "adjö",
+    "sentence_es": "Dije adiós antes de salir.",
+    "sentence_sv": "Jag sade adjö innan jag gick."
+  },
+  {
+    "word": "muchas",
+    "translation": "många",
+    "sentence_es": "Tengo muchas amigas en la escuela.",
+    "sentence_sv": "Jag har många vänner i skolan."
+  },
+  {
+    "word": "personas",
+    "translation": "personer",
+    "sentence_es": "Hay muchas personas en el parque.",
+    "sentence_sv": "Det finns många personer i parken."
+  },
+  {
+    "word": "señora",
+    "translation": "fru",
+    "sentence_es": "La señora está en la tienda.",
+    "sentence_sv": "Fru är i affären."
+  },
+  {
+    "word": "volver",
+    "translation": "återvända",
+    "sentence_es": "Voy a volver a casa temprano.",
+    "sentence_sv": "Jag ska återvända hem tidigt."
+  },
+  {
+    "word": "esas",
+    "translation": "de där (feminint plural)",
+    "sentence_es": "Me gustan esas flores en el jardín.",
+    "sentence_sv": "Jag tycker om de där blommorna i trädgården."
+  },
+  {
+    "word": "quizá",
+    "translation": "kanske",
+    "sentence_es": "Quizá llueva mañana.",
+    "sentence_sv": "Kanske regnar det imorgon."
+  },
+  {
+    "word": "contra",
+    "translation": "mot",
+    "sentence_es": "Estoy en contra de esa idea.",
+    "sentence_sv": "Jag är emot den idén."
+  },
+  {
+    "word": "camino",
+    "translation": "väg",
+    "sentence_es": "El camino hacia la montaña es largo.",
+    "sentence_sv": "Vägen mot berget är lång."
+  },
+  {
+    "word": "durante",
+    "translation": "under",
+    "sentence_es": "Estudié mucho durante el examen.",
+    "sentence_sv": "Jag pluggade mycket under provet."
+  },
+  {
+    "word": "hablando",
+    "translation": "pratar",
+    "sentence_es": "Estoy hablando con mi amigo.",
+    "sentence_sv": "Jag pratar med min vän."
+  },
+  {
+    "word": "manera",
+    "translation": "sätt",
+    "sentence_es": "Hay muchas manera de aprender español.",
+    "sentence_sv": "Det finns många sätt att lära sig spanska."
+  },
+  {
+    "word": "muerto",
+    "translation": "död",
+    "sentence_es": "El perro está muerto.",
+    "sentence_sv": "Hunden är död."
+  },
+  {
+    "word": "persona",
+    "translation": "person",
+    "sentence_es": "Ella es una persona amable.",
+    "sentence_sv": "Hon är en snäll person."
+  },
+  {
+    "word": "rápido",
+    "translation": "snabb",
+    "sentence_es": "El coche es muy rápido.",
+    "sentence_sv": "Bilen är mycket snabb."
+  },
+  {
+    "word": "cuál",
+    "translation": "vilken",
+    "sentence_es": "¿Cuál es tu color favorito?",
+    "sentence_sv": "Vilken är din favoritfärg?"
+  },
+  {
+    "word": "ayuda",
+    "translation": "hjälp",
+    "sentence_es": "Necesito ayuda con mi tarea.",
+    "sentence_sv": "Jag behöver hjälp med min läxa."
+  },
+  {
+    "word": "historia",
+    "translation": "historia",
+    "sentence_es": "Me gusta aprender historia en la escuela.",
+    "sentence_sv": "Jag tycker om att lära mig historia i skolan."
+  },
+  {
+    "word": "iba",
+    "translation": "gick / åkte / skulle (imperfekt av verbet ir)",
+    "sentence_es": "Él iba al mercado todos los días.",
+    "sentence_sv": "Han gick till marknaden varje dag."
+  },
+  {
+    "word": "supongo",
+    "translation": "jag antar",
+    "sentence_es": "Supongo que vendrás a la fiesta.",
+    "sentence_sv": "Jag antar att du kommer till festen."
+  },
+  {
+    "word": "nueva",
+    "translation": "ny (feminin form)",
+    "sentence_es": "Tengo una casa nueva.",
+    "sentence_sv": "Jag har ett nytt hus."
+  },
+  {
+    "word": "entiendo",
+    "translation": "jag förstår",
+    "sentence_es": "Yo entiendo la lección.",
+    "sentence_sv": "Jag förstår lektionen."
+  },
+  {
+    "word": "dentro",
+    "translation": "inne, inuti",
+    "sentence_es": "El gato está dentro de la casa.",
+    "sentence_sv": "Katten är inne i huset."
+  },
+  {
+    "word": "casi",
+    "translation": "nästan",
+    "sentence_es": "Casi llego a tiempo al trabajo.",
+    "sentence_sv": "Jag kommer nästan i tid till jobbet."
+  },
+  {
+    "word": "puerta",
+    "translation": "dörr",
+    "sentence_es": "La puerta está abierta.",
+    "sentence_sv": "Dörren är öppen."
+  },
+  {
+    "word": "ves",
+    "translation": "du ser",
+    "sentence_es": "¿Ves la montaña desde aquí?",
+    "sentence_sv": "Ser du berget härifrån?"
+  },
+  {
+    "word": "pasar",
+    "translation": "passera, hända, tillbringa",
+    "sentence_es": "¿Qué va a pasar mañana?",
+    "sentence_sv": "Vad kommer att hända imorgon?"
+  },
+  {
+    "word": "primero",
+    "translation": "först",
+    "sentence_es": "Primero vamos al supermercado.",
+    "sentence_sv": "Först går vi till mataffären."
+  },
+  {
+    "word": "significa",
+    "translation": "betyder",
+    "sentence_es": "¿Qué significa esta palabra?",
+    "sentence_sv": "Vad betyder detta ord?"
+  },
+  {
+    "word": "semana",
+    "translation": "vecka",
+    "sentence_es": "Esta semana tengo mucho trabajo.",
+    "sentence_sv": "Den här veckan har jag mycket arbete."
+  },
+  {
+    "word": "hacia",
+    "translation": "mot",
+    "sentence_es": "Ella camina hacia la escuela.",
+    "sentence_sv": "Hon går mot skolan."
+  },
+  {
+    "word": "quizás",
+    "translation": "kanske",
+    "sentence_es": "Quizás vayamos al cine mañana.",
+    "sentence_sv": "Kanske går vi på bio imorgon."
+  },
+  {
+    "word": "espero",
+    "translation": "jag hoppas / jag väntar",
+    "sentence_es": "Espero que tengas un buen día.",
+    "sentence_sv": "Jag hoppas att du får en bra dag."
+  },
+  {
+    "word": "juntos",
+    "translation": "tillsammans",
+    "sentence_es": "Nos gusta trabajar juntos en el proyecto.",
+    "sentence_sv": "Vi tycker om att arbeta tillsammans på projektet."
+  },
+  {
+    "word": "año",
+    "translation": "år",
+    "sentence_es": "Este año voy a viajar a España.",
+    "sentence_sv": "I år ska jag resa till Spanien."
+  },
+  {
+    "word": "niños",
+    "translation": "barn",
+    "sentence_es": "Los niños juegan en el parque.",
+    "sentence_sv": "Barnen leker i parken."
+  },
+  {
+    "word": "pronto",
+    "translation": "snart",
+    "sentence_es": "Llegaré pronto a casa.",
+    "sentence_sv": "Jag kommer snart hem."
+  },
+  {
+    "word": "tío",
+    "translation": "farbror",
+    "sentence_es": "Mi tío vive en Madrid.",
+    "sentence_sv": "Min farbror bor i Madrid."
+  },
+  {
+    "word": "suerte",
+    "translation": "tur",
+    "sentence_es": "Te deseo mucha suerte en el examen.",
+    "sentence_sv": "Jag önskar dig mycket tur på provet."
+  },
+  {
+    "word": "ciudad",
+    "translation": "stad",
+    "sentence_es": "La ciudad es muy grande.",
+    "sentence_sv": "Staden är mycket stor."
+  },
+  {
+    "word": "siquiera",
+    "translation": "ens",
+    "sentence_es": "No tengo tiempo siquiera para descansar.",
+    "sentence_sv": "Jag har inte ens tid att vila."
+  },
+  {
+    "word": "feliz",
+    "translation": "lycklig",
+    "sentence_es": "Estoy feliz hoy.",
+    "sentence_sv": "Jag är lycklig idag."
+  },
+  {
+    "word": "venir",
+    "translation": "komma",
+    "sentence_es": "Ella va a venir a la fiesta.",
+    "sentence_sv": "Hon kommer att komma till festen."
+  },
+  {
+    "word": "hija",
+    "translation": "dotter",
+    "sentence_es": "Mi hija tiene cinco años.",
+    "sentence_sv": "Min dotter är fem år gammal."
+  },
+  {
+    "word": "gustaría",
+    "translation": "skulle vilja",
+    "sentence_es": "Me gustaría ir al cine esta noche.",
+    "sentence_sv": "Jag skulle vilja gå på bio ikväll."
+  },
+  {
+    "word": "minutos",
+    "translation": "minuter",
+    "sentence_es": "Necesito cinco minutos para terminar.",
+    "sentence_sv": "Jag behöver fem minuter för att bli klar."
+  },
+  {
+    "word": "cuánto",
+    "translation": "hur mycket / hur många",
+    "sentence_es": "¿Cuánto cuesta este libro?",
+    "sentence_sv": "Hur mycket kostar den här boken?"
+  },
+  {
+    "word": "os",
+    "translation": "er",
+    "sentence_es": "Os quiero mucho.",
+    "sentence_sv": "Jag tycker mycket om er."
+  },
+  {
+    "word": "hey",
+    "translation": "hej",
+    "sentence_es": "¡Hey, ¿cómo estás?",
+    "sentence_sv": "Hej, hur mår du?"
+  },
+  {
+    "word": "muerte",
+    "translation": "död",
+    "sentence_es": "La muerte es parte de la vida.",
+    "sentence_sv": "Döden är en del av livet."
+  },
+  {
+    "word": "dejar",
+    "translation": "låta, lämna, sluta",
+    "sentence_es": "Voy a dejar de fumar.",
+    "sentence_sv": "Jag ska sluta röka."
+  },
+  {
+    "word": "realidad",
+    "translation": "verklighet",
+    "sentence_es": "La realidad es diferente de lo que imaginamos.",
+    "sentence_sv": "Verkligheten är annorlunda än vad vi föreställer oss."
+  },
+  {
+    "word": "deja",
+    "translation": "lämnar, släpper, låter",
+    "sentence_es": "Ella deja sus libros en la mesa.",
+    "sentence_sv": "Hon lämnar sina böcker på bordet."
+  },
+  {
+    "word": "problemas",
+    "translation": "problem",
+    "sentence_es": "Tengo muchos problemas en la escuela.",
+    "sentence_sv": "Jag har många problem i skolan."
+  },
+  {
+    "word": "vi",
+    "translation": "vi (preteritum av verbet 'ver', att se)",
+    "sentence_es": "Ayer vi una película muy interesante.",
+    "sentence_sv": "Igår såg jag en mycket intressant film."
+  },
+  {
+    "word": "da",
+    "translation": "han/hon/den/det ger",
+    "sentence_es": "Ella me da un regalo.",
+    "sentence_sv": "Hon ger mig en present."
+  },
+  {
+    "word": "importante",
+    "translation": "viktig",
+    "sentence_es": "Este documento es muy importante.",
+    "sentence_sv": "Det här dokumentet är mycket viktigt."
+  },
+  {
+    "word": "dijiste",
+    "translation": "du sa",
+    "sentence_es": "Tú dijiste la verdad.",
+    "sentence_sv": "Du sa sanningen."
+  },
+  {
+    "word": "corazón",
+    "translation": "hjärta",
+    "sentence_es": "Tengo un corazón fuerte.",
+    "sentence_sv": "Jag har ett starkt hjärta."
+  },
+  {
+    "word": "miedo",
+    "translation": "rädsla",
+    "sentence_es": "Tengo miedo de las arañas.",
+    "sentence_sv": "Jag är rädd för spindlar."
+  },
+  {
+    "word": "jefe",
+    "translation": "chef",
+    "sentence_es": "El jefe llegó temprano a la oficina.",
+    "sentence_sv": "Chefen kom tidigt till kontoret."
+  },
+  {
+    "word": "agua",
+    "translation": "vatten",
+    "sentence_es": "Necesito beber agua.",
+    "sentence_sv": "Jag behöver dricka vatten."
+  },
+  {
+    "word": "haré",
+    "translation": "jag ska göra",
+    "sentence_es": "Haré mi tarea esta noche.",
+    "sentence_sv": "Jag ska göra min läxa ikväll."
+  },
+  {
+    "word": "justo",
+    "translation": "rättvis",
+    "sentence_es": "El juez fue muy justo en su decisión.",
+    "sentence_sv": "Domaren var mycket rättvis i sitt beslut."
+  },
+  {
+    "word": "horas",
+    "translation": "timmar",
+    "sentence_es": "Trabajo ocho horas al día.",
+    "sentence_sv": "Jag arbetar åtta timmar om dagen."
+  },
+  {
+    "word": "poder",
+    "translation": "kunna, kunna göra, makt",
+    "sentence_es": "Yo puedo hablar español.",
+    "sentence_sv": "Jag kan prata spanska."
+  },
+  {
+    "word": "buenos",
+    "translation": "bra, goda",
+    "sentence_es": "Buenos días, ¿cómo estás?",
+    "sentence_sv": "God morgon, hur mår du?"
+  },
+  {
+    "word": "esposa",
+    "translation": "fru",
+    "sentence_es": "Mi esposa es muy amable.",
+    "sentence_sv": "Min fru är mycket vänlig."
+  },
+  {
+    "word": "manos",
+    "translation": "händer",
+    "sentence_es": "Las manos están limpias.",
+    "sentence_sv": "Händerna är rena."
+  },
+  {
+    "word": "debes",
+    "translation": "du måste",
+    "sentence_es": "Debes estudiar para el examen.",
+    "sentence_sv": "Du måste studera till provet."
+  },
+  {
+    "word": "viene",
+    "translation": "kommer",
+    "sentence_es": "Él viene a la escuela todos los días.",
+    "sentence_sv": "Han kommer till skolan varje dag."
+  },
+  {
+    "word": "venga",
+    "translation": "kom igen",
+    "sentence_es": "¡Venga, vamos al parque!",
+    "sentence_sv": "Kom igen, vi går till parken!"
+  },
+  {
+    "word": "nuestros",
+    "translation": "våra",
+    "sentence_es": "Nuestros amigos están en la casa.",
+    "sentence_sv": "Våra vänner är i huset."
+  },
+  {
+    "word": "ojos",
+    "translation": "ögon",
+    "sentence_es": "Ella tiene ojos azules.",
+    "sentence_sv": "Hon har blå ögon."
+  },
+  {
+    "word": "adelante",
+    "translation": "framåt",
+    "sentence_es": "Sigue adelante con tu trabajo.",
+    "sentence_sv": "Fortsätt framåt med ditt arbete."
+  },
+  {
+    "word": "encontrar",
+    "translation": "hitta, träffa",
+    "sentence_es": "Puedo encontrar mis llaves fácilmente.",
+    "sentence_sv": "Jag kan hitta mina nycklar lätt."
+  },
+  {
+    "word": "mano",
+    "translation": "hand",
+    "sentence_es": "Ella tiene una mano pequeña.",
+    "sentence_sv": "Hon har en liten hand."
+  },
+  {
+    "word": "cinco",
+    "translation": "fem",
+    "sentence_es": "Tengo cinco manzanas.",
+    "sentence_sv": "Jag har fem äpplen."
+  },
+  {
+    "word": "niño",
+    "translation": "pojke",
+    "sentence_es": "El niño juega en el parque.",
+    "sentence_sv": "Pojken leker i parken."
+  },
+  {
+    "word": "ninguna",
+    "translation": "ingen (feminin form)",
+    "sentence_es": "No tengo ninguna idea sobre eso.",
+    "sentence_sv": "Jag har ingen aning om det."
+  },
+  {
+    "word": "otros",
+    "translation": "andra",
+    "sentence_es": "Algunos prefieren té, otros prefieren café.",
+    "sentence_sv": "Vissa föredrar te, andra föredrar kaffe."
+  },
+  {
+    "word": "cara",
+    "translation": "ansikte",
+    "sentence_es": "Ella tiene una cara sonriente.",
+    "sentence_sv": "Hon har ett leende ansikte."
+  },
+  {
+    "word": "cuidado",
+    "translation": "omsorg, försiktighet",
+    "sentence_es": "Ten cuidado al cruzar la calle.",
+    "sentence_sv": "Var försiktig när du korsar gatan."
+  },
+  {
+    "word": "bajo",
+    "translation": "låg",
+    "sentence_es": "El edificio es bajo.",
+    "sentence_sv": "Byggnaden är låg."
+  },
+  {
+    "word": "cerca",
+    "translation": "nära",
+    "sentence_es": "La tienda está cerca de mi casa.",
+    "sentence_sv": "Butiken är nära mitt hus."
+  },
+  {
+    "word": "viejo",
+    "translation": "gammal",
+    "sentence_es": "El libro es muy viejo.",
+    "sentence_sv": "Boken är väldigt gammal."
+  },
+  {
+    "word": "déjame",
+    "translation": "låt mig",
+    "sentence_es": "Déjame ayudarte con eso.",
+    "sentence_sv": "Låt mig hjälpa dig med det."
+  },
+  {
+    "word": "noches",
+    "translation": "nätter",
+    "sentence_es": "Las noches son tranquilas en el campo.",
+    "sentence_sv": "Nätterna är lugna på landet."
+  },
+  {
+    "word": "bastante",
+    "translation": "ganska, ganska mycket, tillräckligt",
+    "sentence_es": "Tengo bastante trabajo hoy.",
+    "sentence_sv": "Jag har ganska mycket arbete idag."
+  },
+  {
+    "word": "fin",
+    "translation": "slut",
+    "sentence_es": "El fin de la película fue sorprendente.",
+    "sentence_sv": "Slutet på filmen var överraskande."
+  },
+  {
+    "word": "tomar",
+    "translation": "ta",
+    "sentence_es": "Voy a tomar un café.",
+    "sentence_sv": "Jag ska ta en kaffe."
+  },
+  {
+    "word": "único",
+    "translation": "unik",
+    "sentence_es": "Este es un momento único en la vida.",
+    "sentence_sv": "Det här är ett unikt ögonblick i livet."
+  },
+  {
+    "word": "misma",
+    "translation": "samma",
+    "sentence_es": "Ella tiene la misma idea que yo.",
+    "sentence_sv": "Hon har samma idé som jag."
+  },
+  {
+    "word": "escucha",
+    "translation": "lyssnar",
+    "sentence_es": "Ella escucha música todos los días.",
+    "sentence_sv": "Hon lyssnar på musik varje dag."
+  },
+  {
+    "word": "ningún",
+    "translation": "ingen",
+    "sentence_es": "No tengo ningún libro.",
+    "sentence_sv": "Jag har ingen bok."
+  },
+  {
+    "word": "suficiente",
+    "translation": "tillräcklig",
+    "sentence_es": "Tengo suficiente comida para todos.",
+    "sentence_sv": "Jag har tillräckligt med mat för alla."
+  },
+  {
+    "word": "punto",
+    "translation": "punkt",
+    "sentence_es": "El punto finaliza la oración.",
+    "sentence_sv": "Punkten avslutar meningen."
+  },
+  {
+    "word": "cuándo",
+    "translation": "när",
+    "sentence_es": "¿Cuándo es la reunión?",
+    "sentence_sv": "När är mötet?"
+  },
+  {
+    "word": "sigue",
+    "translation": "fortsätter",
+    "sentence_es": "Él sigue estudiando para el examen.",
+    "sentence_sv": "Han fortsätter att studera för provet."
+  },
+  {
+    "word": "haya",
+    "translation": "det finns / har (subjunktivform av 'haber')",
+    "sentence_es": "Espero que haya suficiente comida para todos.",
+    "sentence_sv": "Jag hoppas att det finns tillräckligt med mat för alla."
+  },
+  {
+    "word": "equipo",
+    "translation": "lag, utrustning",
+    "sentence_es": "El equipo ganó el partido.",
+    "sentence_sv": "Laget vann matchen."
+  },
+  {
+    "word": "grande",
+    "translation": "stor",
+    "sentence_es": "La casa es grande.",
+    "sentence_sv": "Huset är stort."
+  },
+  {
+    "word": "necesita",
+    "translation": "behöver",
+    "sentence_es": "Ella necesita ayuda con su tarea.",
+    "sentence_sv": "Hon behöver hjälp med sin läxa."
+  },
+  {
+    "word": "llegar",
+    "translation": "komma, anlända",
+    "sentence_es": "Voy a llegar a las ocho.",
+    "sentence_sv": "Jag kommer att komma klockan åtta."
+  },
+  {
+    "word": "incluso",
+    "translation": "även",
+    "sentence_es": "Incluso los niños pueden entender esto.",
+    "sentence_sv": "Även barn kan förstå detta."
+  },
+  {
+    "word": "algunos",
+    "translation": "några",
+    "sentence_es": "Algunos estudiantes están en la biblioteca.",
+    "sentence_sv": "Några studenter är i biblioteket."
+  },
+  {
+    "word": "doctor",
+    "translation": "läkare",
+    "sentence_es": "El doctor trabaja en el hospital.",
+    "sentence_sv": "Läkaren arbetar på sjukhuset."
+  },
+  {
+    "word": "difícil",
+    "translation": "svår",
+    "sentence_es": "Este examen es muy difícil.",
+    "sentence_sv": "Det här provet är mycket svårt."
+  },
+  {
+    "word": "aunque",
+    "translation": "även om / fastän",
+    "sentence_es": "Aunque hace frío, saldré a caminar.",
+    "sentence_sv": "Även om det är kallt, ska jag gå ut och promenera."
+  },
+  {
+    "word": "hubiera",
+    "translation": "skulle ha (konjunktiv imperfekt av 'haber')",
+    "sentence_es": "Si hubiera estudiado, habría aprobado el examen.",
+    "sentence_sv": "Om jag hade studerat, skulle jag ha klarat provet."
+  },
+  {
+    "word": "primer",
+    "translation": "första",
+    "sentence_es": "Este es mi primer día en la escuela.",
+    "sentence_sv": "Det här är min första dag i skolan."
+  },
+  {
+    "word": "coche",
+    "translation": "bil",
+    "sentence_es": "El coche es rojo.",
+    "sentence_sv": "Bilen är röd."
+  },
+  {
+    "word": "hago",
+    "translation": "jag gör",
+    "sentence_es": "Yo hago la tarea todos los días.",
+    "sentence_sv": "Jag gör läxan varje dag."
+  },
+  {
+    "word": "clase",
+    "translation": "klass",
+    "sentence_es": "Tengo una clase de matemáticas hoy.",
+    "sentence_sv": "Jag har en mattlektion idag."
+  },
+  {
+    "word": "cuatro",
+    "translation": "fyra",
+    "sentence_es": "Tengo cuatro manzanas.",
+    "sentence_sv": "Jag har fyra äpplen."
+  },
+  {
+    "word": "mas",
+    "translation": "men",
+    "sentence_es": "Quiero ir, mas no puedo.",
+    "sentence_sv": "Jag vill gå, men jag kan inte."
+  },
+  {
+    "word": "dices",
+    "translation": "du säger",
+    "sentence_es": "Tú dices la verdad.",
+    "sentence_sv": "Du säger sanningen."
+  },
+  {
+    "word": "pequeño",
+    "translation": "liten",
+    "sentence_es": "El gato es pequeño.",
+    "sentence_sv": "Katten är liten."
+  },
+  {
+    "word": "llama",
+    "translation": "lama",
+    "sentence_es": "La llama vive en los Andes.",
+    "sentence_sv": "Laman lever i Anderna."
+  },
+  {
+    "word": "toma",
+    "translation": "ta",
+    "sentence_es": "Toma un vaso de agua.",
+    "sentence_sv": "Ta ett glas vatten."
+  },
+  {
+    "word": "hiciste",
+    "translation": "du gjorde",
+    "sentence_es": "¿Qué hiciste ayer?",
+    "sentence_sv": "Vad gjorde du igår?"
+  },
+  {
+    "word": "allá",
+    "translation": "där borta",
+    "sentence_es": "Mira allá, hay un pájaro en el árbol.",
+    "sentence_sv": "Titta där borta, det finns en fågel i trädet."
+  },
+  {
+    "word": "última",
+    "translation": "sista",
+    "sentence_es": "Esta es la última oportunidad.",
+    "sentence_sv": "Det här är den sista chansen."
+  },
+  {
+    "word": "arriba",
+    "translation": "upp, ovanpå, där uppe",
+    "sentence_es": "El gato está arriba del tejado.",
+    "sentence_sv": "Katten är uppe på taket."
+  },
+  {
+    "word": "tierra",
+    "translation": "jord",
+    "sentence_es": "La tierra es muy fértil en esta región.",
+    "sentence_sv": "Jorden är mycket bördig i denna region."
+  },
+  {
+    "word": "guerra",
+    "translation": "krig",
+    "sentence_es": "La guerra terminó hace diez años.",
+    "sentence_sv": "Kriget slutade för tio år sedan."
+  },
+  {
+    "word": "pensar",
+    "translation": "tänka",
+    "sentence_es": "Yo pienso en ti.",
+    "sentence_sv": "Jag tänker på dig."
+  },
+  {
+    "word": "pueda",
+    "translation": "kan (jag/han/hon/den/det)",
+    "sentence_es": "Espero que pueda ayudarte.",
+    "sentence_sv": "Jag hoppas att jag kan hjälpa dig."
+  },
+  {
+    "word": "igual",
+    "translation": "lika, samma",
+    "sentence_es": "Nosotros tenemos el mismo coche, es igual.",
+    "sentence_sv": "Vi har samma bil, den är lika."
+  },
+  {
+    "word": "loco",
+    "translation": "galen",
+    "sentence_es": "Él está loco por esa idea.",
+    "sentence_sv": "Han är galen i den idén."
+  },
+  {
+    "word": "sangre",
+    "translation": "blod",
+    "sentence_es": "La sangre es roja.",
+    "sentence_sv": "Blod är rött."
+  },
+  {
+    "word": "mujeres",
+    "translation": "kvinnor",
+    "sentence_es": "Las mujeres están en el parque.",
+    "sentence_sv": "Kvinnorna är i parken."
+  },
+  {
+    "word": "vuelta",
+    "translation": "runda, vända, tur",
+    "sentence_es": "Dimos una vuelta por el parque.",
+    "sentence_sv": "Vi tog en runda i parken."
+  },
+  {
+    "word": "fui",
+    "translation": "jag var / jag gick",
+    "sentence_es": "Fui al mercado ayer.",
+    "sentence_sv": "Jag gick till marknaden igår."
+  },
+  {
+    "word": "trabajar",
+    "translation": "arbeta",
+    "sentence_es": "Yo trabajo en una oficina.",
+    "sentence_sv": "Jag arbetar på ett kontor."
+  },
+  {
+    "word": "tenido",
+    "translation": "färgat",
+    "sentence_es": "He tenido el cabello de color rojo.",
+    "sentence_sv": "Jag har haft rött hår."
+  },
+  {
+    "word": "juego",
+    "translation": "spel",
+    "sentence_es": "Me gusta jugar un juego de mesa.",
+    "sentence_sv": "Jag tycker om att spela ett brädspel."
+  },
+  {
+    "word": "deberías",
+    "translation": "du borde",
+    "sentence_es": "Deberías estudiar para el examen.",
+    "sentence_sv": "Du borde studera till provet."
+  },
+  {
+    "word": "cuerpo",
+    "translation": "kropp",
+    "sentence_es": "El cuerpo humano necesita agua para vivir.",
+    "sentence_sv": "Den mänskliga kroppen behöver vatten för att leva."
+  },
+  {
+    "word": "e",
+    "translation": "och (används istället för 'y' före ord som börjar på ljudet 'i')",
+    "sentence_es": "Juan e Isabel son amigos.",
+    "sentence_sv": "Juan och Isabel är vänner."
+  },
+  {
+    "word": "algunas",
+    "translation": "några (feminint plural)",
+    "sentence_es": "Tengo algunas amigas en la escuela.",
+    "sentence_sv": "Jag har några vänner i skolan."
+  },
+  {
+    "word": "entrar",
+    "translation": "gå in",
+    "sentence_es": "Voy a entrar en la casa.",
+    "sentence_sv": "Jag ska gå in i huset."
+  },
+  {
+    "word": "cree",
+    "translation": "tror",
+    "sentence_es": "Ella cree en la honestidad.",
+    "sentence_sv": "Hon tror på ärlighet."
+  },
+  {
+    "word": "podía",
+    "translation": "kunde",
+    "sentence_es": "Cuando era niño, podía correr muy rápido.",
+    "sentence_sv": "När jag var barn kunde jag springa mycket snabbt."
+  },
+  {
+    "word": "debemos",
+    "translation": "vi måste / vi bör",
+    "sentence_es": "Debemos estudiar para el examen.",
+    "sentence_sv": "Vi måste studera till provet."
+  },
+  {
+    "word": "oportunidad",
+    "translation": "möjlighet",
+    "sentence_es": "Esta es una gran oportunidad para aprender.",
+    "sentence_sv": "Det här är en stor möjlighet att lära sig."
+  },
+  {
+    "word": "teléfono",
+    "translation": "telefon",
+    "sentence_es": "Necesito llamar por teléfono.",
+    "sentence_sv": "Jag behöver ringa på telefon."
+  },
+  {
+    "word": "necesitamos",
+    "translation": "vi behöver",
+    "sentence_es": "Necesitamos agua para beber.",
+    "sentence_sv": "Vi behöver vatten att dricka."
+  },
+  {
+    "word": "final",
+    "translation": "slut, final",
+    "sentence_es": "La final del torneo será el domingo.",
+    "sentence_sv": "Turneringens final är på söndag."
+  },
+  {
+    "word": "listo",
+    "translation": "klar, redo, smart",
+    "sentence_es": "Estoy listo para empezar.",
+    "sentence_sv": "Jag är redo att börja."
+  },
+  {
+    "word": "fiesta",
+    "translation": "fest",
+    "sentence_es": "Vamos a la fiesta esta noche.",
+    "sentence_sv": "Vi går på festen ikväll."
+  },
+  {
+    "word": "muchos",
+    "translation": "många",
+    "sentence_es": "Hay muchos libros en la mesa.",
+    "sentence_sv": "Det finns många böcker på bordet."
+  },
+  {
+    "word": "estabas",
+    "translation": "du var",
+    "sentence_es": "¿Estabas en casa ayer?",
+    "sentence_sv": "Var du hemma igår?"
+  },
+  {
+    "word": "quieren",
+    "translation": "de vill, de älskar, de önskar",
+    "sentence_es": "Ellos quieren jugar al fútbol.",
+    "sentence_sv": "De vill spela fotboll."
+  },
+  {
+    "word": "vete",
+    "translation": "vete (vete som spannmål, alltså vete)",
+    "sentence_es": "El trigo es un tipo de vete muy común.",
+    "sentence_sv": "Vete är en mycket vanlig typ av spannmål."
+  },
+  {
+    "word": "auto",
+    "translation": "bil",
+    "sentence_es": "El auto es rojo.",
+    "sentence_sv": "Bilen är röd."
+  },
+  {
+    "word": "dar",
+    "translation": "ge",
+    "sentence_es": "Ella quiere dar un regalo.",
+    "sentence_sv": "Hon vill ge en present."
+  },
+  {
+    "word": "vivir",
+    "translation": "att leva / att bo",
+    "sentence_es": "Yo quiero vivir en España.",
+    "sentence_sv": "Jag vill bo i Spanien."
+  },
+  {
+    "word": "posible",
+    "translation": "möjlig",
+    "sentence_es": "Es posible aprender un nuevo idioma.",
+    "sentence_sv": "Det är möjligt att lära sig ett nytt språk."
+  },
+  {
+    "word": "ok",
+    "translation": "okej",
+    "sentence_es": "¿Está todo ok?",
+    "sentence_sv": "Är allt okej?"
+  },
+  {
+    "word": "hermana",
+    "translation": "syster",
+    "sentence_es": "Mi hermana es muy amable.",
+    "sentence_sv": "Min syster är väldigt snäll."
+  },
+  {
+    "word": "número",
+    "translation": "nummer",
+    "sentence_es": "Mi número de teléfono es 123456789.",
+    "sentence_sv": "Mitt telefonnummer är 123456789."
+  },
+  {
+    "word": "meses",
+    "translation": "månader",
+    "sentence_es": "He vivido en esta ciudad por seis meses.",
+    "sentence_sv": "Jag har bott i den här staden i sex månader."
+  },
+  {
+    "word": "exactamente",
+    "translation": "exakt, precis",
+    "sentence_es": "Eso es exactamente lo que necesito.",
+    "sentence_sv": "Det är precis vad jag behöver."
+  },
+  {
+    "word": "culpa",
+    "translation": "skuld",
+    "sentence_es": "La culpa no es tuya.",
+    "sentence_sv": "Skulden är inte din."
+  },
+  {
+    "word": "abajo",
+    "translation": "nere",
+    "sentence_es": "El gato está abajo de la mesa.",
+    "sentence_sv": "Katten är nere under bordet."
+  },
+  {
+    "word": "escuela",
+    "translation": "skola",
+    "sentence_es": "Los niños van a la escuela todos los días.",
+    "sentence_sv": "Barnen går till skolan varje dag."
+  },
+  {
+    "word": "ido",
+    "translation": "gått",
+    "sentence_es": "Él ya se ha ido a casa.",
+    "sentence_sv": "Han har redan gått hem."
+  },
+  {
+    "word": "fuerte",
+    "translation": "stark",
+    "sentence_es": "Él es muy fuerte.",
+    "sentence_sv": "Han är mycket stark."
+  },
+  {
+    "word": "diciendo",
+    "translation": "säger / säger (pågående form)",
+    "sentence_es": "Ella está diciendo la verdad.",
+    "sentence_sv": "Hon säger sanningen."
+  },
+  {
+    "word": "habla",
+    "translation": "han/hon/den/det talar",
+    "sentence_es": "Ella habla español muy bien.",
+    "sentence_sv": "Hon talar spanska mycket bra."
+  },
+  {
+    "word": "esté",
+    "translation": "är (subjunktivform av 'estar')",
+    "sentence_es": "Espero que él esté bien.",
+    "sentence_sv": "Jag hoppas att han mår bra."
+  },
+  {
+    "word": "ello",
+    "translation": "det",
+    "sentence_es": "No entiendo ello.",
+    "sentence_sv": "Jag förstår inte det."
+  },
+  {
+    "word": "pregunta",
+    "translation": "fråga",
+    "sentence_es": "Tengo una pregunta para ti.",
+    "sentence_sv": "Jag har en fråga till dig."
+  },
+  {
+    "word": "chicas",
+    "translation": "tjejer",
+    "sentence_es": "Las chicas están en el parque.",
+    "sentence_sv": "Tjejerna är i parken."
+  },
+  {
+    "word": "eran",
+    "translation": "de var",
+    "sentence_es": "Ellos eran amigos desde la infancia.",
+    "sentence_sv": "De var vänner sedan barndomen."
+  },
+  {
+    "word": "unas",
+    "translation": "några (feminint plural)",
+    "sentence_es": "Tengo unas amigas en España.",
+    "sentence_sv": "Jag har några vänner i Spanien."
+  },
+  {
+    "word": "pasando",
+    "translation": "händer / pågår / passerar",
+    "sentence_es": "Estoy pasando tiempo con mis amigos.",
+    "sentence_sv": "Jag tillbringar tid med mina vänner."
+  },
+  {
+    "word": "atrás",
+    "translation": "bakåt",
+    "sentence_es": "Mira hacia atrás antes de cruzar la calle.",
+    "sentence_sv": "Titta bakåt innan du korsar gatan."
+  },
+  {
+    "word": "malo",
+    "translation": "dålig",
+    "sentence_es": "El clima está malo hoy.",
+    "sentence_sv": "Vädret är dåligt idag."
+  },
+  {
+    "word": "capitán",
+    "translation": "kapten",
+    "sentence_es": "El capitán lidera al equipo en el partido.",
+    "sentence_sv": "Kapten leder laget i matchen."
+  },
+  {
+    "word": "sra.",
+    "translation": "fru",
+    "sentence_es": "La sra. García es mi profesora de español.",
+    "sentence_sv": "Fru García är min spanskalärare."
+  },
+  {
+    "word": "bebé",
+    "translation": "bebis",
+    "sentence_es": "El bebé está durmiendo.",
+    "sentence_sv": "Bebisen sover."
+  },
+  {
+    "word": "segundo",
+    "translation": "andra / sekund",
+    "sentence_es": "El segundo capítulo es muy interesante.",
+    "sentence_sv": "Det andra kapitlet är mycket intressant."
+  },
+  {
+    "word": "sabemos",
+    "translation": "vi vet",
+    "sentence_es": "Sabemos la respuesta correcta.",
+    "sentence_sv": "Vi vet det rätta svaret."
+  },
+  {
+    "word": "mayor",
+    "translation": "större, äldre",
+    "sentence_es": "Mi hermano es mayor que yo.",
+    "sentence_sv": "Min bror är äldre än jag."
+  },
+  {
+    "word": "comida",
+    "translation": "mat",
+    "sentence_es": "La comida está lista.",
+    "sentence_sv": "Maten är klar."
+  },
+  {
+    "word": "morir",
+    "translation": "dö",
+    "sentence_es": "Él quiere morir en paz.",
+    "sentence_sv": "Han vill dö i frid."
+  },
+  {
+    "word": "conozco",
+    "translation": "jag känner (till), jag känner (någon)",
+    "sentence_es": "Yo conozco a María.",
+    "sentence_sv": "Jag känner María."
+  },
+  {
+    "word": "dame",
+    "translation": "ge mig",
+    "sentence_es": "Por favor, dame el libro.",
+    "sentence_sv": "Snälla, ge mig boken."
+  },
+  {
+    "word": "fácil",
+    "translation": "lätt",
+    "sentence_es": "Este ejercicio es muy fácil.",
+    "sentence_sv": "Den här övningen är mycket lätt."
+  },
+  {
+    "word": "comer",
+    "translation": "äta",
+    "sentence_es": "Me gusta comer manzanas.",
+    "sentence_sv": "Jag tycker om att äta äpplen."
+  },
+  {
+    "word": "vino",
+    "translation": "vin",
+    "sentence_es": "Me gusta beber vino tinto con la cena.",
+    "sentence_sv": "Jag gillar att dricka rött vin till middagen."
+  },
+  {
+    "word": "lista",
+    "translation": "lista",
+    "sentence_es": "Hice una lista de compras para el supermercado.",
+    "sentence_sv": "Jag gjorde en inköpslista för mataffären."
+  },
+  {
+    "word": "haga",
+    "translation": "gör (subjunktiv form av verbet 'hacer')",
+    "sentence_es": "Espero que él haga su tarea.",
+    "sentence_sv": "Jag hoppas att han gör sin läxa."
+  },
+  {
+    "word": "necesitas",
+    "translation": "du behöver",
+    "sentence_es": "Necesitas estudiar para el examen.",
+    "sentence_sv": "Du behöver studera till provet."
+  },
+  {
+    "word": "hijos",
+    "translation": "barn",
+    "sentence_es": "Mis hijos están jugando en el parque.",
+    "sentence_sv": "Mina barn leker i parken."
+  },
+  {
+    "word": "probablemente",
+    "translation": "troligen",
+    "sentence_es": "Probablemente lloverá mañana.",
+    "sentence_sv": "Det kommer troligen att regna imorgon."
+  },
+  {
+    "word": "padres",
+    "translation": "föräldrar",
+    "sentence_es": "Mis padres viven en Madrid.",
+    "sentence_sv": "Mina föräldrar bor i Madrid."
+  },
+  {
+    "word": "habitación",
+    "translation": "rum",
+    "sentence_es": "La habitación es muy cómoda.",
+    "sentence_sv": "Rummet är mycket bekvämt."
+  },
+  {
+    "word": "creer",
+    "translation": "tro, tro på",
+    "sentence_es": "Yo creo en la honestidad.",
+    "sentence_sv": "Jag tror på ärlighet."
+  },
+  {
+    "word": "pensando",
+    "translation": "tänkande",
+    "sentence_es": "Estoy pensando en ti.",
+    "sentence_sv": "Jag tänker på dig."
+  },
+  {
+    "word": "fueron",
+    "translation": "de gick / de var",
+    "sentence_es": "Ellos fueron al parque ayer.",
+    "sentence_sv": "De gick till parken igår."
+  },
+  {
+    "word": "dime",
+    "translation": "säg mig",
+    "sentence_es": "Dime tu nombre, por favor.",
+    "sentence_sv": "Säg mig ditt namn, tack."
+  }
+]

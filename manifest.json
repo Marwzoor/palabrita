@@ -1,0 +1,16 @@
+{
+  "short_name": "LinguaFlow",
+  "name": "LinguaFlow - Spanska för Svenskar",
+  "description": "En modern och engagerande mobilapp för svensktalande att lära sig spanska.",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#4f46e5",
+  "background_color": "#ffffff",
+  "icons": [
+    {
+      "src": "/vite.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
