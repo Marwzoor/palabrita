@@ -45,27 +45,29 @@ const Flashcard: React.FC<FlashcardProps> = ({ word, onAnswer }) => {
         </div>
 
         {/* Back of card */}
-        <div className="absolute w-full h-full backface-hidden bg-indigo-50 border border-indigo-200 rounded-2xl shadow-lg flex flex-col justify-between p-6 text-center">
-          <div>
-            <p className="text-indigo-500 mb-2 font-semibold">Svenska</p>
-            <h3 className="text-4xl font-bold text-indigo-900">{word.swedish}</h3>
-            <p className="text-slate-600 mt-6 italic">"{word.exampleSentence}"</p>
-          </div>
-          <div className="mt-6">
-            <p className="text-sm text-slate-500 mb-3">Hur bra kan du detta ord?</p>
-            <div className="flex justify-center space-x-3">
-              <button 
-                onClick={(e) => { e.stopPropagation(); handleGrade(false); }}
-                className="flex-1 py-3 px-4 bg-red-100 text-red-700 rounded-lg font-semibold hover:bg-red-200 transition-colors"
-              >
-                Svårt
-              </button>
-              <button 
-                onClick={(e) => { e.stopPropagation(); handleGrade(true); }}
-                className="flex-1 py-3 px-4 bg-emerald-100 text-emerald-700 rounded-lg font-semibold hover:bg-emerald-200 transition-colors"
-              >
-                Lätt
-              </button>
+        <div className="absolute w-full h-full backface-hidden bg-indigo-50 border border-indigo-200 rounded-2xl shadow-lg flex flex-col justify-between p-6 text-center rotate-y-180">
+          <div className="rotate-y-180">
+            <div>
+              <p className="text-indigo-500 mb-2 font-semibold">Svenska</p>
+              <h3 className="text-4xl font-bold text-indigo-900">{word.swedish}</h3>
+              <p className="text-slate-600 mt-6 italic">"{word.exampleSentence}"</p>
+            </div>
+            <div className="mt-6">
+              <p className="text-sm text-slate-500 mb-3">Hur bra kan du detta ord?</p>
+              <div className="flex justify-center space-x-3">
+                <button
+                  onClick={(e) => { e.stopPropagation(); handleGrade(false); }}
+                  className="flex-1 py-3 px-4 bg-red-100 text-red-700 rounded-lg font-semibold hover:bg-red-200 transition-colors"
+                >
+                  Svårt
+                </button>
+                <button
+                  onClick={(e) => { e.stopPropagation(); handleGrade(true); }}
+                  className="flex-1 py-3 px-4 bg-emerald-100 text-emerald-700 rounded-lg font-semibold hover:bg-emerald-200 transition-colors"
+                >
+                  Lätt
+                </button>
+              </div>
             </div>
           </div>
         </div>
