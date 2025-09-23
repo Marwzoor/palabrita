@@ -40,13 +40,20 @@ const App: React.FC = () => {
   useEffect(() => {
     const loadWords = async () => {
       try {
-        const savedWords = localStorage.getItem('linguaflow_words');
-        const parsedWords = savedWords ? JSON.parse(savedWords) : [];
-        if (parsedWords.length > 0) {
-          setWords(parsedWords);
+        const masterWords = await getInitialWords();
+        const savedWordsJSON = localStorage.getItem('linguaflow_words');
+        const savedWords = savedWordsJSON ? JSON.parse(savedWordsJSON) : [];
+
+        if (savedWords.length === 0) {
+          setWords(masterWords);
         } else {
-          const initialWords = await getInitialWords();
-          setWords(initialWords);
+          const savedWordsMap = new Map(savedWords.map((word: Word) => [word.id, word]));
+          const mergedWords = masterWords.map(masterWord =>
+            savedWordsMap.has(masterWord.id)
+              ? savedWordsMap.get(masterWord.id)!
+              : masterWord
+          );
+          setWords(mergedWords);
         }
       } catch (error) {
         console.error("Failed to load words, fetching from source:", error);

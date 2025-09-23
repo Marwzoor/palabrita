@@ -45,7 +45,7 @@ const Flashcard: React.FC<FlashcardProps> = ({ word, onAnswer }) => {
         </div>
 
         {/* Back of card */}
-        <div className="absolute w-full h-full backface-hidden bg-indigo-50 border border-indigo-200 rounded-2xl shadow-lg flex flex-col justify-between p-6 text-center rotate-y-180">
+        <div className="absolute w-full h-full backface-hidden bg-indigo-50 border border-indigo-200 rounded-2xl shadow-lg flex flex-col justify-between p-6 text-center">
           <div>
             <p className="text-indigo-500 mb-2 font-semibold">Svenska</p>
             <h3 className="text-4xl font-bold text-indigo-900">{word.swedish}</h3>
