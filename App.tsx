@@ -222,10 +222,10 @@ const App: React.FC = () => {
     <div className="bg-slate-50 min-h-screen text-slate-800">
       <div className="max-w-md mx-auto bg-white min-h-screen shadow-2xl shadow-slate-300 flex flex-col">
         <Header userProgress={userProgress} />
-        <main className="flex-grow p-4 sm:p-6 overflow-y-auto">
+        <main className="flex-grow p-4 sm:p-6 overflow-y-auto pb-20">
           {renderContent()}
         </main>
-        <nav className="border-t border-slate-200 bg-white p-2 flex justify-around">
+        <nav className={`fixed bottom-0 left-0 right-0 max-w-md mx-auto h-16 border-t border-slate-200 bg-white p-2 flex justify-around items-center transform transition-transform duration-300 ${view === View.Learning ? 'translate-y-full' : ''}`}>
             {(Object.keys(View) as Array<keyof typeof View>).map(key => (
                 <button key={key} onClick={() => setView(View[key])} className={`p-2 rounded-lg transition-colors ${view === View[key] ? 'text-indigo-600 bg-indigo-50' : 'text-slate-500 hover:bg-slate-100'}`}>
                     {View[key]}
