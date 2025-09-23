@@ -29,9 +29,9 @@ const Flashcard: React.FC<FlashcardProps> = ({ word, onAnswer }) => {
   };
   
   return (
-    <div className="w-full max-w-sm h-96 perspective-1000">
+    <div className="w-full max-w-sm h-96 perspective-[1000px]">
       <div 
-        className={`relative w-full h-full preserve-3d transition-transform duration-700 ${isFlipped ? 'rotate-y-180' : ''}`}
+        className={`relative w-full h-full transform-3d transition-transform duration-700 ${isFlipped ? 'rotate-y-180' : ''}`}
         onClick={handleFlip}
       >
         {/* Front of card */}
@@ -45,8 +45,8 @@ const Flashcard: React.FC<FlashcardProps> = ({ word, onAnswer }) => {
         </div>
 
         {/* Back of card */}
-        <div className="absolute w-full h-full backface-hidden bg-indigo-50 border border-indigo-200 rounded-2xl shadow-lg flex flex-col justify-between p-6 text-center rotate-y-180">
-          <div className="rotate-y-180">
+        <div className="absolute w-full h-full rotate-u-180 backface-hidden bg-indigo-50 border border-indigo-200 rounded-2xl shadow-lg flex flex-col justify-between p-6 text-center rotate-y-180">
+          <div>
             <div>
               <p className="text-indigo-500 mb-2 font-semibold">Svenska</p>
               <h3 className="text-4xl font-bold text-indigo-900">{word.swedish}</h3>
