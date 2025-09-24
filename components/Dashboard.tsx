@@ -11,9 +11,10 @@ interface DashboardProps {
   words: Word[];
   learningQueueSize: number;
   onStartSession: () => void;
+  recentlyLearned: Word[];
 }
 
-const Dashboard: React.FC<DashboardProps> = ({ userProgress, words, learningQueueSize, onStartSession }) => {
+const Dashboard: React.FC<DashboardProps> = ({ userProgress, words, learningQueueSize, onStartSession, recentlyLearned }) => {
     
     const masteryData = Object.keys(MasteryLevel)
         .filter(key => !isNaN(Number(key)))
@@ -118,6 +119,24 @@ const Dashboard: React.FC<DashboardProps> = ({ userProgress, words, learningQueu
                     </div>
                 </Card>
             </div>
+
+            <Card>
+                <div className="p-6">
+                    <h3 className="font-semibold text-lg text-slate-800">Nyligen Lärda Ord</h3>
+                    {recentlyLearned.length > 0 ? (
+                        <ul className="mt-4 space-y-2">
+                            {recentlyLearned.map(word => (
+                                <li key={word.id} className="flex justify-between items-center text-sm p-2 rounded-md bg-slate-50">
+                                    <span className="font-medium text-slate-700">{word.spanish}</span>
+                                    <span className="text-slate-500">{word.swedish}</span>
+                                </li>
+                            ))}
+                        </ul>
+                    ) : (
+                        <p className="text-slate-500 mt-2 text-sm">Du har inte lärt dig några nya ord än. Starta en lektion för att komma igång!</p>
+                    )}
+                </div>
+            </Card>
         </div>
     );
 };

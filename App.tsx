@@ -120,10 +120,16 @@ const App: React.FC = () => {
 
       let newMasteryLevel = word.masteryLevel;
       let intervalDays = 1;
+      let learnedDate = word.learnedDate;
 
       if (sessionResult.correct) {
         pointsEarned += (word.masteryLevel + 1) * 10;
         newMasteryLevel = Math.min(MasteryLevel.Mastered, word.masteryLevel + 1);
+
+        if (word.masteryLevel === MasteryLevel.New && newMasteryLevel > MasteryLevel.New) {
+            learnedDate = now.toISOString();
+        }
+
         switch (newMasteryLevel) {
           case MasteryLevel.Learning: intervalDays = 1; break;
           case MasteryLevel.Familiar: intervalDays = 3; break;
@@ -142,7 +148,7 @@ const App: React.FC = () => {
       const nextReviewDate = new Date();
       nextReviewDate.setDate(now.getDate() + intervalDays);
 
-      return { ...word, masteryLevel: newMasteryLevel, nextReviewDate: nextReviewDate.toISOString() };
+      return { ...word, masteryLevel: newMasteryLevel, nextReviewDate: nextReviewDate.toISOString(), learnedDate };
     });
 
     setWords(updatedWords);
@@ -208,6 +214,13 @@ const App: React.FC = () => {
     );
   }
 
+  const recentlyLearnedWords = useMemo(() => {
+    return words
+      .filter(word => word.learnedDate)
+      .sort((a, b) => new Date(b.learnedDate!).getTime() - new Date(a.learnedDate!).getTime())
+      .slice(0, 5);
+  }, [words]);
+
   const renderContent = () => {
     switch (view) {
       case View.Learning:
@@ -221,6 +234,7 @@ const App: React.FC = () => {
                   words={words}
                   learningQueueSize={learningQueue.length}
                   onStartSession={() => setView(View.Learning)}
+                  recentlyLearned={recentlyLearnedWords}
                 />;
     }
   };

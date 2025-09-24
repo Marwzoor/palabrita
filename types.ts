@@ -8,6 +8,7 @@ export interface Word {
   exampleSentence: string;
   masteryLevel: MasteryLevel;
   nextReviewDate: string; // ISO string
+  learnedDate?: string; // ISO string
 }
 
 export enum MasteryLevel {
