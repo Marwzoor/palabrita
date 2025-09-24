@@ -1,18 +1,31 @@
 
 
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
+import { registerSW } from 'virtual:pwa-register';
 import { View, Word, UserProgress, MasteryLevel } from './types';
 import { getInitialWords } from './services/wordService';
 import Header from './components/Header';
 import Dashboard from './components/Dashboard';
 import LearningSession from './components/LearningSession';
 import Achievements from './components/Achievements';
+import UpdateNotification from './components/UpdateNotification';
 import { MOCK_ACHIEVEMENTS } from './constants';
 
 const App: React.FC = () => {
   const [view, setView] = useState<View>(View.Dashboard);
   const [words, setWords] = useState<Word[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [showUpdate, setShowUpdate] = useState<boolean>(false);
+  const [updateSW, setUpdateSW] = useState<(() => void) | null>(null);
+
+  useEffect(() => {
+    const updateSW = registerSW({
+      onNeedRefresh: () => {
+        setShowUpdate(true);
+      },
+    });
+    setUpdateSW(() => updateSW);
+  }, []);
   
   const [userProgress, setUserProgress] = useState<UserProgress>(() => {
     try {
@@ -239,6 +252,7 @@ const App: React.FC = () => {
                 </button>
             ))}
         </nav>
+        {showUpdate && <UpdateNotification onUpdate={() => updateSW?.()} />}
       </div>
     </div>
   );
