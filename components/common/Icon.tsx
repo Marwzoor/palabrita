@@ -25,10 +25,9 @@ const Icon: React.FC<IconProps> = ({ name, className = 'w-6 h-6' }) => {
             </svg>
         ),
         flip: (
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={className}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12c0-3.75 3-6.75 6.75-6.75s6.75 3 6.75 6.75c0 3.75-3 6.75-6.75 6.75S4.5 15.75 4.5 12z" />
-                <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 9.75l-4.5-4.5m0 0l-4.5 4.5m4.5-4.5v13.5" />
-            </svg>
+			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+				<path d="M12 2a10 10 0 1 0 9.95 11h-2.02a8 8 0 1 1-7.93-9 7.98 7.98 0 0 1 5.65 2.34l-2.65 2.66H22V2l-2.4 2.4A9.96 9.96 0 0 0 12 2z"/>
+			</svg>
         ),
         trophy: (
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={className}>

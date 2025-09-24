@@ -104,6 +104,24 @@ const App: React.FC = () => {
     }
   }, []);
 
+  const recentlyLearnedWords = useMemo(() => {
+    try {
+        return words
+        .filter(word => typeof word.learnedDate === 'string' && word.learnedDate)
+        .sort((a, b) => {
+            const dateA = new Date(a.learnedDate!).getTime();
+            const dateB = new Date(b.learnedDate!).getTime();
+            if (isNaN(dateB)) return -1;
+            if (isNaN(dateA)) return 1;
+            return dateB - dateA;
+        })
+        .slice(0, 5);
+    } catch (error) {
+        console.error("Failed to calculate recently learned words:", error);
+        return []; // Return empty array on error to prevent app crash
+    }
+  }, [words]);
+
   const learningQueue = useMemo(() => {
     if (isLoading) return [];
     const now = new Date();
@@ -226,24 +244,6 @@ const App: React.FC = () => {
         </div>
     );
   }
-
-  const recentlyLearnedWords = useMemo(() => {
-    try {
-        return words
-        .filter(word => typeof word.learnedDate === 'string' && word.learnedDate)
-        .sort((a, b) => {
-            const dateA = new Date(a.learnedDate!).getTime();
-            const dateB = new Date(b.learnedDate!).getTime();
-            if (isNaN(dateB)) return -1;
-            if (isNaN(dateA)) return 1;
-            return dateB - dateA;
-        })
-        .slice(0, 5);
-    } catch (error) {
-        console.error("Failed to calculate recently learned words:", error);
-        return []; // Return empty array on error to prevent app crash
-    }
-  }, [words]);
 
   const renderContent = () => {
     switch (view) {

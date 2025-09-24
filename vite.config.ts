@@ -17,7 +17,7 @@ export default defineConfig(({ mode }) => {
         react(),
         VitePWA({
           manifest,
-          includeAssets: ['vite.svg'],
+          includeAssets: ['app-icon-192x192.png', 'app-icon-512x512.png', 'app-icon.png'],
           // devOptions: {
           //   enabled: true,
           // },
