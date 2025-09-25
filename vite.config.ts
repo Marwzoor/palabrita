@@ -16,6 +16,7 @@ export default defineConfig(({ mode }) => {
       plugins: [
         react(),
         VitePWA({
+          registerType: 'autoUpdate',
           manifest,
           includeAssets: ['app-icon-192x192.png', 'app-icon-512x512.png', 'app-icon.png'],
           // devOptions: {
