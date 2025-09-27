@@ -24,6 +24,8 @@ export default defineConfig(({ mode }) => {
           // },
           workbox: {
             globPatterns: ['**/*.{js,css,html,ico,png,svg,json,ts,tsx}'],
+            clientsClaim: true,
+            skipWaiting: true,
           },
         }),
         webfontDownload([
