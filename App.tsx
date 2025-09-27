@@ -308,7 +308,7 @@ const App: React.FC = () => {
   }, [showCelebration]);
 
   useEffect(() => {
-    if (view !== View.Learning) {
+    if (currentViewKey !== 'Learning') {
       return;
     }
 
@@ -316,7 +316,7 @@ const App: React.FC = () => {
       localStorage.setItem('palabrita_last_reminder_dismissed', new Date().toISOString());
     }
     setShowReminder(false);
-  }, [view]);
+  }, [currentViewKey]);
 
   const handleThemeChange = useCallback((preference: ThemePreference) => {
     setSettings(prev => ({ ...prev, themePreference: preference }));
