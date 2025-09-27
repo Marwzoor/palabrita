@@ -8,7 +8,7 @@ import manifest from './manifest.json';
 export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, '.', '');
     return {
-      base: '/lingua-flow/',
+      base: '/palabrita/',
       server: {
         port: 3000,
         host: '0.0.0.0',
