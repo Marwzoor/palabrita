@@ -21,7 +21,9 @@ const Header: React.FC<HeaderProps> = ({ userProgress }) => {
   return (
     <header className="p-4 border-b border-slate-200 dark:border-slate-700 bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm sticky top-0 z-10">
       <div className="flex justify-between items-center">
-        <h1 className="text-xl font-bold text-slate-900 dark:text-slate-100">Palabrita</h1>
+        <h1 className="text-xl font-bold text-slate-900 dark:text-slate-100">
+			<img src="/logo.png" alt="Palabrita Logo" className="inline max-w-28 mr-2" />
+		</h1>
         <div className="flex items-center space-x-4">
             <StatItem icon={<Icon name="fire" />} value={userProgress.streak} label="Streak" />
             <StatItem icon={<Icon name="star" />} value={userProgress.points} label="Poäng" />

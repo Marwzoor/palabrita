@@ -789,7 +789,7 @@
     "word": "ni",
     "translation": "inte ens",
     "sentence_es": "Ni siquiera vino a la fiesta.",
-    "sentence_sv": "Han/hon kom inte ens till festen."
+    "sentence_sv": "Ni kom inte ens till festen."
   },
   {
     "word": "poco",
@@ -805,7 +805,7 @@
   },
   {
     "word": "uno",
-    "translation": "ett",
+    "translation": "en",
     "sentence_es": "Tengo uno libro.",
     "sentence_sv": "Jag har en bok."
   },
