@@ -464,8 +464,8 @@ const App: React.FC = () => {
 
   if (isLoading) {
     return (
-        <div className="bg-slate-50 dark:bg-slate-950 min-h-screen flex items-center justify-center text-slate-800 dark:text-slate-200">
-            <div className="max-w-md mx-auto w-full h-screen bg-white dark:bg-slate-900 shadow-2xl shadow-slate-300 dark:shadow-black/40 flex flex-col items-center justify-center">
+        <div className="bg-white dark:bg-slate-950 min-h-screen flex items-center justify-center text-slate-800 dark:text-slate-200">
+            <div className="max-w-md mx-auto w-full h-screen bg-white dark:bg-slate-900 shadow-2xl shadow-slate-300/70 dark:shadow-black/40 flex flex-col items-center justify-center">
                 <div className="text-xl font-semibold text-slate-600 dark:text-slate-200">Laddar ord...</div>
             </div>
         </div>
@@ -502,8 +502,8 @@ const App: React.FC = () => {
   };
 
     return (
-      <div className="bg-slate-50 dark:bg-slate-950 min-h-screen text-slate-800 dark:text-slate-100" data-theme={resolvedTheme}>
-        <div className="max-w-md mx-auto bg-white dark:bg-slate-900 min-h-screen shadow-2xl shadow-slate-300 dark:shadow-black/40 flex flex-col">
+      <div className="bg-white dark:bg-slate-950 min-h-screen text-slate-800 dark:text-slate-100" data-theme={resolvedTheme}>
+        <div className="max-w-md mx-auto bg-white dark:bg-slate-900 min-h-screen shadow-2xl shadow-slate-300/70 dark:shadow-black/40 flex flex-col">
           <Header userProgress={userProgress} />
           {showCelebration && settings.enableConfetti && <Confetti />}
           <main className="flex-grow p-4 sm:p-6 overflow-y-auto pb-20 space-y-4">

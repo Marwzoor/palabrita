@@ -31,7 +31,7 @@ const Settings: React.FC<SettingsProps> = ({
           <p className="text-sm text-slate-500 dark:text-slate-400">
             Välj hur Palabrita ska följa systemets mörkerläge eller använda ett eget.
           </p>
-          <div className="grid gap-3 sm:grid-cols-3">
+          <div className="flex flex-col gap-3 sm:flex-row">
             {themeOptions.map((option) => {
               const isActive = settings.themePreference === option.value;
               return (
@@ -39,10 +39,10 @@ const Settings: React.FC<SettingsProps> = ({
                   key={option.value}
                   type="button"
                   onClick={() => onThemeChange(option.value)}
-                  className={`text-left p-3 rounded-xl border transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-slate-900 ${
+                  className={`flex-1 text-left p-4 rounded-2xl border transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-slate-900 ${
                     isActive
-                      ? 'border-indigo-500 bg-indigo-50 text-indigo-700 dark:bg-indigo-500/10 dark:border-indigo-400'
-                      : 'border-slate-200 hover:border-indigo-300 hover:bg-indigo-50/40 dark:border-slate-700 dark:hover:border-indigo-500/80 dark:hover:bg-indigo-500/5'
+                      ? 'border-indigo-500 bg-indigo-50 text-indigo-700 shadow-sm dark:bg-indigo-500/10 dark:border-indigo-400'
+                      : 'border-slate-200 bg-white hover:border-indigo-300 hover:bg-indigo-50/40 dark:border-slate-700 dark:bg-transparent dark:hover:border-indigo-500/80 dark:hover:bg-indigo-500/5'
                   }`}
                 >
                   <div className="font-semibold">{option.label}</div>
