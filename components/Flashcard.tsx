@@ -60,7 +60,7 @@ const Flashcard: React.FC<FlashcardProps> = ({ word, onAnswer }) => {
                   onClick={(e) => { e.stopPropagation(); handleGrade(ReviewQuality.Again); }}
                   className="py-3 px-4 border border-[currentColor] bg-red-100 dark:bg-red-500/20 text-red-700 dark:text-red-200 rounded-lg font-semibold hover:bg-red-200 dark:hover:bg-red-500/30 transition-colors"
                 >
-                  Repetera
+                  Inte alls
                 </button>
                 <button
                   onClick={(e) => { e.stopPropagation(); handleGrade(ReviewQuality.Hard); }}
@@ -72,13 +72,13 @@ const Flashcard: React.FC<FlashcardProps> = ({ word, onAnswer }) => {
                   onClick={(e) => { e.stopPropagation(); handleGrade(ReviewQuality.Good); }}
                   className="py-3 px-4 border border-[currentColor] bg-sky-100 dark:bg-sky-500/20 text-sky-700 dark:text-sky-200 rounded-lg font-semibold hover:bg-sky-200 dark:hover:bg-sky-500/30 transition-colors"
                 >
-                  Kan
+                  Ganska bra
                 </button>
                 <button
                   onClick={(e) => { e.stopPropagation(); handleGrade(ReviewQuality.Easy); }}
                   className="py-3 px-4 border border-[currentColor] bg-emerald-100 dark:bg-emerald-500/20 text-emerald-700 dark:text-emerald-200 rounded-lg font-semibold hover:bg-emerald-200 dark:hover:bg-emerald-500/30 transition-colors"
                 >
-                  Lätt
+                  Mycket bra
                 </button>
               </div>
             </div>
