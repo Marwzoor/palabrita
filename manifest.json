@@ -2,7 +2,7 @@
   "short_name": "Palabrita",
   "name": "Palabrita - Spanska för Svenskar",
   "description": "En modern och engagerande mobilapp för svensktalande att lära sig spanska.",
-  "start_url": "/palabrita/",
+  "start_url": "/",
   "display": "standalone",
   "theme_color": "#4f46e5",
   "background_color": "#ffffff",
