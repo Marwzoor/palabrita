@@ -4,6 +4,7 @@ import type { UserProgress, Word } from '../types';
 import { MasteryLevel } from '../types';
 import Card from './common/Card';
 import Button from './common/Button';
+import ProgressBar from './common/ProgressBar';
 import { MASTERY_LEVEL_CHART_COLORS, MASTERY_LEVEL_NAMES } from '../constants';
 
 interface DashboardProps {
@@ -12,9 +13,10 @@ interface DashboardProps {
   learningQueueSize: number;
   onStartSession: () => void;
   recentlyLearned: Word[];
+  dailyGoal: number;
 }
 
-const Dashboard: React.FC<DashboardProps> = ({ userProgress, words, learningQueueSize, onStartSession, recentlyLearned }) => {
+const Dashboard: React.FC<DashboardProps> = ({ userProgress, words, learningQueueSize, onStartSession, recentlyLearned, dailyGoal }) => {
     
     const masteryData = Object.keys(MasteryLevel)
         .filter(key => !isNaN(Number(key)))
@@ -29,6 +31,7 @@ const Dashboard: React.FC<DashboardProps> = ({ userProgress, words, learningQueu
         .filter(item => item.value > 0);
 
     const [weeklyActivity, setWeeklyActivity] = useState<{name: string, ord: number}[]>([]);
+    const [todayStudied, setTodayStudied] = useState(0);
 
     useEffect(() => {
         const activityLog = JSON.parse(localStorage.getItem('palabrita_activity') || '{}');
@@ -48,6 +51,10 @@ const Dashboard: React.FC<DashboardProps> = ({ userProgress, words, learningQueu
                 name: capitalizedDayName,
                 ord: activityLog[key] || 0,
             });
+
+            if (i === 0) {
+                setTodayStudied(activityLog[key] || 0);
+            }
         }
         setWeeklyActivity(activityData);
     }, []);
@@ -55,17 +62,30 @@ const Dashboard: React.FC<DashboardProps> = ({ userProgress, words, learningQueu
     const totalWords = words.length;
     const learnedWords = words.filter(w => w.masteryLevel > MasteryLevel.New).length;
 
+    const dailyGoalProgress = dailyGoal > 0 ? Math.min(100, (todayStudied / dailyGoal) * 100) : 0;
+    const remainingWords = Math.max(dailyGoal - todayStudied, 0);
+
     return (
         <div className="space-y-6">
             <div className="text-center">
-                <h2 className="text-2xl font-bold text-slate-800">Välkommen tillbaka!</h2>
-                <p className="text-slate-500 mt-1">Redo för dagens lektion?</p>
+                <h2 className="text-2xl font-bold text-slate-800 dark:text-slate-100">Välkommen tillbaka!</h2>
+                <p className="text-slate-500 dark:text-slate-400 mt-1">Redo för dagens lektion?</p>
             </div>
-            
+
             <Card>
                 <div className="p-6">
-                    <h3 className="font-semibold text-lg text-slate-800">Dagens Lektion</h3>
-                    <p className="text-slate-500 mt-1">{learningQueueSize} ord att repetera.</p>
+                    <h3 className="font-semibold text-lg text-slate-800 dark:text-slate-100">Dagens Lektion</h3>
+                    <p className="text-slate-500 dark:text-slate-400 mt-1">{learningQueueSize} ord att repetera.</p>
+                    <div className="mt-4 space-y-3">
+                        <div className="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
+                            <span>Dagsmål</span>
+                            <span>{Math.min(todayStudied, dailyGoal)} / {dailyGoal} ord</span>
+                        </div>
+                        <ProgressBar progress={dailyGoalProgress} />
+                        <p className="text-xs text-slate-500 dark:text-slate-400">
+                            {remainingWords > 0 ? `${remainingWords} ord kvar till målet.` : 'Målet för dagen är uppnått!'}
+                        </p>
+                    </div>
                     <Button onClick={onStartSession} disabled={learningQueueSize === 0} className="w-full mt-4">
                         {learningQueueSize > 0 ? 'Starta Lektion' : 'Inga ord att repetera'}
                     </Button>
@@ -74,12 +94,12 @@ const Dashboard: React.FC<DashboardProps> = ({ userProgress, words, learningQueu
 
             <Card>
                 <div className="p-6">
-                    <h3 className="font-semibold text-lg text-slate-800">Dina Framsteg</h3>
-                    <div className="flex justify-between items-center mt-4 text-sm">
+                    <h3 className="font-semibold text-lg text-slate-800 dark:text-slate-100">Dina Framsteg</h3>
+                    <div className="flex justify-between items-center mt-4 text-sm text-slate-600 dark:text-slate-300">
                         <span>Lärda ord</span>
                         <span className="font-semibold">{learnedWords} / {totalWords}</span>
                     </div>
-                    <div className="w-full bg-slate-200 rounded-full h-2.5 mt-2">
+                    <div className="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2.5 mt-2">
                         <div className="bg-indigo-600 h-2.5 rounded-full transition-all duration-500" style={{ width: `${(learnedWords / totalWords) * 100}%` }}></div>
                     </div>
                 </div>
@@ -88,7 +108,7 @@ const Dashboard: React.FC<DashboardProps> = ({ userProgress, words, learningQueu
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                  <Card>
                     <div className="p-6">
-                        <h3 className="font-semibold text-lg text-slate-800">Bemästringsgrad</h3>
+                        <h3 className="font-semibold text-lg text-slate-800 dark:text-slate-100">Bemästringsgrad</h3>
                         <div style={{ width: '100%', height: 200 }}>
                             <ResponsiveContainer>
                                 <PieChart>
@@ -105,7 +125,7 @@ const Dashboard: React.FC<DashboardProps> = ({ userProgress, words, learningQueu
                 </Card>
                 <Card>
                     <div className="p-6">
-                        <h3 className="font-semibold text-lg text-slate-800">Veckoaktivitet</h3>
+                        <h3 className="font-semibold text-lg text-slate-800 dark:text-slate-100">Veckoaktivitet</h3>
                          <div style={{ width: '100%', height: 200 }}>
                              <ResponsiveContainer>
                                 <BarChart data={weeklyActivity} margin={{ top: 20, right: 10, left: -20, bottom: 5 }}>
@@ -122,18 +142,18 @@ const Dashboard: React.FC<DashboardProps> = ({ userProgress, words, learningQueu
 
             <Card>
                 <div className="p-6">
-                    <h3 className="font-semibold text-lg text-slate-800">Nyligen Lärda Ord</h3>
+                    <h3 className="font-semibold text-lg text-slate-800 dark:text-slate-100">Nyligen Lärda Ord</h3>
                     {recentlyLearned.length > 0 ? (
                         <ul className="mt-4 space-y-2">
                             {recentlyLearned.map(word => (
-                                <li key={word.id} className="flex justify-between items-center text-sm p-2 rounded-md bg-slate-50">
-                                    <span className="font-medium text-slate-700">{word.spanish}</span>
-                                    <span className="text-slate-500">{word.swedish}</span>
+                                <li key={word.id} className="flex justify-between items-center text-sm p-2 rounded-md bg-slate-50 dark:bg-slate-800/70">
+                                    <span className="font-medium text-slate-700 dark:text-slate-200">{word.spanish}</span>
+                                    <span className="text-slate-500 dark:text-slate-400">{word.swedish}</span>
                                 </li>
                             ))}
                         </ul>
                     ) : (
-                        <p className="text-slate-500 mt-2 text-sm">Du har inte lärt dig några nya ord än. Starta en lektion för att komma igång!</p>
+                        <p className="text-slate-500 dark:text-slate-400 mt-2 text-sm">Du har inte lärt dig några nya ord än. Starta en lektion för att komma igång!</p>
                     )}
                 </div>
             </Card>

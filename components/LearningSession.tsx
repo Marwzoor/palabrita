@@ -41,8 +41,8 @@ const LearningSession: React.FC<LearningSessionProps> = ({ words, onSessionCompl
 
     return (
       <div className="flex flex-col items-center justify-center h-full text-center">
-        <h2 className="text-3xl font-bold text-slate-800">Bra jobbat!</h2>
-        <p className="text-slate-500 mt-2">Du klarade {correctCount} av {totalCount} ord.</p>
+        <h2 className="text-3xl font-bold text-slate-800 dark:text-slate-100">Bra jobbat!</h2>
+        <p className="text-slate-500 dark:text-slate-400 mt-2">Du klarade {correctCount} av {totalCount} ord.</p>
         <div className="w-full max-w-xs my-8">
             <ProgressBar progress={(correctCount / (totalCount || 1)) * 100} />
         </div>
@@ -56,8 +56,8 @@ const LearningSession: React.FC<LearningSessionProps> = ({ words, onSessionCompl
   if (!currentWord) {
       return (
         <div className="flex flex-col items-center justify-center h-full text-center">
-          <h2 className="text-2xl font-bold text-slate-800">Inga ord för idag!</h2>
-          <p className="text-slate-500 mt-2">Kom tillbaka imorgon för fler repetitioner.</p>
+          <h2 className="text-2xl font-bold text-slate-800 dark:text-slate-100">Inga ord för idag!</h2>
+          <p className="text-slate-500 dark:text-slate-400 mt-2">Kom tillbaka imorgon för fler repetitioner.</p>
         </div>
       );
   }

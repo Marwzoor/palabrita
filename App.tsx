@@ -2,14 +2,42 @@
 
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { registerSW } from 'virtual:pwa-register';
-import { View, Word, UserProgress, MasteryLevel } from './types';
+import { View, Word, UserProgress, MasteryLevel, AppSettings, ThemePreference } from './types';
 import { getInitialWords } from './services/wordService';
 import Header from './components/Header';
 import Dashboard from './components/Dashboard';
 import LearningSession from './components/LearningSession';
 import Achievements from './components/Achievements';
+import Settings from './components/Settings';
 import UpdateNotification from './components/UpdateNotification';
 import { MOCK_ACHIEVEMENTS } from './constants';
+import ReminderBanner from './components/ReminderBanner';
+import Confetti from './components/Confetti';
+
+const DEFAULT_SETTINGS: AppSettings = {
+  themePreference: 'system',
+  remindersEnabled: true,
+  enableConfetti: true,
+  dailyGoal: 20,
+};
+
+const getStoredSettings = (): AppSettings => {
+  if (typeof window === 'undefined') {
+    return DEFAULT_SETTINGS;
+  }
+
+  try {
+    const savedSettings = localStorage.getItem('palabrita_settings');
+    if (savedSettings) {
+      const parsed = JSON.parse(savedSettings);
+      return { ...DEFAULT_SETTINGS, ...parsed } satisfies AppSettings;
+    }
+  } catch (error) {
+    console.warn('Failed to parse saved settings', error);
+  }
+
+  return DEFAULT_SETTINGS;
+};
 
 const App: React.FC = () => {
   const [view, setView] = useState<View>(View.Dashboard);
@@ -17,6 +45,31 @@ const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [showUpdate, setShowUpdate] = useState<boolean>(false);
   const [updateSW, setUpdateSW] = useState<(() => void) | null>(null);
+  const [settings, setSettings] = useState<AppSettings>(() => getStoredSettings());
+  const [resolvedTheme, setResolvedTheme] = useState<'light' | 'dark'>(() => {
+    const initialSettings = getStoredSettings();
+    if (initialSettings.themePreference === 'system') {
+      if (typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        if (typeof document !== 'undefined') {
+          document.documentElement.classList.add('dark');
+          document.documentElement.style.colorScheme = 'dark';
+        }
+        return 'dark';
+      }
+      if (typeof document !== 'undefined') {
+        document.documentElement.classList.remove('dark');
+        document.documentElement.style.colorScheme = 'light';
+      }
+      return 'light';
+    }
+    if (typeof document !== 'undefined') {
+      document.documentElement.classList.toggle('dark', initialSettings.themePreference === 'dark');
+      document.documentElement.style.colorScheme = initialSettings.themePreference;
+    }
+    return initialSettings.themePreference;
+  });
+  const [showReminder, setShowReminder] = useState(false);
+  const [showCelebration, setShowCelebration] = useState(false);
 
   useEffect(() => {
     const updateSW = registerSW({
@@ -26,6 +79,51 @@ const App: React.FC = () => {
     });
     setUpdateSW(() => updateSW);
   }, []);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    localStorage.setItem('palabrita_settings', JSON.stringify(settings));
+  }, [settings]);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+    const applyTheme = (prefersDark: boolean) => {
+      const nextTheme: 'light' | 'dark' =
+        settings.themePreference === 'system'
+          ? prefersDark
+            ? 'dark'
+            : 'light'
+          : settings.themePreference;
+
+      setResolvedTheme(nextTheme);
+      document.documentElement.classList.toggle('dark', nextTheme === 'dark');
+      document.documentElement.style.colorScheme = nextTheme;
+    };
+
+    applyTheme(mediaQuery.matches);
+
+    const handleChange = (event: MediaQueryListEvent) => {
+      if (settings.themePreference === 'system') {
+        applyTheme(event.matches);
+      }
+    };
+
+    if (typeof mediaQuery.addEventListener === 'function') {
+      mediaQuery.addEventListener('change', handleChange);
+      return () => mediaQuery.removeEventListener('change', handleChange);
+    }
+
+    mediaQuery.addListener(handleChange);
+    return () => mediaQuery.removeListener(handleChange);
+  }, [settings.themePreference]);
   
   const [userProgress, setUserProgress] = useState<UserProgress>(() => {
     try {
@@ -49,6 +147,11 @@ const App: React.FC = () => {
       achievements: new Set(),
     };
   });
+
+  const hoursSinceLastSession = useMemo(() => {
+    const diffMs = Date.now() - userProgress.lastSession.getTime();
+    return diffMs > 0 ? diffMs / (1000 * 60 * 60) : 0;
+  }, [userProgress.lastSession]);
 
   useEffect(() => {
     const loadWords = async () => {
@@ -104,6 +207,118 @@ const App: React.FC = () => {
     }
   }, []);
 
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    if (!settings.remindersEnabled) {
+      setShowReminder(false);
+      return;
+    }
+
+    const evaluateReminder = () => {
+      const now = new Date();
+      const diffHours = (now.getTime() - userProgress.lastSession.getTime()) / (1000 * 60 * 60);
+      const dismissedString = localStorage.getItem('palabrita_last_reminder_dismissed');
+      const dismissedDate = dismissedString ? new Date(dismissedString) : null;
+      const dismissedToday = dismissedDate ? dismissedDate.toDateString() === now.toDateString() : false;
+
+      if (diffHours >= 24 && !dismissedToday) {
+        setShowReminder(true);
+
+        if ('Notification' in window && Notification.permission === 'granted') {
+          const lastPush = localStorage.getItem('palabrita_last_push_reminder');
+          const lastPushDate = lastPush ? new Date(lastPush) : null;
+          const alreadyPushedToday = lastPushDate ? lastPushDate.toDateString() === now.toDateString() : false;
+
+          if (!alreadyPushedToday) {
+            new Notification('Dags att öva spanska!', {
+              body: 'Kom tillbaka till Palabrita och repetera några ord.',
+              tag: 'palabrita-reminder',
+            });
+            localStorage.setItem('palabrita_last_push_reminder', now.toISOString());
+          }
+        }
+      } else {
+        setShowReminder(false);
+      }
+    };
+
+    evaluateReminder();
+    const interval = window.setInterval(evaluateReminder, 60 * 60 * 1000);
+    return () => window.clearInterval(interval);
+  }, [settings.remindersEnabled, userProgress.lastSession]);
+
+  useEffect(() => {
+    if (typeof window === 'undefined' || !('Notification' in window)) {
+      return;
+    }
+
+    if (!settings.remindersEnabled) {
+      return;
+    }
+
+    if (Notification.permission === 'default') {
+      Notification.requestPermission().catch(() => undefined);
+    }
+  }, [settings.remindersEnabled]);
+
+  useEffect(() => {
+    if (!showCelebration) {
+      return;
+    }
+
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    const timeout = window.setTimeout(() => setShowCelebration(false), 4500);
+    return () => window.clearTimeout(timeout);
+  }, [showCelebration]);
+
+  useEffect(() => {
+    if (view !== View.Learning) {
+      return;
+    }
+
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('palabrita_last_reminder_dismissed', new Date().toISOString());
+    }
+    setShowReminder(false);
+  }, [view]);
+
+  const handleThemeChange = useCallback((preference: ThemePreference) => {
+    setSettings(prev => ({ ...prev, themePreference: preference }));
+  }, []);
+
+  const handleToggleReminders = useCallback((enabled: boolean) => {
+    setSettings(prev => ({ ...prev, remindersEnabled: enabled }));
+  }, []);
+
+  const handleToggleConfetti = useCallback((enabled: boolean) => {
+    setSettings(prev => ({ ...prev, enableConfetti: enabled }));
+  }, []);
+
+  const handleDailyGoalChange = useCallback((goal: number) => {
+    setSettings(prev => ({ ...prev, dailyGoal: goal }));
+  }, []);
+
+  const handleDismissReminder = useCallback(() => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('palabrita_last_reminder_dismissed', new Date().toISOString());
+    }
+    setShowReminder(false);
+  }, []);
+
+  const startLearning = useCallback(() => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('palabrita_last_reminder_dismissed', new Date().toISOString());
+    }
+    setShowReminder(false);
+    setView(View.Learning);
+  }, []);
+
   const recentlyLearnedWords = useMemo(() => {
     try {
         return words
@@ -133,7 +348,19 @@ const App: React.FC = () => {
   const handleSessionComplete = useCallback((sessionWords: { wordId: string; correct: boolean }[]) => {
     let pointsEarned = 0;
     const now = new Date();
-    
+
+    const wasPerfect = sessionWords.length > 0 && sessionWords.every(r => r.correct);
+    if (settings.enableConfetti && wasPerfect) {
+      setShowCelebration(true);
+    } else {
+      setShowCelebration(false);
+    }
+
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('palabrita_last_reminder_dismissed', now.toISOString());
+    }
+    setShowReminder(false);
+
     if (sessionWords.length > 0) {
         const todayKey = now.toISOString().split('T')[0]; // YYYY-MM-DD
         try {
@@ -233,13 +460,13 @@ const App: React.FC = () => {
     });
 
     setView(View.Dashboard);
-  }, [words]);
+  }, [words, settings.enableConfetti]);
 
   if (isLoading) {
     return (
-        <div className="bg-slate-50 min-h-screen flex items-center justify-center">
-            <div className="max-w-md mx-auto w-full h-screen bg-white shadow-2xl shadow-slate-300 flex flex-col items-center justify-center">
-                <div className="text-xl font-semibold text-slate-600">Laddar ord...</div>
+        <div className="bg-slate-50 dark:bg-slate-950 min-h-screen flex items-center justify-center text-slate-800 dark:text-slate-200">
+            <div className="max-w-md mx-auto w-full h-screen bg-white dark:bg-slate-900 shadow-2xl shadow-slate-300 dark:shadow-black/40 flex flex-col items-center justify-center">
+                <div className="text-xl font-semibold text-slate-600 dark:text-slate-200">Laddar ord...</div>
             </div>
         </div>
     );
@@ -251,28 +478,47 @@ const App: React.FC = () => {
         return <LearningSession words={learningQueue} onSessionComplete={handleSessionComplete} />;
       case View.Achievements:
         return <Achievements data={MOCK_ACHIEVEMENTS} userProgress={userProgress} />;
+      case View.Settings:
+        return (
+          <Settings
+            settings={settings}
+            onThemeChange={handleThemeChange}
+            onToggleReminders={handleToggleReminders}
+            onToggleConfetti={handleToggleConfetti}
+            onDailyGoalChange={handleDailyGoalChange}
+          />
+        );
       case View.Dashboard:
       default:
-        return <Dashboard 
-                  userProgress={userProgress} 
+        return <Dashboard
+                  userProgress={userProgress}
                   words={words}
                   learningQueueSize={learningQueue.length}
-                  onStartSession={() => setView(View.Learning)}
+                  onStartSession={startLearning}
                   recentlyLearned={recentlyLearnedWords}
+                  dailyGoal={settings.dailyGoal}
                 />;
     }
   };
 
-  return (
-    <div className="bg-slate-50 min-h-screen text-slate-800">
-      <div className="max-w-md mx-auto bg-white min-h-screen shadow-2xl shadow-slate-300 flex flex-col">
-        <Header userProgress={userProgress} />
-        <main className="flex-grow p-4 sm:p-6 overflow-y-auto pb-20">
-          {renderContent()}
-        </main>
-        <nav className={`fixed bottom-0 left-0 right-0 max-w-md mx-auto h-16 border-t border-slate-200 bg-white p-2 flex justify-around items-center transform transition-transform duration-300 ${view === View.Learning ? 'translate-y-full' : ''}`}>
+    return (
+      <div className="bg-slate-50 dark:bg-slate-950 min-h-screen text-slate-800 dark:text-slate-100" data-theme={resolvedTheme}>
+        <div className="max-w-md mx-auto bg-white dark:bg-slate-900 min-h-screen shadow-2xl shadow-slate-300 dark:shadow-black/40 flex flex-col">
+          <Header userProgress={userProgress} />
+          {showCelebration && settings.enableConfetti && <Confetti />}
+          <main className="flex-grow p-4 sm:p-6 overflow-y-auto pb-20 space-y-4">
+            {showReminder && view === View.Dashboard && (
+              <ReminderBanner
+                hoursSinceLastSession={hoursSinceLastSession}
+                onStartSession={startLearning}
+                onDismiss={handleDismissReminder}
+              />
+            )}
+            {renderContent()}
+          </main>
+        <nav className={`fixed bottom-0 left-0 right-0 max-w-md mx-auto h-16 border-t border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900/95 backdrop-blur supports-[backdrop-filter]:bg-white/80 dark:supports-[backdrop-filter]:bg-slate-900/80 p-2 flex justify-around items-center transform transition-transform duration-300 ${view === View.Learning ? 'translate-y-full' : ''}`}>
             {(Object.keys(View) as Array<keyof typeof View>).map(key => (
-                <button key={key} onClick={() => setView(View[key])} className={`p-2 rounded-lg transition-colors ${view === View[key] ? 'text-indigo-600 bg-indigo-50' : 'text-slate-500 hover:bg-slate-100'}`}>
+                <button key={key} onClick={() => setView(View[key])} className={`p-2 rounded-lg transition-colors ${view === View[key] ? 'text-indigo-600 dark:text-indigo-300 bg-indigo-50 dark:bg-indigo-500/10' : 'text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/70'}`}>
                     {View[key]}
                 </button>
             ))}

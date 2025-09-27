@@ -31,6 +31,16 @@ export enum View {
   Dashboard = 'Översikt',
   Learning = 'Lektion',
   Achievements = 'Trofér',
+  Settings = 'Inställningar',
+}
+
+export type ThemePreference = 'system' | 'light' | 'dark';
+
+export interface AppSettings {
+  themePreference: ThemePreference;
+  remindersEnabled: boolean;
+  enableConfetti: boolean;
+  dailyGoal: number;
 }
 
 export interface Achievement {
