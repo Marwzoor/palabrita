@@ -53,18 +53,23 @@ const App: React.FC = () => {
         if (typeof document !== 'undefined') {
           document.documentElement.classList.add('dark');
           document.documentElement.style.colorScheme = 'dark';
+          document.documentElement.setAttribute('data-color-scheme', 'dark');
         }
         return 'dark';
       }
       if (typeof document !== 'undefined') {
         document.documentElement.classList.remove('dark');
         document.documentElement.style.colorScheme = 'light';
+        document.documentElement.setAttribute('data-color-scheme', 'light');
       }
       return 'light';
     }
     if (typeof document !== 'undefined') {
-      document.documentElement.classList.toggle('dark', initialSettings.themePreference === 'dark');
-      document.documentElement.style.colorScheme = initialSettings.themePreference;
+      const isDark = initialSettings.themePreference === 'dark';
+      const nextTheme = isDark ? 'dark' : 'light';
+      document.documentElement.classList.toggle('dark', isDark);
+      document.documentElement.style.colorScheme = nextTheme;
+      document.documentElement.setAttribute('data-color-scheme', nextTheme);
     }
     return initialSettings.themePreference;
   });
@@ -106,6 +111,7 @@ const App: React.FC = () => {
       setResolvedTheme(nextTheme);
       document.documentElement.classList.toggle('dark', nextTheme === 'dark');
       document.documentElement.style.colorScheme = nextTheme;
+      document.documentElement.setAttribute('data-color-scheme', nextTheme);
     };
 
     applyTheme(mediaQuery.matches);

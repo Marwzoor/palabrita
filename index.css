@@ -1,6 +1,16 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:is(.dark *, html[data-color-scheme='dark'] *));
+
 @layer base {
+  html {
+    color-scheme: light;
+  }
+
+  html[data-color-scheme='dark'] {
+    color-scheme: dark;
+  }
+
   html,
   body,
   #root {
