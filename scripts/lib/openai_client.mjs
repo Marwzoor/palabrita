@@ -12,6 +12,19 @@ export async function requestJsonResponse({ messages, schema, temperature = 0.2,
   assert(Array.isArray(messages) && messages.length > 0, 'messages array is required');
   assert(schema && typeof schema === 'object', 'schema definition is required');
 
+  const schemaName = typeof schema.name === 'string' && schema.name.trim().length > 0
+    ? schema.name.trim()
+    : null;
+  assert(schemaName, 'schema.name must be a non-empty string');
+
+  const schemaDefinition = schema.schema;
+  assert(schemaDefinition && typeof schemaDefinition === 'object', 'schema.schema object is required');
+
+  const normalizedSchema = { ...schemaDefinition };
+  if (!Object.prototype.hasOwnProperty.call(normalizedSchema, 'additionalProperties')) {
+    normalizedSchema.additionalProperties = false;
+  }
+
   const response = await fetch(API_URL, {
     method: 'POST',
     headers: {
@@ -26,13 +39,10 @@ export async function requestJsonResponse({ messages, schema, temperature = 0.2,
       text: {
         format: {
           type: 'json_schema',
+          name: schemaName,
           json_schema: {
-            name: schema.name,
             strict: true,
-            schema: {
-              additionalProperties: false,
-              ...schema.schema,
-            },
+            schema: normalizedSchema,
           },
         },
       },
