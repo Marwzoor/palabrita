@@ -20,5 +20,8 @@ export const getInitialWords = async (): Promise<Word[]> => {
       exampleSentence: wordData.sentence_es,
       masteryLevel: MasteryLevel.New,
       nextReviewDate: now,
+      easeFactor: 2.5,
+      repetitionCount: 0,
+      reviewInterval: 0,
     }));
 };

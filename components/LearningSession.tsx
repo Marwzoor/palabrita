@@ -1,22 +1,23 @@
 
 import React, { useState, useEffect } from 'react';
-import type { Word } from '../types';
+import type { Word, SessionResult } from '../types';
+import { ReviewQuality } from '../types';
 import Flashcard from './Flashcard';
 import ProgressBar from './common/ProgressBar';
 import Button from './common/Button';
 
 interface LearningSessionProps {
   words: Word[];
-  onSessionComplete: (sessionWords: { wordId: string; correct: boolean }[]) => void;
+  onSessionComplete: (sessionWords: SessionResult[]) => void;
 }
 
 const LearningSession: React.FC<LearningSessionProps> = ({ words, onSessionComplete }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [sessionResults, setSessionResults] = useState<{ wordId: string; correct: boolean }[]>([]);
+  const [sessionResults, setSessionResults] = useState<SessionResult[]>([]);
   const [sessionFinished, setSessionFinished] = useState(false);
 
   const currentWord = words[currentIndex];
-  const progress = (currentIndex / words.length) * 100;
+  const progress = words.length > 0 ? (currentIndex / words.length) * 100 : 0;
 
   useEffect(() => {
     if (words.length === 0) {
@@ -24,8 +25,12 @@ const LearningSession: React.FC<LearningSessionProps> = ({ words, onSessionCompl
     }
   }, [words]);
 
-  const handleAnswer = (correct: boolean) => {
-    const newResults = [...sessionResults, { wordId: currentWord.id, correct }];
+  const handleAnswer = (quality: ReviewQuality) => {
+    if (!currentWord) {
+      return;
+    }
+
+    const newResults = [...sessionResults, { wordId: currentWord.id, quality }];
     setSessionResults(newResults);
 
     if (currentIndex < words.length - 1) {
@@ -36,7 +41,7 @@ const LearningSession: React.FC<LearningSessionProps> = ({ words, onSessionCompl
   };
 
   if (sessionFinished) {
-    const correctCount = sessionResults.filter(r => r.correct).length;
+    const correctCount = sessionResults.filter(r => r.quality >= ReviewQuality.Good).length;
     const totalCount = words.length;
 
     return (
