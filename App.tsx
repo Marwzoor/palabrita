@@ -130,9 +130,12 @@ const App: React.FC = () => {
       const savedProgress = localStorage.getItem('palabrita_progress');
       if (savedProgress) {
         const parsed = JSON.parse(savedProgress);
+        const parsedLastSession = parsed.lastSession ? new Date(parsed.lastSession) : new Date();
+        const lastSession = Number.isNaN(parsedLastSession.getTime()) ? new Date() : parsedLastSession;
+
         return {
           ...parsed,
-          lastSession: new Date(parsed.lastSession),
+          lastSession,
           achievements: new Set(parsed.achievements || []), // Convert stored array back to a Set
         };
       }
@@ -143,7 +146,7 @@ const App: React.FC = () => {
       points: 0,
       level: 1,
       streak: 0,
-      lastSession: new Date(0),
+      lastSession: new Date(),
       achievements: new Set(),
     };
   });
