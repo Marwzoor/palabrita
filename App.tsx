@@ -426,6 +426,10 @@ const App: React.FC = () => {
     return queue.slice(0, sessionSize);
   }, [isLoading, settings.newWordsRatio, settings.sessionSize, words]);
 
+  const handleNavigation = useCallback((key: keyof typeof View) => {
+    navigate(VIEW_PATHS[key]);
+  }, [navigate]);
+
   const handleSessionComplete = useCallback((sessionWords: SessionResult[]) => {
     let pointsEarned = 0;
     const now = new Date();
@@ -585,10 +589,6 @@ const App: React.FC = () => {
         </div>
     );
   }
-
-  const handleNavigation = useCallback((key: keyof typeof View) => {
-    navigate(VIEW_PATHS[key]);
-  }, [navigate]);
 
   const isLearningView = currentViewKey === 'Learning';
 
