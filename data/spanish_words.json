@@ -2998,5 +2998,83 @@
     "translation": "säg mig",
     "sentence_es": "Dime tu nombre, por favor.",
     "sentence_sv": "Säg mig ditt namn, tack."
+  },
+  {
+    "word": "trata",
+    "translation": "försöker, handlar om",
+    "sentence_es": "Él siempre trata de ayudar a sus amigos en momentos difíciles.",
+    "sentence_sv": "Han försöker alltid hjälpa sina vänner i svåra stunder."
+  },
+  {
+    "word": "buscando",
+    "translation": "letar efter, sökande",
+    "sentence_es": "Estoy buscando mis llaves por toda la casa.",
+    "sentence_sv": "Jag håller på att leta efter mina nycklar i hela huset."
+  },
+  {
+    "word": "tuve",
+    "translation": "hade",
+    "sentence_es": "Ayer tuve una reunión importante en la oficina.",
+    "sentence_sv": "Igår hade jag ett viktigt möte på kontoret."
+  },
+  {
+    "word": "tampoco",
+    "translation": "inte heller",
+    "sentence_es": "No me gusta el café, y tampoco me gusta el té.",
+    "sentence_sv": "Jag tycker inte om kaffe, och jag tycker inte heller om te."
+  },
+  {
+    "word": "amo",
+    "translation": "ägare, herre",
+    "sentence_es": "El amo de la casa siempre cuida a sus mascotas con mucho cariño.",
+    "sentence_sv": "Husets ägare tar alltid hand om sina husdjur med stor omsorg."
+  },
+  {
+    "word": "joven",
+    "translation": "ung",
+    "sentence_es": "El joven estudia en la universidad todos los días.",
+    "sentence_sv": "Den unga studerar på universitetet varje dag."
+  },
+  {
+    "word": "podrías",
+    "translation": "skulle kunna, kunde",
+    "sentence_es": "¿Podrías ayudarme con este problema, por favor?",
+    "sentence_sv": "Skulle du kunna hjälpa mig med det här problemet, tack?"
+  },
+  {
+    "word": "sola",
+    "translation": "ensam, ensamstående",
+    "sentence_es": "Ella prefiere estar sola para pensar con claridad.",
+    "sentence_sv": "Hon föredrar att vara ensam för att tänka klart."
+  },
+  {
+    "word": "par",
+    "translation": "par",
+    "sentence_es": "Compré un par de zapatos nuevos para la fiesta.",
+    "sentence_sv": "Jag köpte ett par nya skor till festen."
+  },
+  {
+    "word": "única",
+    "translation": "enda, enda, unika",
+    "sentence_es": "Ella es la única persona que entiende la situación.",
+    "sentence_sv": "Hon är den enda personen som förstår situationen."
+  },
+  {
+    "word": "hacen",
+    "translation": "gör",
+    "sentence_es": "Ellos hacen su tarea todas las tardes.",
+    "sentence_sv": "De gör sina läxor varje eftermiddag."
+  },
+  {
+    "word": "seguir",
+    "translation": "följa, fortsätta",
+    "sentence_es": "Debes seguir las instrucciones para completar el formulario.",
+    "sentence_sv": "Du måste följa instruktionerna för att fylla i formuläret."
+  },
+  {
+    "word": "dr.",
+    "translation": "doktor, dr.",
+    "sentence_es": "El dr. Martínez es un experto en cardiología.",
+    "sentence_sv": "Dr. Martínez är en expert på kardiologi."
   }
 ]
