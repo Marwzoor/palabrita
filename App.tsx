@@ -29,7 +29,7 @@ const App: React.FC = () => {
   
   const [userProgress, setUserProgress] = useState<UserProgress>(() => {
     try {
-      const savedProgress = localStorage.getItem('linguaflow_progress');
+      const savedProgress = localStorage.getItem('palabrita_progress');
       if (savedProgress) {
         const parsed = JSON.parse(savedProgress);
         return {
@@ -54,7 +54,7 @@ const App: React.FC = () => {
     const loadWords = async () => {
       try {
         const masterWords = await getInitialWords();
-        const savedWordsJSON = localStorage.getItem('linguaflow_words');
+        const savedWordsJSON = localStorage.getItem('palabrita_words');
         const savedWords = savedWordsJSON ? JSON.parse(savedWordsJSON) : [];
 
         if (savedWords.length === 0) {
@@ -81,12 +81,12 @@ const App: React.FC = () => {
 
   useEffect(() => {
     if (!isLoading) {
-      localStorage.setItem('linguaflow_words', JSON.stringify(words));
+      localStorage.setItem('palabrita_words', JSON.stringify(words));
     }
   }, [words, isLoading]);
 
   useEffect(() => {
-    localStorage.setItem('linguaflow_progress', JSON.stringify({
+    localStorage.setItem('palabrita_progress', JSON.stringify({
       ...userProgress,
       lastSession: userProgress.lastSession.toISOString(),
       achievements: Array.from(userProgress.achievements), // Convert Set to array for JSON
@@ -137,9 +137,9 @@ const App: React.FC = () => {
     if (sessionWords.length > 0) {
         const todayKey = now.toISOString().split('T')[0]; // YYYY-MM-DD
         try {
-            const activityLog = JSON.parse(localStorage.getItem('linguaflow_activity') || '{}');
+            const activityLog = JSON.parse(localStorage.getItem('palabrita_activity') || '{}');
             activityLog[todayKey] = (activityLog[todayKey] || 0) + sessionWords.length;
-            localStorage.setItem('linguaflow_activity', JSON.stringify(activityLog));
+            localStorage.setItem('palabrita_activity', JSON.stringify(activityLog));
         } catch (e) {
             console.error("Failed to update activity log", e);
         }

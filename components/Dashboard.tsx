@@ -31,7 +31,7 @@ const Dashboard: React.FC<DashboardProps> = ({ userProgress, words, learningQueu
     const [weeklyActivity, setWeeklyActivity] = useState<{name: string, ord: number}[]>([]);
 
     useEffect(() => {
-        const activityLog = JSON.parse(localStorage.getItem('linguaflow_activity') || '{}');
+        const activityLog = JSON.parse(localStorage.getItem('palabrita_activity') || '{}');
         const activityData = [];
         const today = new Date();
         
