@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { registerSW } from 'virtual:pwa-register';
-import { View, Word, UserProgress, MasteryLevel, AppSettings, ThemePreference } from './types';
+import { View, Word, UserProgress, MasteryLevel, AppSettings, ThemePreference, ReviewQuality, SessionResult } from './types';
 import { getInitialWords } from './services/wordService';
 import Header from './components/Header';
 import Dashboard from './components/Dashboard';
@@ -20,6 +20,8 @@ const DEFAULT_SETTINGS: AppSettings = {
   remindersEnabled: true,
   enableConfetti: true,
   dailyGoal: 20,
+  sessionSize: 10,
+  newWordsRatio: 40,
 };
 
 const DEFAULT_VIEW_KEY: keyof typeof View = 'Dashboard';
@@ -32,6 +34,16 @@ const VIEW_PATHS: Record<keyof typeof View, string> = {
 };
 
 const VIEW_KEYS = Object.keys(View) as Array<keyof typeof View>;
+
+const DEFAULT_EASE_FACTOR = 2.5;
+const MIN_EASE_FACTOR = 1.3;
+
+const withSpacedRepetitionDefaults = (word: Word): Word => ({
+  ...word,
+  easeFactor: typeof word.easeFactor === 'number' ? word.easeFactor : DEFAULT_EASE_FACTOR,
+  repetitionCount: typeof word.repetitionCount === 'number' ? word.repetitionCount : 0,
+  reviewInterval: typeof word.reviewInterval === 'number' ? word.reviewInterval : 0,
+});
 
 const getStoredSettings = (): AppSettings => {
   if (typeof window === 'undefined') {
@@ -186,24 +198,21 @@ const App: React.FC = () => {
   useEffect(() => {
     const loadWords = async () => {
       try {
-        const masterWords = await getInitialWords();
+        const masterWords = (await getInitialWords()).map(withSpacedRepetitionDefaults);
         const savedWordsJSON = localStorage.getItem('palabrita_words');
-        const savedWords = savedWordsJSON ? JSON.parse(savedWordsJSON) : [];
+        const savedWordsRaw: Word[] = savedWordsJSON ? JSON.parse(savedWordsJSON) : [];
+        const savedWords = savedWordsRaw.map(withSpacedRepetitionDefaults);
 
         if (savedWords.length === 0) {
           setWords(masterWords);
         } else {
-          const savedWordsMap = new Map(savedWords.map((word: Word) => [word.id, word]));
-          const mergedWords = masterWords.map(masterWord =>
-            savedWordsMap.has(masterWord.id)
-              ? savedWordsMap.get(masterWord.id)!
-              : masterWord
-          );
+          const savedWordsMap = new Map(savedWords.map(word => [word.id, word] as const));
+          const mergedWords = masterWords.map(masterWord => savedWordsMap.get(masterWord.id) ?? masterWord);
           setWords(mergedWords);
         }
       } catch (error) {
         console.error("Failed to load words, fetching from source:", error);
-        const initialWords = await getInitialWords();
+        const initialWords = (await getInitialWords()).map(withSpacedRepetitionDefaults);
         setWords(initialWords);
       } finally {
         setIsLoading(false);
@@ -334,6 +343,14 @@ const App: React.FC = () => {
     setSettings(prev => ({ ...prev, dailyGoal: goal }));
   }, []);
 
+  const handleSessionSizeChange = useCallback((size: number) => {
+    setSettings(prev => ({ ...prev, sessionSize: size }));
+  }, []);
+
+  const handleNewWordsRatioChange = useCallback((ratio: number) => {
+    setSettings(prev => ({ ...prev, newWordsRatio: ratio }));
+  }, []);
+
   const handleDismissReminder = useCallback(() => {
     if (typeof window !== 'undefined') {
       localStorage.setItem('palabrita_last_reminder_dismissed', new Date().toISOString());
@@ -369,17 +386,52 @@ const App: React.FC = () => {
 
   const learningQueue = useMemo(() => {
     if (isLoading) return [];
-    const now = new Date();
-    const reviewWords = words.filter(word => new Date(word.nextReviewDate) <= now && word.masteryLevel > MasteryLevel.New);
-    const newWords = words.filter(word => word.masteryLevel === MasteryLevel.New);
-    return [...reviewWords, ...newWords.slice(0, 10 - reviewWords.length)].slice(0, 10);
-  }, [words, isLoading]);
 
-  const handleSessionComplete = useCallback((sessionWords: { wordId: string; correct: boolean }[]) => {
+    const now = new Date();
+    const sessionSize = settings.sessionSize;
+    const desiredNewWords = Math.round((settings.newWordsRatio / 100) * sessionSize);
+
+    const dueReviews = words
+      .filter(word => word.masteryLevel > MasteryLevel.New && new Date(word.nextReviewDate) <= now)
+      .sort((a, b) => new Date(a.nextReviewDate).getTime() - new Date(b.nextReviewDate).getTime());
+
+    const upcomingReviews = words
+      .filter(word => word.masteryLevel > MasteryLevel.New && new Date(word.nextReviewDate) > now)
+      .sort((a, b) => new Date(a.nextReviewDate).getTime() - new Date(b.nextReviewDate).getTime());
+
+    const newWords = words.filter(word => word.masteryLevel === MasteryLevel.New);
+
+    const queue: Word[] = [];
+
+    const initialReviews = dueReviews.slice(0, sessionSize);
+    queue.push(...initialReviews);
+
+    let remainingSlots = sessionSize - queue.length;
+
+    if (remainingSlots > 0) {
+      const newWordSlots = Math.min(desiredNewWords, remainingSlots);
+      const selectedNewWords = newWords.slice(0, newWordSlots);
+      queue.push(...selectedNewWords);
+      remainingSlots -= selectedNewWords.length;
+
+      if (remainingSlots > 0) {
+        const additionalPool = [
+          ...upcomingReviews,
+          ...newWords.slice(selectedNewWords.length),
+        ];
+        queue.push(...additionalPool.slice(0, remainingSlots));
+      }
+    }
+
+    return queue.slice(0, sessionSize);
+  }, [isLoading, settings.newWordsRatio, settings.sessionSize, words]);
+
+  const handleSessionComplete = useCallback((sessionWords: SessionResult[]) => {
     let pointsEarned = 0;
     const now = new Date();
 
-    const wasPerfect = sessionWords.length > 0 && sessionWords.every(r => r.correct);
+    const isStrongAnswer = (quality: ReviewQuality) => quality >= ReviewQuality.Good;
+    const wasPerfect = sessionWords.length > 0 && sessionWords.every(r => isStrongAnswer(r.quality));
     if (settings.enableConfetti && wasPerfect) {
       setShowCelebration(true);
     } else {
@@ -406,37 +458,69 @@ const App: React.FC = () => {
       const sessionResult = sessionWords.find(sw => sw.wordId === word.id);
       if (!sessionResult) return word;
 
+      const { quality } = sessionResult;
+      const isAgain = quality === ReviewQuality.Again;
+      const isHard = quality === ReviewQuality.Hard;
+      const isGoodOrBetter = isStrongAnswer(quality);
+
       let newMasteryLevel = word.masteryLevel;
-      let intervalDays = 1;
       let learnedDate = word.learnedDate;
+      let easeFactor = typeof word.easeFactor === 'number' ? word.easeFactor : DEFAULT_EASE_FACTOR;
+      let repetitionCount = typeof word.repetitionCount === 'number' ? word.repetitionCount : 0;
+      let previousInterval = typeof word.reviewInterval === 'number' ? word.reviewInterval : 0;
+      let intervalDays = 1;
 
-      if (sessionResult.correct) {
-        pointsEarned += (word.masteryLevel + 1) * 10;
-        newMasteryLevel = Math.min(MasteryLevel.Mastered, word.masteryLevel + 1);
-
-        if (word.masteryLevel === MasteryLevel.New && newMasteryLevel > MasteryLevel.New) {
-            learnedDate = now.toISOString();
-        }
-
-        switch (newMasteryLevel) {
-          case MasteryLevel.Learning: intervalDays = 1; break;
-          case MasteryLevel.Familiar: intervalDays = 3; break;
-          case MasteryLevel.Confident: intervalDays = 7; break;
-          case MasteryLevel.Mastered: intervalDays = 30; break;
-        }
-      } else {
-        if (word.masteryLevel === MasteryLevel.New) {
-          newMasteryLevel = MasteryLevel.New;
-        } else {
-          newMasteryLevel = Math.max(MasteryLevel.Learning, word.masteryLevel - 1);
-        }
+      if (isAgain) {
+        repetitionCount = 0;
         intervalDays = 1;
+        easeFactor = Math.max(MIN_EASE_FACTOR, easeFactor - 0.2);
+        newMasteryLevel = word.masteryLevel === MasteryLevel.New
+          ? MasteryLevel.New
+          : Math.max(MasteryLevel.Learning, word.masteryLevel - 1);
+      } else {
+        const qualityScore = quality;
+        easeFactor = Math.max(
+          MIN_EASE_FACTOR,
+          easeFactor + (0.1 - (5 - qualityScore) * (0.08 + (5 - qualityScore) * 0.02)),
+        );
+        repetitionCount += 1;
+
+        if (repetitionCount === 1) {
+          intervalDays = 1;
+        } else if (repetitionCount === 2) {
+          intervalDays = 6;
+        } else {
+          intervalDays = Math.max(1, Math.round((previousInterval || 1) * easeFactor));
+        }
+
+        if (isGoodOrBetter) {
+          pointsEarned += (word.masteryLevel + 1) * 10;
+          newMasteryLevel = Math.min(MasteryLevel.Mastered, word.masteryLevel + 1);
+
+          if (word.masteryLevel === MasteryLevel.New && newMasteryLevel > MasteryLevel.New) {
+            learnedDate = now.toISOString();
+          }
+        } else if (isHard) {
+          pointsEarned += Math.max(10, (word.masteryLevel + 1) * 5);
+          if (word.masteryLevel === MasteryLevel.New) {
+            newMasteryLevel = MasteryLevel.Learning;
+            learnedDate = now.toISOString();
+          }
+        }
       }
-      
-      const nextReviewDate = new Date();
+
+      const nextReviewDate = new Date(now);
       nextReviewDate.setDate(now.getDate() + intervalDays);
 
-      return { ...word, masteryLevel: newMasteryLevel, nextReviewDate: nextReviewDate.toISOString(), learnedDate };
+      return {
+        ...word,
+        masteryLevel: newMasteryLevel,
+        nextReviewDate: nextReviewDate.toISOString(),
+        learnedDate,
+        easeFactor: Number(easeFactor.toFixed(2)),
+        repetitionCount,
+        reviewInterval: intervalDays,
+      };
     });
 
     setWords(updatedWords);
@@ -476,7 +560,7 @@ const App: React.FC = () => {
         }
 
         // Perfektionist: Avsluta en lektion med alla rätt.
-        if (sessionWords.length > 0 && sessionWords.every(r => r.correct)) {
+        if (sessionWords.length > 0 && sessionWords.every(r => isStrongAnswer(r.quality))) {
             newAchievements.add('perfect_session');
         }
         
@@ -552,6 +636,8 @@ const App: React.FC = () => {
                     onToggleReminders={handleToggleReminders}
                     onToggleConfetti={handleToggleConfetti}
                     onDailyGoalChange={handleDailyGoalChange}
+                    onSessionSizeChange={handleSessionSizeChange}
+                    onNewWordsRatioChange={handleNewWordsRatioChange}
                   />
                 }
               />

@@ -9,6 +9,9 @@ export interface Word {
   masteryLevel: MasteryLevel;
   nextReviewDate: string; // ISO string
   learnedDate?: string; // ISO string
+  easeFactor: number;
+  repetitionCount: number;
+  reviewInterval: number;
 }
 
 export enum MasteryLevel {
@@ -41,6 +44,20 @@ export interface AppSettings {
   remindersEnabled: boolean;
   enableConfetti: boolean;
   dailyGoal: number;
+  sessionSize: number;
+  newWordsRatio: number;
+}
+
+export enum ReviewQuality {
+  Again = 0,
+  Hard = 3,
+  Good = 4,
+  Easy = 5,
+}
+
+export interface SessionResult {
+  wordId: string;
+  quality: ReviewQuality;
 }
 
 export interface Achievement {

@@ -8,6 +8,8 @@ interface SettingsProps {
   onToggleReminders: (enabled: boolean) => void;
   onToggleConfetti: (enabled: boolean) => void;
   onDailyGoalChange: (goal: number) => void;
+  onSessionSizeChange: (size: number) => void;
+  onNewWordsRatioChange: (ratio: number) => void;
 }
 
 const themeOptions: { label: string; value: ThemePreference; description: string }[] = [
@@ -22,6 +24,8 @@ const Settings: React.FC<SettingsProps> = ({
   onToggleReminders,
   onToggleConfetti,
   onDailyGoalChange,
+  onSessionSizeChange,
+  onNewWordsRatioChange,
 }) => {
   return (
     <div className="space-y-6">
@@ -76,6 +80,48 @@ const Settings: React.FC<SettingsProps> = ({
             />
             <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
               Hur många ord vill du repetera varje dag?
+            </p>
+          </div>
+          <div className="pt-6 mt-6 border-t border-slate-100 dark:border-slate-800">
+            <div className="flex items-center justify-between">
+              <label htmlFor="session-size" className="text-sm font-medium text-slate-700 dark:text-slate-200">
+                Ord per session
+              </label>
+              <span className="text-sm text-slate-500 dark:text-slate-400">{settings.sessionSize} kort</span>
+            </div>
+            <input
+              id="session-size"
+              type="range"
+              min={5}
+              max={20}
+              step={1}
+              value={settings.sessionSize}
+              onChange={(event) => onSessionSizeChange(Number(event.target.value))}
+              className="w-full mt-3 accent-indigo-600"
+            />
+            <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+              Anpassa hur långa lektionspass du vill ha.
+            </p>
+          </div>
+          <div className="pt-6 mt-6 border-t border-slate-100 dark:border-slate-800">
+            <div className="flex items-center justify-between">
+              <label htmlFor="new-words-ratio" className="text-sm font-medium text-slate-700 dark:text-slate-200">
+                Andel nya ord
+              </label>
+              <span className="text-sm text-slate-500 dark:text-slate-400">{settings.newWordsRatio}%</span>
+            </div>
+            <input
+              id="new-words-ratio"
+              type="range"
+              min={0}
+              max={100}
+              step={5}
+              value={settings.newWordsRatio}
+              onChange={(event) => onNewWordsRatioChange(Number(event.target.value))}
+              className="w-full mt-3 accent-indigo-600"
+            />
+            <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+              Styr balansen mellan repetition och nytt innehåll i dina pass.
             </p>
           </div>
         </div>
