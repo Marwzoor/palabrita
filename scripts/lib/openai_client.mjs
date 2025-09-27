@@ -20,6 +20,9 @@ export async function requestJsonResponse({ messages, schema, temperature = 0.2,
   const schemaDefinition = schema.schema;
   assert(schemaDefinition && typeof schemaDefinition === 'object', 'schema.schema object is required');
 
+  const strict = schema.strict ?? true;
+  assert(typeof strict === 'boolean', 'schema.strict must be a boolean when provided');
+
   const normalizedSchema = { ...schemaDefinition };
   if (!Object.prototype.hasOwnProperty.call(normalizedSchema, 'additionalProperties')) {
     normalizedSchema.additionalProperties = false;
@@ -40,10 +43,8 @@ export async function requestJsonResponse({ messages, schema, temperature = 0.2,
         format: {
           type: 'json_schema',
           name: schemaName,
-          json_schema: {
-            strict: true,
-            schema: normalizedSchema,
-          },
+          schema: normalizedSchema,
+          strict,
         },
       },
     }),
