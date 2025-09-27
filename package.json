@@ -8,7 +8,9 @@
     "build": "vite build",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "fill:words": "node scripts/fill_spanish_words.mjs",
+    "verify:words": "node scripts/verify_spanish_words.mjs"
   },
   "dependencies": {
     "react": "^19.1.1",
