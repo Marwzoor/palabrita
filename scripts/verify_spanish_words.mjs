@@ -26,6 +26,9 @@ const VERIFICATION_SCHEMA = {
       'translation_feedback',
       'sentence_feedback',
       'severity',
+      'suggested_translation',
+      'suggested_sentence_sv',
+      'notes',
     ],
     properties: {
       translation_correct: { type: 'boolean' },
