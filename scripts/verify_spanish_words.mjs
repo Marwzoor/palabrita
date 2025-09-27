@@ -26,6 +26,9 @@ const VERIFICATION_SCHEMA = {
       'translation_feedback',
       'sentence_feedback',
       'severity',
+      'suggested_translation',
+      'suggested_sentence_sv',
+      'notes',
     ],
     properties: {
       translation_correct: { type: 'boolean' },
@@ -62,26 +65,36 @@ for (let index = startIndex; index < entries.length; index += 1) {
   try {
     const analysis = await analyzeEntry(entry);
 
-    let translationFixed = false;
-
     if (!analysis.translation_correct) {
       console.warn(`  Translation flagged: ${analysis.translation_feedback}`);
-      translationFixed = await promptTranslationResolution(entry, analysis);
-
-      if (!translationFixed) {
-        issues.push({
-          type: 'translation',
-          index,
-          word: entry.word,
-          translation: entry.translation,
-          feedback: analysis.translation_feedback,
-          suggested_translation: analysis.suggested_translation,
-          severity: analysis.severity,
-        });
-      }
     }
 
     if (!analysis.sentence_correct) {
+      console.warn(`  Sentence flagged: ${analysis.sentence_feedback}`);
+    }
+
+    let translationResolved = analysis.translation_correct;
+    let sentenceResolved = analysis.sentence_correct;
+
+    if (!translationResolved || !sentenceResolved) {
+      const { translationFixed, sentenceFixed } = await promptEntryUpdate(entry, analysis);
+      translationResolved ||= translationFixed;
+      sentenceResolved ||= sentenceFixed;
+    }
+
+    if (!translationResolved) {
+      issues.push({
+        type: 'translation',
+        index,
+        word: entry.word,
+        translation: entry.translation,
+        feedback: analysis.translation_feedback,
+        suggested_translation: analysis.suggested_translation,
+        severity: analysis.severity,
+      });
+    }
+
+    if (!sentenceResolved) {
       issues.push({
         type: 'sentence',
         index,
@@ -92,10 +105,9 @@ for (let index = startIndex; index < entries.length; index += 1) {
         suggested_sentence_sv: analysis.suggested_sentence_sv,
         severity: analysis.severity,
       });
-      console.warn(`  Sentence flagged: ${analysis.sentence_feedback}`);
     }
 
-    if ((analysis.translation_correct || translationFixed) && analysis.sentence_correct) {
+    if (translationResolved && sentenceResolved) {
       console.log('  Entry looks good.');
     }
 
@@ -230,37 +242,79 @@ function delay(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-async function promptTranslationResolution(entry, analysis) {
-  console.log(`  Current translation: ${entry.translation}`);
-  if (analysis.suggested_translation) {
-    console.log(`  Suggested translation: ${analysis.suggested_translation}`);
-  }
-  console.log(`  Feedback: ${analysis.translation_feedback}`);
+async function promptEntryUpdate(entry, analysis) {
+  const suggestedEntry = {
+    word: entry.word,
+    translation: analysis.suggested_translation?.trim() || entry.translation,
+    sentence_es: entry.sentence_es,
+    sentence_sv: analysis.suggested_sentence_sv?.trim() || entry.sentence_sv,
+  };
 
-  const hasSuggestion = Boolean(analysis.suggested_translation?.trim());
-  const promptText = hasSuggestion
-    ? '    Apply the suggested translation? (y/N): '
-    : '    Provide a corrected translation now? (y/N): ';
+  console.log('  Suggested entry update:');
+  console.log(`    word: ${suggestedEntry.word}`);
+  console.log(`    translation: ${suggestedEntry.translation}`);
+  console.log(`    sentence_es: ${suggestedEntry.sentence_es}`);
+  console.log(`    sentence_sv: ${suggestedEntry.sentence_sv}`);
 
-  const accept = await promptYesNo(promptText);
-  if (!accept) {
-    return false;
-  }
-
-  let nextTranslation = analysis.suggested_translation?.trim();
-  if (!nextTranslation) {
-    const manual = (await rl.question('    Enter the corrected Swedish translation: ')).trim();
-    if (!manual) {
-      console.log('    No translation entered. Skipping automatic fix.');
-      return false;
-    }
-    nextTranslation = manual;
+  const review = await promptYesNo('    Review and edit this entry before continuing? (y/N): ');
+  if (!review) {
+    return { translationFixed: false, sentenceFixed: false };
   }
 
-  entry.translation = nextTranslation;
+  const original = { ...entry };
+  const updatedEntry = { ...suggestedEntry };
+
+  updatedEntry.word = await promptFieldEdit('Word', suggestedEntry.word, original.word);
+  updatedEntry.translation = await promptFieldEdit('Swedish translation', suggestedEntry.translation, original.translation);
+  updatedEntry.sentence_es = await promptFieldEdit('Spanish sentence', suggestedEntry.sentence_es, original.sentence_es);
+  updatedEntry.sentence_sv = await promptFieldEdit('Swedish sentence', suggestedEntry.sentence_sv, original.sentence_sv);
+
+  console.log('    Updated entry preview:');
+  console.log(`      word: ${updatedEntry.word}`);
+  console.log(`      translation: ${updatedEntry.translation}`);
+  console.log(`      sentence_es: ${updatedEntry.sentence_es}`);
+  console.log(`      sentence_sv: ${updatedEntry.sentence_sv}`);
+
+  const confirm = await promptYesNo('    Save these changes to spanish_words.json? (y/N): ');
+  if (!confirm) {
+    console.log('    Changes discarded.');
+    return { translationFixed: false, sentenceFixed: false };
+  }
+
+  Object.assign(entry, updatedEntry);
   await writeEntries(entries);
-  console.log('    Updated translation saved to spanish_words.json.');
-  return true;
+  console.log('    Updated entry saved to spanish_words.json.');
+
+  let translationFixed = analysis.translation_correct;
+  if (!translationFixed) {
+    if (updatedEntry.translation !== original.translation) {
+      translationFixed = true;
+    } else {
+      translationFixed = await promptYesNo('    Mark the Swedish translation issue as resolved? (y/N): ');
+    }
+  }
+
+  let sentenceFixed = analysis.sentence_correct;
+  if (!sentenceFixed) {
+    if (updatedEntry.sentence_sv !== original.sentence_sv) {
+      sentenceFixed = true;
+    } else {
+      sentenceFixed = await promptYesNo('    Mark the Swedish sentence issue as resolved? (y/N): ');
+    }
+  }
+
+  return { translationFixed, sentenceFixed };
+}
+
+async function promptFieldEdit(label, suggested, current) {
+  const defaultValue = suggested ?? current;
+  console.log(`    ${label}:`);
+  console.log(`      Current: ${current}`);
+  if (suggested !== undefined && suggested !== current) {
+    console.log(`      Suggested: ${suggested}`);
+  }
+  const answer = (await rl.question(`      Enter new ${label.toLowerCase()} (leave blank to keep "${defaultValue}"): `)).trim();
+  return answer || defaultValue;
 }
 
 async function promptYesNo(promptText) {

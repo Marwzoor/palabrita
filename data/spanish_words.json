@@ -3,7 +3,7 @@
     "word": "de",
     "translation": "av, från",
     "sentence_es": "El libro es de María.",
-    "sentence_sv": "Boken är från María."
+    "sentence_sv": "Boken är Marías."
   },
   {
     "word": "que",
@@ -85,9 +85,9 @@
   },
   {
     "word": "una",
-    "translation": "en/ett (feminin form, obestämd artikel)",
-    "sentence_es": "Ella tiene una casa.",
-    "sentence_sv": "Hon har ett hus."
+    "translation": "en (feminin form, obestämd artikel)",
+    "sentence_es": "Ella tiene una bicicleta.",
+    "sentence_sv": "Hon har en cykel."
   },
   {
     "word": "los",
@@ -99,7 +99,7 @@
     "word": "se",
     "translation": "sig",
     "sentence_es": "Él se lava las manos.",
-    "sentence_sv": "Han tvättar sig händerna."
+    "sentence_sv": "Han tvättar sina händer."
   },
   {
     "word": "te",
@@ -181,9 +181,9 @@
   },
   {
     "word": "del",
-    "translation": "av, från",
+    "translation": "av",
     "sentence_es": "El libro es del profesor.",
-    "sentence_sv": "Boken är från läraren."
+    "sentence_sv": "Boken är lärarens."
   },
   {
     "word": "como",
@@ -205,7 +205,7 @@
   },
   {
     "word": "al",
-    "translation": "till (på) + det",
+    "translation": "till",
     "sentence_es": "Voy al mercado.",
     "sentence_sv": "Jag går till marknaden."
   },
@@ -265,9 +265,9 @@
   },
   {
     "word": "esta",
-    "translation": "den här/det här (feminin form)",
-    "sentence_es": "Esta casa es muy bonita.",
-    "sentence_sv": "Det här huset är mycket fint."
+    "translation": "den här (feminin form)",
+    "sentence_es": "Esta bicicleta es muy bonita.",
+    "sentence_sv": "Den här cykeln är mycket fin."
   },
   {
     "word": "así",
