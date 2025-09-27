@@ -10,7 +10,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const WORD_DATA_PATH = path.resolve(__dirname, '..', 'data', 'spanish_words.json');
-const PROGRESS_PATH = path.resolve(__dirname, '..', 'data', 'verification_progress.json');
+const TEMP_DIR = path.resolve(__dirname, '..', '.tmp');
+const PROGRESS_PATH = path.resolve(TEMP_DIR, 'verification_progress.json');
 const ISSUES_PATH = path.resolve(__dirname, '..', 'data', 'verification_issues.json');
 
 const RATE_LIMIT_DELAY_MS = Number(process.env.OPENAI_REQUEST_DELAY_MS ?? 0);
@@ -212,12 +213,17 @@ async function readProgress() {
 
 async function writeProgress(index) {
   const payload = { index, updatedAt: new Date().toISOString() };
+  await ensureDirectoryExists(PROGRESS_PATH);
   await fs.writeFile(PROGRESS_PATH, `${JSON.stringify(payload, null, 2)}\n`, 'utf8');
 }
 
 async function writeEntries(entriesToPersist) {
   const payload = JSON.stringify(entriesToPersist, null, 2);
   await fs.writeFile(WORD_DATA_PATH, `${payload}\n`, 'utf8');
+}
+
+async function ensureDirectoryExists(filePath) {
+  await fs.mkdir(path.dirname(filePath), { recursive: true });
 }
 
 function delay(ms) {
