@@ -1,6 +1,7 @@
 
 
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
+import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { registerSW } from 'virtual:pwa-register';
 import { View, Word, UserProgress, MasteryLevel, AppSettings, ThemePreference } from './types';
 import { getInitialWords } from './services/wordService';
@@ -21,6 +22,17 @@ const DEFAULT_SETTINGS: AppSettings = {
   dailyGoal: 20,
 };
 
+const DEFAULT_VIEW_KEY: keyof typeof View = 'Dashboard';
+
+const VIEW_PATHS: Record<keyof typeof View, string> = {
+  Dashboard: '/',
+  Learning: '/learning',
+  Achievements: '/achievements',
+  Settings: '/settings',
+};
+
+const VIEW_KEYS = Object.keys(View) as Array<keyof typeof View>;
+
 const getStoredSettings = (): AppSettings => {
   if (typeof window === 'undefined') {
     return DEFAULT_SETTINGS;
@@ -40,12 +52,21 @@ const getStoredSettings = (): AppSettings => {
 };
 
 const App: React.FC = () => {
-  const [view, setView] = useState<View>(View.Dashboard);
   const [words, setWords] = useState<Word[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [showUpdate, setShowUpdate] = useState<boolean>(false);
   const [updateSW, setUpdateSW] = useState<(() => void) | null>(null);
   const [settings, setSettings] = useState<AppSettings>(() => getStoredSettings());
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const currentViewKey = useMemo<keyof typeof View>(() => {
+    const normalizedPath = location.pathname === '/' ? '/' : location.pathname.replace(/\/+$/, '') || '/';
+    const match = (Object.entries(VIEW_PATHS) as Array<[keyof typeof View, string]>).find(
+      ([, path]) => path === normalizedPath,
+    );
+    return match ? match[0] : DEFAULT_VIEW_KEY;
+  }, [location.pathname]);
   const [resolvedTheme, setResolvedTheme] = useState<'light' | 'dark'>(() => {
     const initialSettings = getStoredSettings();
     if (initialSettings.themePreference === 'system') {
@@ -325,8 +346,8 @@ const App: React.FC = () => {
       localStorage.setItem('palabrita_last_reminder_dismissed', new Date().toISOString());
     }
     setShowReminder(false);
-    setView(View.Learning);
-  }, []);
+    navigate(VIEW_PATHS.Learning);
+  }, [navigate]);
 
   const recentlyLearnedWords = useMemo(() => {
     try {
@@ -468,8 +489,8 @@ const App: React.FC = () => {
         };
     });
 
-    setView(View.Dashboard);
-  }, [words, settings.enableConfetti]);
+    navigate(VIEW_PATHS.Dashboard);
+  }, [words, settings.enableConfetti, navigate]);
 
   if (isLoading) {
     return (
@@ -481,34 +502,11 @@ const App: React.FC = () => {
     );
   }
 
-  const renderContent = () => {
-    switch (view) {
-      case View.Learning:
-        return <LearningSession words={learningQueue} onSessionComplete={handleSessionComplete} />;
-      case View.Achievements:
-        return <Achievements data={MOCK_ACHIEVEMENTS} userProgress={userProgress} />;
-      case View.Settings:
-        return (
-          <Settings
-            settings={settings}
-            onThemeChange={handleThemeChange}
-            onToggleReminders={handleToggleReminders}
-            onToggleConfetti={handleToggleConfetti}
-            onDailyGoalChange={handleDailyGoalChange}
-          />
-        );
-      case View.Dashboard:
-      default:
-        return <Dashboard
-                  userProgress={userProgress}
-                  words={words}
-                  learningQueueSize={learningQueue.length}
-                  onStartSession={startLearning}
-                  recentlyLearned={recentlyLearnedWords}
-                  dailyGoal={settings.dailyGoal}
-                />;
-    }
-  };
+  const handleNavigation = useCallback((key: keyof typeof View) => {
+    navigate(VIEW_PATHS[key]);
+  }, [navigate]);
+
+  const isLearningView = currentViewKey === 'Learning';
 
     return (
       <div className="bg-white dark:bg-slate-950 min-h-screen text-slate-800 dark:text-slate-100" data-theme={resolvedTheme}>
@@ -516,18 +514,57 @@ const App: React.FC = () => {
           <Header userProgress={userProgress} />
           {showCelebration && settings.enableConfetti && <Confetti />}
           <main className="flex-grow p-4 sm:p-6 overflow-y-auto pb-20 space-y-4">
-            {showReminder && view === View.Dashboard && (
+            {showReminder && currentViewKey === 'Dashboard' && (
               <ReminderBanner
                 hoursSinceLastSession={hoursSinceLastSession}
                 onStartSession={startLearning}
                 onDismiss={handleDismissReminder}
               />
             )}
-            {renderContent()}
+            <Routes>
+              <Route
+                path={VIEW_PATHS.Dashboard}
+                element={
+                  <Dashboard
+                    userProgress={userProgress}
+                    words={words}
+                    learningQueueSize={learningQueue.length}
+                    onStartSession={startLearning}
+                    recentlyLearned={recentlyLearnedWords}
+                    dailyGoal={settings.dailyGoal}
+                  />
+                }
+              />
+              <Route
+                path={VIEW_PATHS.Learning}
+                element={<LearningSession words={learningQueue} onSessionComplete={handleSessionComplete} />}
+              />
+              <Route
+                path={VIEW_PATHS.Achievements}
+                element={<Achievements data={MOCK_ACHIEVEMENTS} userProgress={userProgress} />}
+              />
+              <Route
+                path={VIEW_PATHS.Settings}
+                element={
+                  <Settings
+                    settings={settings}
+                    onThemeChange={handleThemeChange}
+                    onToggleReminders={handleToggleReminders}
+                    onToggleConfetti={handleToggleConfetti}
+                    onDailyGoalChange={handleDailyGoalChange}
+                  />
+                }
+              />
+              <Route path="*" element={<Navigate to={VIEW_PATHS.Dashboard} replace />} />
+            </Routes>
           </main>
-        <nav className={`fixed bottom-0 left-0 right-0 max-w-md mx-auto h-16 border-t border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900/95 backdrop-blur supports-[backdrop-filter]:bg-white/80 dark:supports-[backdrop-filter]:bg-slate-900/80 p-2 flex justify-around items-center transform transition-transform duration-300 ${view === View.Learning ? 'translate-y-full' : ''}`}>
-            {(Object.keys(View) as Array<keyof typeof View>).map(key => (
-                <button key={key} onClick={() => setView(View[key])} className={`p-2 rounded-lg transition-colors ${view === View[key] ? 'text-indigo-600 dark:text-indigo-300 bg-indigo-50 dark:bg-indigo-500/10' : 'text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/70'}`}>
+        <nav className={`fixed bottom-0 left-0 right-0 max-w-md mx-auto h-16 border-t border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900/95 backdrop-blur supports-[backdrop-filter]:bg-white/80 dark:supports-[backdrop-filter]:bg-slate-900/80 p-2 flex justify-around items-center transform transition-transform duration-300 ${isLearningView ? 'translate-y-full' : ''}`}>
+            {VIEW_KEYS.map(key => (
+                <button
+                    key={key}
+                    onClick={() => handleNavigation(key)}
+                    className={`p-2 rounded-lg transition-colors ${currentViewKey === key ? 'text-indigo-600 dark:text-indigo-300 bg-indigo-50 dark:bg-indigo-500/10' : 'text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/70'}`}
+                >
                     {View[key]}
                 </button>
             ))}
