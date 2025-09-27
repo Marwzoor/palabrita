@@ -4,7 +4,14 @@ import App from './App';
 import './index.css';
 import { registerSW } from 'virtual:pwa-register';
 
-registerSW({ immediate: true });
+const updateServiceWorker = registerSW({
+  immediate: true,
+  onNeedRefresh() {
+    updateServiceWorker(true).then(() => {
+      window.location.reload();
+    });
+  },
+});
 
 const rootElement = document.getElementById('root');
 if (!rootElement) {
