@@ -23,14 +23,16 @@ export async function requestJsonResponse({ messages, schema, temperature = 0.2,
       input: messages,
       temperature,
       max_output_tokens: maxOutputTokens,
-      response_format: {
-        type: 'json_schema',
-        json_schema: {
-          name: schema.name,
-          strict: true,
-          schema: {
-            additionalProperties: false,
-            ...schema.schema,
+      text: {
+        format: {
+          type: 'json_schema',
+          json_schema: {
+            name: schema.name,
+            strict: true,
+            schema: {
+              additionalProperties: false,
+              ...schema.schema,
+            },
           },
         },
       },
