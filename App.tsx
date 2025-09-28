@@ -38,12 +38,143 @@ const VIEW_KEYS = Object.keys(View) as Array<keyof typeof View>;
 const DEFAULT_EASE_FACTOR = 2.5;
 const MIN_EASE_FACTOR = 1.3;
 
+const WORD_PROGRESS_STORAGE_KEY = 'palabrita_word_progress';
+const LEGACY_WORDS_STORAGE_KEY = 'palabrita_words';
+
 const withSpacedRepetitionDefaults = (word: Word): Word => ({
   ...word,
   easeFactor: typeof word.easeFactor === 'number' ? word.easeFactor : DEFAULT_EASE_FACTOR,
   repetitionCount: typeof word.repetitionCount === 'number' ? word.repetitionCount : 0,
   reviewInterval: typeof word.reviewInterval === 'number' ? word.reviewInterval : 0,
 });
+
+type WordProgressSnapshot = Pick<
+  Word,
+  'masteryLevel' | 'nextReviewDate' | 'easeFactor' | 'repetitionCount' | 'reviewInterval' | 'learnedDate'
+>;
+
+type StoredWordProgress = Record<string, WordProgressSnapshot>;
+
+const parseWordProgress = (rawValue: string | null): StoredWordProgress => {
+  if (!rawValue) {
+    return {};
+  }
+
+  try {
+    const parsed = JSON.parse(rawValue);
+
+    if (Array.isArray(parsed)) {
+      return parsed.reduce<StoredWordProgress>((acc, entry) => {
+        if (entry && typeof entry === 'object' && typeof entry.spanish === 'string') {
+          const {
+            spanish,
+            masteryLevel,
+            nextReviewDate,
+            easeFactor,
+            repetitionCount,
+            reviewInterval,
+            learnedDate,
+          } = entry as Partial<Word>;
+
+          if (typeof masteryLevel === 'number' && typeof nextReviewDate === 'string') {
+            acc[spanish] = {
+              masteryLevel,
+              nextReviewDate,
+              easeFactor: typeof easeFactor === 'number' ? easeFactor : DEFAULT_EASE_FACTOR,
+              repetitionCount: typeof repetitionCount === 'number' ? repetitionCount : 0,
+              reviewInterval: typeof reviewInterval === 'number' ? reviewInterval : 0,
+              ...(typeof learnedDate === 'string' ? { learnedDate } : {}),
+            };
+          }
+        }
+        return acc;
+      }, {});
+    }
+
+    if (parsed && typeof parsed === 'object') {
+      if (Array.isArray((parsed as { words?: unknown }).words)) {
+        return parseWordProgress(JSON.stringify((parsed as { words: unknown }).words));
+      }
+
+      return Object.entries(parsed as Record<string, unknown>).reduce<StoredWordProgress>(
+        (acc, [key, value]) => {
+          if (typeof value === 'object' && value !== null) {
+            const {
+              masteryLevel,
+              nextReviewDate,
+              easeFactor,
+              repetitionCount,
+              reviewInterval,
+              learnedDate,
+            } = value as Partial<WordProgressSnapshot>;
+
+            if (typeof masteryLevel === 'number' && typeof nextReviewDate === 'string') {
+              acc[key] = {
+                masteryLevel,
+                nextReviewDate,
+                easeFactor: typeof easeFactor === 'number' ? easeFactor : DEFAULT_EASE_FACTOR,
+                repetitionCount: typeof repetitionCount === 'number' ? repetitionCount : 0,
+                reviewInterval: typeof reviewInterval === 'number' ? reviewInterval : 0,
+                ...(typeof learnedDate === 'string' ? { learnedDate } : {}),
+              };
+            }
+          }
+          return acc;
+        },
+        {},
+      );
+    }
+  } catch (error) {
+    console.warn('Failed to parse stored word progress', error);
+  }
+
+  return {};
+};
+
+const getStoredWordProgress = (): StoredWordProgress => {
+  if (typeof window === 'undefined') {
+    return {};
+  }
+
+  const progressFromNewKey = parseWordProgress(localStorage.getItem(WORD_PROGRESS_STORAGE_KEY));
+  if (Object.keys(progressFromNewKey).length > 0 || localStorage.getItem(WORD_PROGRESS_STORAGE_KEY)) {
+    return progressFromNewKey;
+  }
+
+  const legacyProgress = parseWordProgress(localStorage.getItem(LEGACY_WORDS_STORAGE_KEY));
+
+  if (Object.keys(legacyProgress).length > 0) {
+    try {
+      localStorage.setItem(WORD_PROGRESS_STORAGE_KEY, JSON.stringify(legacyProgress));
+      localStorage.removeItem(LEGACY_WORDS_STORAGE_KEY);
+    } catch (error) {
+      console.warn('Failed to migrate legacy word progress', error);
+    }
+  }
+
+  return legacyProgress;
+};
+
+const serializeWordProgress = (words: Word[]): StoredWordProgress => {
+  return words.reduce<StoredWordProgress>((acc, word) => {
+    if (
+      word.masteryLevel !== MasteryLevel.New ||
+      word.repetitionCount > 0 ||
+      word.reviewInterval > 0 ||
+      typeof word.learnedDate === 'string'
+    ) {
+      acc[word.spanish] = {
+        masteryLevel: word.masteryLevel,
+        nextReviewDate: word.nextReviewDate,
+        easeFactor: word.easeFactor,
+        repetitionCount: word.repetitionCount,
+        reviewInterval: word.reviewInterval,
+        ...(word.learnedDate ? { learnedDate: word.learnedDate } : {}),
+      };
+    }
+    return acc;
+  }, {});
+};
 
 const getStoredSettings = (): AppSettings => {
   if (typeof window === 'undefined') {
@@ -199,17 +330,22 @@ const App: React.FC = () => {
     const loadWords = async () => {
       try {
         const masterWords = (await getInitialWords()).map(withSpacedRepetitionDefaults);
-        const savedWordsJSON = localStorage.getItem('palabrita_words');
-        const savedWordsRaw: Word[] = savedWordsJSON ? JSON.parse(savedWordsJSON) : [];
-        const savedWords = savedWordsRaw.map(withSpacedRepetitionDefaults);
+        const storedProgress = getStoredWordProgress();
 
-        if (savedWords.length === 0) {
-          setWords(masterWords);
-        } else {
-          const savedWordsMap = new Map(savedWords.map(word => [word.id, word] as const));
-          const mergedWords = masterWords.map(masterWord => savedWordsMap.get(masterWord.id) ?? masterWord);
-          setWords(mergedWords);
-        }
+        const mergedWords = masterWords.map(masterWord => {
+          const progress = storedProgress[masterWord.spanish];
+          if (!progress) {
+            return masterWord;
+          }
+
+          return withSpacedRepetitionDefaults({
+            ...masterWord,
+            ...progress,
+            learnedDate: progress.learnedDate ?? masterWord.learnedDate,
+          });
+        });
+
+        setWords(mergedWords);
       } catch (error) {
         console.error("Failed to load words, fetching from source:", error);
         const initialWords = (await getInitialWords()).map(withSpacedRepetitionDefaults);
@@ -222,8 +358,9 @@ const App: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    if (!isLoading) {
-      localStorage.setItem('palabrita_words', JSON.stringify(words));
+    if (!isLoading && typeof window !== 'undefined') {
+      const progressSnapshot = serializeWordProgress(words);
+      localStorage.setItem(WORD_PROGRESS_STORAGE_KEY, JSON.stringify(progressSnapshot));
     }
   }, [words, isLoading]);
 
