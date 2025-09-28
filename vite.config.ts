@@ -7,13 +7,9 @@ import manifest from './manifest.json';
 
 export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, '.', '');
-    return {
-      base: '/',
-      server: {
-        port: 3000,
-        host: '0.0.0.0',
-      },
-      plugins: [
+    const shouldSkipWebfontDownload = process.env.SKIP_WEBFONT_DOWNLOAD === 'true';
+
+    const plugins = [
         react(),
         VitePWA({
           registerType: 'autoUpdate',
@@ -28,10 +24,23 @@ export default defineConfig(({ mode }) => {
             skipWaiting: true,
           },
         }),
-        webfontDownload([
-          'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap',
-        ]),
-      ],
+    ];
+
+    if (!shouldSkipWebfontDownload) {
+        plugins.push(
+            webfontDownload([
+                'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap',
+            ]),
+        );
+    }
+
+    return {
+      base: '/',
+      server: {
+        port: 3000,
+        host: '0.0.0.0',
+      },
+      plugins,
       define: {
         'process.env.API_KEY': JSON.stringify(env.GEMINI_API_KEY),
         'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY)
