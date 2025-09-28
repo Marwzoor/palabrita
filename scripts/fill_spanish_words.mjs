@@ -101,6 +101,8 @@ async function generateEntry(word) {
           '- Pay heightened attention to Spanish accent marks—never replace accented vowels with their unaccented counterparts.',
           '- Return well-formed Spanish and Swedish sentences that are literal translations of each other.',
           '- The Spanish sentence must contain the lemma exactly as provided (including accents).',
+          '- When the lemma is a conjugated verb or otherwise encodes its subject, include the implied Swedish subject pronoun in parentheses immediately before the verb (e.g., "(jag) har", "(han/hon/det) är") to keep formatting consistent across entries.',
+          '- Choose Swedish example sentences that help learners map Spanish articles correctly; when illustrating "un"/"una", prefer Swedish sentences using "en"/"ett" as appropriate even if it requires selecting a different example noun.',
           '- Keep responses concise (max ~25 words per sentence).',
           '- Output must be valid UTF-8.',
           '',
