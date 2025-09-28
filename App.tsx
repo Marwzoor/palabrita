@@ -40,6 +40,7 @@ const MIN_EASE_FACTOR = 1.3;
 
 const WORD_PROGRESS_STORAGE_KEY = 'palabrita_word_progress';
 const LEGACY_WORDS_STORAGE_KEY = 'palabrita_words';
+const CURRENT_WORD_PROGRESS_VERSION = 2;
 
 const withSpacedRepetitionDefaults = (word: Word): Word => ({
   ...word,
@@ -55,40 +56,97 @@ type WordProgressSnapshot = Pick<
 
 type StoredWordProgress = Record<string, WordProgressSnapshot>;
 
-const parseWordProgress = (rawValue: string | null): StoredWordProgress => {
-  if (!rawValue) {
+type StoredWord = Partial<Word> & {
+  exampleSentence?: string;
+  exampleSentenceTranslation?: string;
+};
+
+interface StoredWordProgressPayload {
+  version: number;
+  progress: StoredWordProgress;
+}
+
+const withProgressDefaults = (
+  value: Partial<WordProgressSnapshot>,
+): { snapshot: WordProgressSnapshot; wasNormalized: boolean } | null => {
+  if (typeof value.masteryLevel !== 'number' || typeof value.nextReviewDate !== 'string') {
+    return null;
+  }
+
+  const nextReviewDate = new Date(value.nextReviewDate);
+  const resolvedNextReviewDate = Number.isNaN(nextReviewDate.getTime())
+    ? new Date().toISOString()
+    : value.nextReviewDate;
+
+  const snapshot: WordProgressSnapshot = {
+    masteryLevel: value.masteryLevel,
+    nextReviewDate: resolvedNextReviewDate,
+    easeFactor: typeof value.easeFactor === 'number' ? value.easeFactor : DEFAULT_EASE_FACTOR,
+    repetitionCount: typeof value.repetitionCount === 'number' ? value.repetitionCount : 0,
+    reviewInterval: typeof value.reviewInterval === 'number' ? value.reviewInterval : 0,
+    ...(typeof value.learnedDate === 'string' ? { learnedDate: value.learnedDate } : {}),
+  };
+
+  const wasNormalized =
+    snapshot.easeFactor !== value.easeFactor ||
+    snapshot.repetitionCount !== value.repetitionCount ||
+    snapshot.reviewInterval !== value.reviewInterval ||
+    snapshot.nextReviewDate !== value.nextReviewDate;
+
+  return { snapshot, wasNormalized };
+};
+
+const migrateStoredWord = (storedWord: StoredWord): StoredWord => {
+  if (!storedWord || typeof storedWord !== 'object') {
     return {};
+  }
+
+  const migrated: StoredWord = { ...storedWord };
+
+  if (typeof migrated.exampleSentence === 'string' && typeof migrated.exampleSentenceSpanish !== 'string') {
+    migrated.exampleSentenceSpanish = migrated.exampleSentence;
+  }
+
+  if (
+    typeof migrated.exampleSentenceTranslation === 'string' &&
+    typeof migrated.exampleSentenceSwedish !== 'string'
+  ) {
+    migrated.exampleSentenceSwedish = migrated.exampleSentenceTranslation;
+  }
+
+  return migrated;
+};
+
+const buildProgressPayload = (progress: StoredWordProgress): StoredWordProgressPayload => ({
+  version: CURRENT_WORD_PROGRESS_VERSION,
+  progress,
+});
+
+const parseWordProgress = (
+  rawValue: string | null,
+): { progress: StoredWordProgress; shouldPersist: boolean } => {
+  if (!rawValue) {
+    return { progress: {}, shouldPersist: false };
   }
 
   try {
     const parsed = JSON.parse(rawValue);
 
-    if (Array.isArray(parsed)) {
-      return parsed.reduce<StoredWordProgress>((acc, entry) => {
-        if (entry && typeof entry === 'object' && typeof entry.spanish === 'string') {
-          const {
-            spanish,
-            masteryLevel,
-            nextReviewDate,
-            easeFactor,
-            repetitionCount,
-            reviewInterval,
-            learnedDate,
-          } = entry as Partial<Word>;
-
-          if (typeof masteryLevel === 'number' && typeof nextReviewDate === 'string') {
-            acc[spanish] = {
-              masteryLevel,
-              nextReviewDate,
-              easeFactor: typeof easeFactor === 'number' ? easeFactor : DEFAULT_EASE_FACTOR,
-              repetitionCount: typeof repetitionCount === 'number' ? repetitionCount : 0,
-              reviewInterval: typeof reviewInterval === 'number' ? reviewInterval : 0,
-              ...(typeof learnedDate === 'string' ? { learnedDate } : {}),
-            };
+    const reduceEntries = (entries: StoredWord[]): StoredWordProgress =>
+      entries.reduce<StoredWordProgress>((acc, entry) => {
+        const migrated = migrateStoredWord(entry);
+        if (migrated && typeof migrated.spanish === 'string') {
+          const normalized = withProgressDefaults(migrated);
+          if (normalized) {
+            acc[migrated.spanish] = normalized.snapshot;
           }
         }
         return acc;
       }, {});
+
+    if (Array.isArray(parsed)) {
+      const progress = reduceEntries(parsed as StoredWord[]);
+      return { progress, shouldPersist: true };
     }
 
     if (parsed && typeof parsed === 'object') {
@@ -96,39 +154,46 @@ const parseWordProgress = (rawValue: string | null): StoredWordProgress => {
         return parseWordProgress(JSON.stringify((parsed as { words: unknown }).words));
       }
 
-      return Object.entries(parsed as Record<string, unknown>).reduce<StoredWordProgress>(
-        (acc, [key, value]) => {
-          if (typeof value === 'object' && value !== null) {
-            const {
-              masteryLevel,
-              nextReviewDate,
-              easeFactor,
-              repetitionCount,
-              reviewInterval,
-              learnedDate,
-            } = value as Partial<WordProgressSnapshot>;
+      if (typeof (parsed as { version?: unknown }).version === 'number') {
+        const payload = parsed as StoredWordProgressPayload;
+        let wasNormalized = false;
+        const progress = Object.entries(payload.progress ?? {}).reduce<StoredWordProgress>((acc, [key, value]) => {
+          const normalized = withProgressDefaults(value ?? {});
+          if (normalized) {
+            acc[key] = normalized.snapshot;
+            wasNormalized = wasNormalized || normalized.wasNormalized;
+          }
+          return acc;
+        }, {});
 
-            if (typeof masteryLevel === 'number' && typeof nextReviewDate === 'string') {
-              acc[key] = {
-                masteryLevel,
-                nextReviewDate,
-                easeFactor: typeof easeFactor === 'number' ? easeFactor : DEFAULT_EASE_FACTOR,
-                repetitionCount: typeof repetitionCount === 'number' ? repetitionCount : 0,
-                reviewInterval: typeof reviewInterval === 'number' ? reviewInterval : 0,
-                ...(typeof learnedDate === 'string' ? { learnedDate } : {}),
-              };
-            }
+        const shouldPersist =
+          payload.version !== CURRENT_WORD_PROGRESS_VERSION ||
+          Object.keys(progress).length !== Object.keys(payload.progress ?? {}).length ||
+          wasNormalized;
+
+        return { progress, shouldPersist };
+      }
+
+      let wasNormalized = false;
+      const progress = Object.entries(parsed as Record<string, unknown>).reduce<StoredWordProgress>(
+        (acc, [key, value]) => {
+          const normalized = withProgressDefaults((value ?? {}) as Partial<WordProgressSnapshot>);
+          if (normalized) {
+            acc[key] = normalized.snapshot;
+            wasNormalized = wasNormalized || normalized.wasNormalized;
           }
           return acc;
         },
         {},
       );
+
+      return { progress, shouldPersist: true };
     }
   } catch (error) {
     console.warn('Failed to parse stored word progress', error);
   }
 
-  return {};
+  return { progress: {}, shouldPersist: false };
 };
 
 const getStoredWordProgress = (): StoredWordProgress => {
@@ -136,16 +201,26 @@ const getStoredWordProgress = (): StoredWordProgress => {
     return {};
   }
 
-  const progressFromNewKey = parseWordProgress(localStorage.getItem(WORD_PROGRESS_STORAGE_KEY));
-  if (Object.keys(progressFromNewKey).length > 0 || localStorage.getItem(WORD_PROGRESS_STORAGE_KEY)) {
-    return progressFromNewKey;
+  const newStorageRaw = localStorage.getItem(WORD_PROGRESS_STORAGE_KEY);
+  const { progress: currentProgress, shouldPersist: shouldUpdateCurrent } = parseWordProgress(newStorageRaw);
+
+  if (Object.keys(currentProgress).length > 0 || newStorageRaw) {
+    if (shouldUpdateCurrent) {
+      try {
+        localStorage.setItem(WORD_PROGRESS_STORAGE_KEY, JSON.stringify(buildProgressPayload(currentProgress)));
+      } catch (error) {
+        console.warn('Failed to normalize stored word progress', error);
+      }
+    }
+    return currentProgress;
   }
 
-  const legacyProgress = parseWordProgress(localStorage.getItem(LEGACY_WORDS_STORAGE_KEY));
+  const legacyRaw = localStorage.getItem(LEGACY_WORDS_STORAGE_KEY);
+  const { progress: legacyProgress } = parseWordProgress(legacyRaw);
 
   if (Object.keys(legacyProgress).length > 0) {
     try {
-      localStorage.setItem(WORD_PROGRESS_STORAGE_KEY, JSON.stringify(legacyProgress));
+      localStorage.setItem(WORD_PROGRESS_STORAGE_KEY, JSON.stringify(buildProgressPayload(legacyProgress)));
       localStorage.removeItem(LEGACY_WORDS_STORAGE_KEY);
     } catch (error) {
       console.warn('Failed to migrate legacy word progress', error);
@@ -155,8 +230,8 @@ const getStoredWordProgress = (): StoredWordProgress => {
   return legacyProgress;
 };
 
-const serializeWordProgress = (words: Word[]): StoredWordProgress => {
-  return words.reduce<StoredWordProgress>((acc, word) => {
+const serializeWordProgress = (words: Word[]): StoredWordProgressPayload => {
+  const progress = words.reduce<StoredWordProgress>((acc, word) => {
     if (
       word.masteryLevel !== MasteryLevel.New ||
       word.repetitionCount > 0 ||
@@ -174,6 +249,8 @@ const serializeWordProgress = (words: Word[]): StoredWordProgress => {
     }
     return acc;
   }, {});
+
+  return buildProgressPayload(progress);
 };
 
 const getStoredSettings = (): AppSettings => {
