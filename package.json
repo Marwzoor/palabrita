@@ -11,7 +11,7 @@
 		"deploy": "gh-pages -d dist",
 		"fill:words": "node scripts/fill_spanish_words.mjs",
 		"verify:words": "node scripts/verify_spanish_words.mjs",
-		"test:e2e": "node --test tests/e2e"
+		"test:e2e": "node --test tests/e2e/**/*.test.mjs"
 	},
 	"dependencies": {
 		"react": "^19.1.1",

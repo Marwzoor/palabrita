@@ -12,7 +12,7 @@ let browser;
 let previewServer;
 let launchError;
 
-const ANSWER_BUTTON_TEXTS = ['Repetera', 'Svårt', 'Kan', 'Lätt'];
+const ANSWER_BUTTON_TEXTS = ['Inte alls', 'Svårt', 'Ganska bra', 'Mycket bra'];
 
 async function clickByText(page, selector, text) {
   await page.waitForFunction(
