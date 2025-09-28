@@ -12,12 +12,19 @@ export const getInitialWords = async (): Promise<Word[]> => {
   const now = new Date().toISOString();
 
   return (spanishWords as RawWord[])
-    .filter(wordData => wordData.word && wordData.translation && wordData.sentence_es)
+    .filter(
+      (wordData) =>
+        wordData.word &&
+        wordData.translation &&
+        wordData.sentence_es &&
+        wordData.sentence_sv
+    )
     .map((wordData, index) => ({
       id: `${index + 1}`,
       spanish: wordData.word,
       swedish: wordData.translation,
-      exampleSentence: wordData.sentence_es,
+      exampleSentenceSpanish: wordData.sentence_es,
+      exampleSentenceSwedish: wordData.sentence_sv,
       masteryLevel: MasteryLevel.New,
       nextReviewDate: now,
       easeFactor: 2.5,
