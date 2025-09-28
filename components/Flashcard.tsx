@@ -4,6 +4,28 @@ import type { Word } from '../types';
 import { ReviewQuality } from '../types';
 import Icon from './common/Icon';
 
+const escapeRegExp = (text: string) =>
+  text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+const highlightSentence = (sentence: string, word: string): React.ReactNode => {
+  const regex = new RegExp(`(${escapeRegExp(word)})`, 'gi');
+  const parts = sentence.split(regex);
+
+  if (parts.length === 1) {
+    return sentence;
+  }
+
+  return parts.map((part, index) =>
+    part.toLowerCase() === word.toLowerCase() ? (
+      <strong key={index} className="font-semibold text-slate-900 dark:text-slate-100 not-italic">
+        {part}
+      </strong>
+    ) : (
+      <React.Fragment key={index}>{part}</React.Fragment>
+    )
+  );
+};
+
 interface FlashcardProps {
   word: Word;
   onAnswer: (quality: ReviewQuality) => void;
@@ -51,7 +73,24 @@ const Flashcard: React.FC<FlashcardProps> = ({ word, onAnswer }) => {
             <div>
               <p className="text-indigo-500 dark:text-indigo-300 mb-2 font-semibold">Svenska</p>
               <h3 className="text-4xl font-bold text-indigo-900 dark:text-indigo-200">{word.swedish}</h3>
-              <p className="text-slate-600 dark:text-slate-300 mt-6 italic">"{word.exampleSentence}"</p>
+              <div className="mt-6 space-y-4 text-slate-600 dark:text-slate-300">
+                <div>
+                  <p className="text-xs uppercase tracking-wide text-indigo-500/80 dark:text-indigo-300/80">
+                    Exempel (spanska)
+                  </p>
+                  <p className="mt-1 italic text-base text-slate-700 dark:text-slate-200">
+                    <span aria-hidden="true">“</span>
+                    {highlightSentence(word.exampleSentenceSpanish, word.spanish)}
+                    <span aria-hidden="true">”</span>
+                  </p>
+                </div>
+                <div>
+                  <p className="text-xs uppercase tracking-wide text-indigo-500/80 dark:text-indigo-300/80">
+                    Exempel (svenska)
+                  </p>
+                  <p className="mt-1 italic text-base">“{word.exampleSentenceSwedish}”</p>
+                </div>
+              </div>
             </div>
             <div className="mt-6">
               <p className="text-sm text-slate-500 dark:text-slate-400 mb-8">Hur bra kan du detta ord?</p>

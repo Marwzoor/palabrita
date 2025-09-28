@@ -5,7 +5,8 @@ export interface Word {
   id: string;
   spanish: string;
   swedish: string;
-  exampleSentence: string;
+  exampleSentenceSpanish: string;
+  exampleSentenceSwedish: string;
   masteryLevel: MasteryLevel;
   nextReviewDate: string; // ISO string
   learnedDate?: string; // ISO string
