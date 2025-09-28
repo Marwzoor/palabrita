@@ -41,6 +41,8 @@ jobs:
         run: npm run build
       - name: Copy favicon.ico to dist folder
         run: cp ./favicon.ico ./dist/favicon.ico
+      - name: Handle all sub paths by copying index.html to 404.html
+        run: cp ./dist/index.html ./dist/404.html
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
