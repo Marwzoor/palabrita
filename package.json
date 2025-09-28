@@ -1,5 +1,5 @@
 {
-	"name": "palabrita---spanska-för-svenskar",
+	"name": "palabrita",
 	"private": true,
 	"version": "0.0.0",
 	"type": "module",
@@ -9,10 +9,10 @@
 		"preview": "vite preview",
 		"predeploy": "npm run build",
 		"deploy": "gh-pages -d dist",
-                "fill:words": "node scripts/fill_spanish_words.mjs",
-                "verify:words": "node scripts/verify_spanish_words.mjs",
-                "test:e2e": "node --test tests/e2e"
-        },
+		"fill:words": "node scripts/fill_spanish_words.mjs",
+		"verify:words": "node scripts/verify_spanish_words.mjs",
+		"test:e2e": "node --test tests/e2e"
+	},
 	"dependencies": {
 		"react": "^19.1.1",
 		"react-dom": "^19.1.1",
