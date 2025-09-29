@@ -3,7 +3,7 @@
     "word": "de",
     "translation": "av, från",
     "sentence_es": "El libro es de María.",
-    "sentence_sv": "Boken är Marías."
+    "sentence_sv": "Boken är Marias."
   },
   {
     "word": "que",
@@ -25,7 +25,7 @@
   },
   {
     "word": "la",
-    "translation": "den/det (bestämd artikel, femininum)",
+    "translation": "den (bestämd artikel, singular)",
     "sentence_es": "La casa es grande.",
     "sentence_sv": "Huset är stort."
   },
@@ -367,7 +367,7 @@
   },
   {
     "word": "he",
-    "translation": "jag har",
+    "translation": "(jag) har",
     "sentence_es": "He comido una manzana.",
     "sentence_sv": "Jag har ätit ett äpple."
   },
