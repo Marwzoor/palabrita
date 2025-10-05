@@ -27,7 +27,7 @@ const GENERATION_SCHEMA = {
     properties: {
       translation: {
         type: 'string',
-        description: 'Swedish translation(s) for the lemma. Prefer comma-separated alternatives when needed.',
+        description: 'Swedish translation(s) for the lemma. For nouns, ALWAYS include the article (en/ett) before the noun. Use comma-space for closely related meanings (e.g., "till, på"). Use slash-with-spaces for distinct alternatives (e.g., "redan / nu"). Limit to 1-3 most common meanings. NO parenthetical explanations.',
       },
       sentence_es: {
         type: 'string',
@@ -101,8 +101,13 @@ async function generateEntry(word) {
           '- Pay heightened attention to Spanish accent marks—never replace accented vowels with their unaccented counterparts.',
           '- Return well-formed Spanish and Swedish sentences that are literal translations of each other.',
           '- The Spanish sentence must contain the lemma exactly as provided (including accents).',
-          '- When the lemma is a conjugated verb or otherwise encodes its subject, include the implied Swedish subject pronoun in parentheses immediately before the verb (e.g., "(jag) har", "(han/hon/det) är") to keep formatting consistent across entries.',
-          '- Choose Swedish example sentences that help learners map Spanish articles correctly; when illustrating "un"/"una", prefer Swedish sentences using "en"/"ett" as appropriate even if it requires selecting a different example noun.',
+          '- For conjugated verb lemmas that encode a specific subject (like "he", "puedo", "quiero"), include the Swedish subject pronoun directly with the verb WITHOUT parentheses (e.g., "jag har", "jag kan", "du är", "han/hon har"). For ambiguous forms that could have multiple subjects, use "han/hon" or other appropriate combinations.',
+          '- For infinitive verb lemmas (like "ser", "hacer"), provide the Swedish infinitive form without pronouns (e.g., "vara", "göra", "att vara").',
+          '- For noun translations, ALWAYS include the appropriate Swedish article (en/ett) with the noun (e.g., "en hund", "ett hus"). Swedish uses "en" (common gender, ~75% of nouns) and "ett" (neuter gender, ~25% of nouns). There is NO direct mapping from Spanish un/una to Swedish en/ett—each Swedish noun has its own grammatical gender that must be used correctly.',
+          '- NEVER include parenthetical grammatical explanations in translations (e.g., avoid "den (bestämd artikel)" - just use "den"). Keep translations clean and concise.',
+          '- Use comma-space (", ") to separate closely related meanings (e.g., "till, på, i"). Use slash-with-spaces (" / ") to separate distinct alternative meanings (e.g., "redan / nu").',
+          '- Limit translations to the 1-3 most common meanings to avoid overwhelming learners.',
+          '- Choose Swedish example sentences that clearly demonstrate the correct article usage (en/ett) for nouns to help learners understand Swedish grammatical gender.',
           '- Keep responses concise (max ~25 words per sentence).',
           '- Output must be valid UTF-8.',
           '',

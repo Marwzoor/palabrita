@@ -25,13 +25,13 @@
   },
   {
     "word": "la",
-    "translation": "den (bestämd artikel, singular)",
+    "translation": "det",
     "sentence_es": "La casa es grande.",
     "sentence_sv": "Huset är stort."
   },
   {
     "word": "el",
-    "translation": "den, det (bestämd artikel, maskulinum singular)",
+    "translation": "den / det",
     "sentence_es": "El perro corre rápido.",
     "sentence_sv": "Hunden springer snabbt."
   },
@@ -91,7 +91,7 @@
   },
   {
     "word": "los",
-    "translation": "de (bestämda pluralformen för maskulina substantiv)",
+    "translation": "de",
     "sentence_es": "Los libros están en la mesa.",
     "sentence_sv": "Böckerna ligger på bordet."
   },
@@ -943,9 +943,9 @@
   },
   {
     "word": "tal",
-    "translation": "nummer",
-    "sentence_es": "El número cinco es mi favorito.",
-    "sentence_sv": "Numret fem är min favorit."
+    "translation": "sådan",
+    "sentence_es": "No me gusta tal comportamiento.",
+    "sentence_sv": "Jag tycker inte om ett sådant beteende."
   },
   {
     "word": "pasa",

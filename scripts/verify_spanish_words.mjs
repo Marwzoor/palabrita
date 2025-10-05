@@ -36,8 +36,8 @@ const VERIFICATION_SCHEMA = {
       severity: { type: 'string', enum: ['ok', 'minor', 'major'] },
       translation_feedback: { type: 'string' },
       sentence_feedback: { type: 'string' },
-      suggested_translation: { type: ['string', 'null'], description: 'Suggested Swedish translation if corrections are needed.' },
-      suggested_sentence_sv: { type: ['string', 'null'], description: 'Suggested Swedish sentence aligned with the Spanish sentence.' },
+      suggested_translation: { type: ['string', 'null'], description: 'Suggested Swedish translation if corrections are needed. MUST be different from the current translation when translation_correct is false. Return null only when translation_correct is true.' },
+      suggested_sentence_sv: { type: ['string', 'null'], description: 'Suggested Swedish sentence aligned with the Spanish sentence. MUST be different from the current Swedish sentence when sentence_correct is false. Return null only when sentence_correct is true.' },
       notes: { type: ['string', 'null'] },
     },
   },
@@ -174,10 +174,16 @@ async function analyzeEntry(entry) {
           'Rules:',
           '- Pay close attention to Spanish accents (e.g., "té" vs "te").',
           '- Confirm that the Swedish sentence is a faithful translation of the Spanish sentence.',
-          '- Ensure conjugated Spanish verb forms map to Swedish translations that include the implied subject pronoun in parentheses before the verb (e.g., "(du) är"). Flag and correct inconsistencies.',
-          '- Prefer Swedish example sentences that make article usage clear (for instance, align "un/una" with "en/ett"). Suggest replacements when a better noun choice improves understanding.',
-          '- If anything is off, explain why and provide a suggested correction.',
+          '- For conjugated Spanish verb lemmas (like "he", "puedo", "quiero"), verify that the Swedish translation includes the subject pronoun directly with the verb WITHOUT parentheses (e.g., "jag har", "jag kan", "du är", "han/hon har"). Flag translations that use parentheses like "(jag) har" and suggest the correct format without parentheses.',
+          '- For infinitive Spanish verb lemmas (like "ser", "hacer"), verify that the Swedish translation is in infinitive form without pronouns (e.g., "vara", "göra", "att vara").',
+          '- For noun translations, verify that the appropriate Swedish article (en/ett) is included with the noun. Swedish uses "en" (common gender, ~75% of nouns) and "ett" (neuter gender, ~25% of nouns). There is NO direct mapping from Spanish un/una to Swedish en/ett—each Swedish noun has its own grammatical gender.',
+          '- Flag any translations with parenthetical grammatical explanations (e.g., "den (bestämd artikel)" should be just "den"). Translations must be clean and concise without grammatical notes.',
+          '- Verify separator usage: comma-space (", ") should be used for closely related meanings (e.g., "till, på, i"), and slash-with-spaces (" / ") should be used for distinct alternatives (e.g., "redan / nu"). Flag incorrect separator usage like "/" or " /".',
+          '- Flag translations with more than 3 meanings as too verbose. Suggest keeping only the 1-3 most common meanings.',
+          '- Swedish example sentences should clearly demonstrate the correct article usage (en/ett) for nouns to help learners understand Swedish grammatical gender.',
+          '- If anything is off, explain why and provide a suggested correction that is DIFFERENT from the current value.',
           '- When corrections are needed, feel free to propose entirely new Swedish sentences to maximize clarity.',
+          '- IMPORTANT: If translation_correct is false, suggested_translation MUST contain a different value than the current translation. If sentence_correct is false, suggested_sentence_sv MUST contain a different value than the current Swedish sentence.',
           '- Classify severity as "ok" when both checks pass, "minor" when small corrections are needed, and "major" for significant mistakes.',
           '- If everything looks correct, mark both checks as true, use severity "ok", and keep feedback brief.',
         ].join('\n'),
@@ -246,11 +252,19 @@ function delay(ms) {
 }
 
 async function promptEntryUpdate(entry, analysis) {
+  // Only use suggestions if they're actually different from the originals
+  const suggestedTranslation = analysis.suggested_translation?.trim();
+  const suggestedSentenceSv = analysis.suggested_sentence_sv?.trim();
+
   const suggestedEntry = {
     word: entry.word,
-    translation: analysis.suggested_translation?.trim() || entry.translation,
+    translation: (suggestedTranslation && suggestedTranslation !== entry.translation.trim())
+      ? suggestedTranslation
+      : entry.translation,
     sentence_es: entry.sentence_es,
-    sentence_sv: analysis.suggested_sentence_sv?.trim() || entry.sentence_sv,
+    sentence_sv: (suggestedSentenceSv && suggestedSentenceSv !== entry.sentence_sv.trim())
+      ? suggestedSentenceSv
+      : entry.sentence_sv,
   };
 
   console.log('  Suggested entry update:');

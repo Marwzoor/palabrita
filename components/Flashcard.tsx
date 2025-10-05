@@ -67,11 +67,12 @@ const adjustElementFontSize = (element: HTMLElement, maxLines: number, minFontSi
 
 	let lineHeight = getLineHeight(baseComputed, fontSize);
 	let maxAllowedHeight = lineHeight * maxLines + paddingTop + paddingBottom;
+	let maxAllowedWidth = element.parentElement ? element.parentElement.clientWidth : Infinity;
 
 	let iterations = 0;
 	const maxIterations = 20;
 
-	while (element.scrollHeight > maxAllowedHeight && fontSize > minFontSize && iterations < maxIterations) {
+	while ((element.scrollHeight > maxAllowedHeight || maxAllowedWidth < element.scrollWidth) && fontSize > minFontSize && iterations < maxIterations) {
 		fontSize -= 1;
 		element.style.fontSize = `${fontSize}px`;
 
@@ -158,7 +159,7 @@ const Flashcard: React.FC<FlashcardProps> = ({ word, onAnswer }) => {
 				</div>
 
 				{/* Back of card */}
-				<div className="absolute w-full h-full rotate-u-180 backface-hidden bg-indigo-50 dark:bg-indigo-500/10 border border-indigo-200 dark:border-indigo-500/40 rounded-2xl shadow-lg flex flex-col justify-center items-center p-6 text-center rotate-y-180">
+				<div className="absolute w-full h-full rotate-u-180 backface-hidden bg-indigo-50 dark:bg-indigo-500/10 border border-indigo-200 dark:border-indigo-500/40 rounded-2xl shadow-lg flex flex-col justify-center p-6 text-center rotate-y-180">
 					<div>
 						<div>
 							<p className="text-indigo-500 dark:text-indigo-300 mb-2 font-semibold">Svenska</p>
