@@ -788,8 +788,8 @@
   {
     "word": "ni",
     "translation": "inte ens",
-    "sentence_es": "Ni siquiera vino a la fiesta.",
-    "sentence_sv": "Ni kom inte ens till festen."
+    "sentence_es": "Ni siquiera viniste a la fiesta.",
+    "sentence_sv": "Du kom inte ens till festen."
   },
   {
     "word": "poco",
@@ -870,7 +870,7 @@
     "sentence_sv": "Folk är i parken."
   },
   {
-    "word": "sea",
+    "word": "mar",
     "translation": "hav",
     "sentence_es": "El mar es muy azul.",
     "sentence_sv": "Havet är mycket blått."
