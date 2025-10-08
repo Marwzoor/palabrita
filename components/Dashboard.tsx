@@ -74,7 +74,7 @@ const Dashboard: React.FC<DashboardProps> = ({ userProgress, words, learningQueu
 
             <Card>
                 <div className="p-6">
-                    <h3 className="font-semibold text-lg text-slate-800 dark:text-slate-100">Dagens Lektion</h3>
+                    <h3 className="font-semibold text-lg text-slate-800 dark:text-slate-100">Dagens lektion</h3>
                     <p className="text-slate-500 dark:text-slate-400 mt-1">{learningQueueSize} ord att repetera.</p>
                     <div className="mt-4 space-y-3">
                         <div className="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
@@ -87,14 +87,14 @@ const Dashboard: React.FC<DashboardProps> = ({ userProgress, words, learningQueu
                         </p>
                     </div>
                     <Button onClick={onStartSession} disabled={learningQueueSize === 0} className="w-full mt-4">
-                        {learningQueueSize > 0 ? 'Starta Lektion' : 'Inga ord att repetera'}
+                        {learningQueueSize > 0 ? 'Starta lektion' : 'Inga ord att repetera'}
                     </Button>
                 </div>
             </Card>
 
             <Card>
                 <div className="p-6">
-                    <h3 className="font-semibold text-lg text-slate-800 dark:text-slate-100">Dina Framsteg</h3>
+                    <h3 className="font-semibold text-lg text-slate-800 dark:text-slate-100">Dina framsteg</h3>
                     <div className="flex justify-between items-center mt-4 text-sm text-slate-600 dark:text-slate-300">
                         <span>Lärda ord</span>
                         <span className="font-semibold">{learnedWords} / {totalWords}</span>
@@ -142,7 +142,7 @@ const Dashboard: React.FC<DashboardProps> = ({ userProgress, words, learningQueu
 
             <Card>
                 <div className="p-6">
-                    <h3 className="font-semibold text-lg text-slate-800 dark:text-slate-100">Nyligen Lärda Ord</h3>
+                    <h3 className="font-semibold text-lg text-slate-800 dark:text-slate-100">Nyligen lärda ord</h3>
                     {recentlyLearned.length > 0 ? (
                         <ul className="mt-4 space-y-2">
                             {recentlyLearned.map(word => (
