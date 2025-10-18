@@ -86,7 +86,11 @@ const Dashboard: React.FC<DashboardProps> = ({ userProgress, words, learningQueu
                             {remainingWords > 0 ? `${remainingWords} ord kvar till målet.` : 'Målet för dagen är uppnått!'}
                         </p>
                     </div>
-                    <Button onClick={onStartSession} disabled={learningQueueSize === 0} className="w-full mt-4">
+                    <Button
+                        onClick={onStartSession}
+                        disabled={learningQueueSize === 0}
+                        className="w-full mt-4 dark:bg-pink-500 dark:hover:bg-pink-400 dark:focus:ring-pink-400"
+                    >
                         {learningQueueSize > 0 ? 'Starta lektion' : 'Inga ord att repetera'}
                     </Button>
                 </div>
@@ -96,7 +100,7 @@ const Dashboard: React.FC<DashboardProps> = ({ userProgress, words, learningQueu
                 <div className="p-6">
                     <h3 className="font-semibold text-lg text-slate-800 dark:text-slate-100">Dina framsteg</h3>
                     <div className="flex justify-between items-center mt-4 text-sm text-slate-600 dark:text-slate-300">
-                        <span>Lärda ord</span>
+                        <span>Ord du kan</span>
                         <span className="font-semibold">{learnedWords} / {totalWords}</span>
                     </div>
                     <div className="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2.5 mt-2">
