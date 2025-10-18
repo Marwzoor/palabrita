@@ -89,7 +89,7 @@ const Dashboard: React.FC<DashboardProps> = ({ userProgress, words, learningQueu
                     <Button
                         onClick={onStartSession}
                         disabled={learningQueueSize === 0}
-                        className="w-full mt-4 dark:bg-pink-500 dark:hover:bg-pink-400 dark:focus:ring-pink-400"
+                        className="w-full mt-4"
                     >
                         {learningQueueSize > 0 ? 'Starta lektion' : 'Inga ord att repetera'}
                     </Button>
