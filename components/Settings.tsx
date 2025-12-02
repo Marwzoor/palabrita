@@ -43,10 +43,10 @@ const Settings: React.FC<SettingsProps> = ({
                   key={option.value}
                   type="button"
                   onClick={() => onThemeChange(option.value)}
-                  className={`flex-1 text-left p-4 rounded-2xl border transition-colors focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2 dark:focus:ring-offset-slate-900 ${
+                  className={`flex-1 text-left p-4 rounded-2xl border transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-slate-900 ${
                     isActive
-                      ? 'border-pink-500 bg-pink-50 text-pink-700 shadow-sm dark:bg-pink-500/10 dark:border-pink-400'
-                      : 'border-slate-200 bg-white hover:border-pink-300 hover:bg-pink-50/40 dark:border-slate-700 dark:bg-transparent dark:hover:border-pink-500/80 dark:hover:bg-pink-500/5'
+                      ? 'border-indigo-500 bg-indigo-50 text-indigo-700 shadow-sm dark:bg-indigo-500/10 dark:border-indigo-400'
+                      : 'border-slate-200 bg-white hover:border-indigo-300 hover:bg-indigo-50/40 dark:border-slate-700 dark:bg-transparent dark:hover:border-indigo-500/80 dark:hover:bg-indigo-500/5'
                   }`}
                 >
                   <div className="font-semibold">{option.label}</div>
