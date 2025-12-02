@@ -863,7 +863,7 @@ const App: React.FC = () => {
                 <button
                     key={key}
                     onClick={() => handleNavigation(key)}
-                    className={`p-2 rounded-lg transition-colors ${currentViewKey === key ? 'text-pink-600 dark:text-pink-300 bg-pink-50 dark:bg-pink-500/10' : 'text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/70'}`}
+                    className={`p-2 rounded-lg transition-colors ${currentViewKey === key ? 'text-indigo-600 dark:text-indigo-300 bg-indigo-50 dark:bg-indigo-500/10' : 'text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/70'}`}
                 >
                     {View[key]}
                 </button>
