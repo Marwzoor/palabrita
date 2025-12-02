@@ -10,7 +10,7 @@ const UpdateNotification: React.FC<UpdateNotificationProps> = ({ onUpdate }) => 
       <p className="text-slate-700 dark:text-slate-200">En ny version finns tillgänglig.</p>
       <button
         onClick={onUpdate}
-        className="bg-slate-900 text-white dark:bg-white dark:text-slate-900 px-4 py-2 rounded-lg hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors"
+        className="bg-pink-600 text-white dark:bg-pink-500 dark:text-white px-4 py-2 rounded-lg hover:bg-pink-500 dark:hover:bg-pink-400 transition-colors"
       >
         Ladda om
       </button>
