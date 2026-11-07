@@ -151,3 +151,86 @@ test('a learning session reveals flashcard answer controls', { timeout: 60_000 }
 		await page.close();
 	}
 });
+
+async function freshPage() {
+	const context = await browser.createBrowserContext();
+	const page = await context.newPage();
+	await openDashboard(page);
+	return { context, page };
+}
+
+async function savedState(page) {
+	return page.evaluate(() => ({
+		words: JSON.parse(localStorage.getItem('palabrita_word_progress')).progress,
+		progress: JSON.parse(localStorage.getItem('palabrita_progress')),
+		activity: JSON.parse(localStorage.getItem('palabrita_activity') || '{}'),
+	}));
+}
+
+test('keyboard answer persists before leaving or reloading the lesson', { timeout: 60_000 }, async (t) => {
+	if (!browser) return t.skip('Browser unavailable');
+	const { context, page } = await freshPage();
+	try {
+		await clickByText(page, 'button', 'Starta Lektion');
+		await page.waitForSelector('button[aria-label^="Visa översättning"]:focus');
+		assert.equal(await page.$eval('button[aria-label^="Visa översättning"]', el => el.tagName), 'BUTTON');
+		assert.ok(await page.$eval('button', () => Array.from(document.querySelectorAll('button')).filter(el => ['Inte alls', 'Svårt', 'Ganska bra', 'Mycket bra'].includes(el.textContent.trim())).every(el => el.disabled)));
+		await page.keyboard.press('Enter');
+		await page.waitForFunction(() => document.activeElement?.textContent.trim() === 'Inte alls');
+		await page.keyboard.press('Tab');
+		await page.keyboard.press('Tab');
+		await page.keyboard.press('Enter');
+		await page.waitForFunction(() => JSON.parse(localStorage.getItem('palabrita_progress')).points === 10);
+		const before = await savedState(page);
+		assert.equal(Object.keys(before.words).length, 1);
+		assert.equal(before.words.de.repetitionCount, 1);
+		await page.reload({ waitUntil: 'networkidle0' });
+		assert.deepEqual(await savedState(page), before);
+		await clickByText(page, 'button', 'Avsluta lektionen');
+		assert.deepEqual(await savedState(page), before);
+	} finally { await context.close(); }
+});
+
+test('last answer is saved on summary and overview does not award twice', { timeout: 60_000 }, async (t) => {
+	if (!browser) return t.skip('Browser unavailable');
+	const { context, page } = await freshPage();
+	try {
+		await clickByText(page, 'button', 'Starta Lektion');
+		for (let index = 0; index < 10; index++) {
+			await page.waitForSelector('button[aria-label^="Visa översättning"]:focus');
+			await page.keyboard.press('Space');
+			await page.waitForFunction(() => document.activeElement?.textContent.trim() === 'Inte alls');
+			await clickByText(page, 'button', 'Ganska bra');
+		}
+		await page.waitForFunction(() => document.activeElement?.textContent === 'Bra jobbat!');
+		const before = await savedState(page);
+		assert.equal(Object.keys(before.words).length, 10);
+		assert.equal(before.progress.points, 100);
+		assert.equal(Object.values(before.activity).reduce((a, b) => a + b, 0), 10);
+		await clickByText(page, 'button', 'Gå till översikt');
+		const after = await savedState(page);
+		assert.deepEqual(after.words, before.words);
+		assert.equal(after.progress.points, 100);
+		assert.deepEqual(after.activity, before.activity);
+		await page.reload({ waitUntil: 'networkidle0' });
+		assert.deepEqual(await savedState(page), after);
+	} finally { await context.close(); }
+});
+
+test('v2 and legacy progress retain scheduling fields when content changes', { timeout: 60_000 }, async (t) => {
+	if (!browser) return t.skip('Browser unavailable');
+	for (const legacy of [false, true]) {
+		const { context, page } = await freshPage();
+		try {
+			const snapshot = { masteryLevel: 3, nextReviewDate: '2099-01-01T12:00:00.000Z', easeFactor: 2.8, repetitionCount: 6, reviewInterval: 42, learnedDate: '2025-01-01T12:00:00.000Z' };
+			await page.evaluate((snapshot, legacy) => {
+				localStorage.removeItem('palabrita_word_progress');
+				if (legacy) localStorage.setItem('palabrita_words', JSON.stringify([{ spanish: 'tenido', ...snapshot }]));
+				else localStorage.setItem('palabrita_word_progress', JSON.stringify({ version: 2, progress: { tenido: snapshot } }));
+			}, snapshot, legacy);
+			await page.reload({ waitUntil: 'networkidle0' });
+			assert.deepEqual((await savedState(page)).words.tenido, snapshot);
+			if (legacy) assert.equal(await page.evaluate(() => localStorage.getItem('palabrita_words')), null);
+		} finally { await context.close(); }
+	}
+});

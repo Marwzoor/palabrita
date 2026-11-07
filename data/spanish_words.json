@@ -13,7 +13,7 @@
   },
   {
     "word": "no",
-    "translation": "nej",
+    "translation": "inte; nej",
     "sentence_es": "No quiero ir al cine.",
     "sentence_sv": "Jag vill inte gå på bio."
   },
@@ -25,13 +25,13 @@
   },
   {
     "word": "la",
-    "translation": "det",
+    "translation": "bestämd artikel (feminin singular)",
     "sentence_es": "La casa es grande.",
     "sentence_sv": "Huset är stort."
   },
   {
     "word": "el",
-    "translation": "den / det",
+    "translation": "bestämd artikel (maskulin singular)",
     "sentence_es": "El perro corre rápido.",
     "sentence_sv": "Hunden springer snabbt."
   },
@@ -91,7 +91,7 @@
   },
   {
     "word": "los",
-    "translation": "de",
+    "translation": "bestämd artikel (maskulin plural)",
     "sentence_es": "Los libros están en la mesa.",
     "sentence_sv": "Böckerna ligger på bordet."
   },
@@ -169,7 +169,7 @@
   },
   {
     "word": "las",
-    "translation": "de (bestämda artikeln, feminin plural)",
+    "translation": "bestämd artikel (feminin plural)",
     "sentence_es": "Las flores son bonitas.",
     "sentence_sv": "Blommorna är vackra."
   },
@@ -187,9 +187,9 @@
   },
   {
     "word": "como",
-    "translation": "som, hur",
-    "sentence_es": "¿Cómo estás?",
-    "sentence_sv": "Hur mår du?"
+    "translation": "som",
+    "sentence_es": "Lo hago como tú.",
+    "sentence_sv": "Jag gör det som du."
   },
   {
     "word": "aquí",
@@ -409,7 +409,7 @@
   },
   {
     "word": "fue",
-    "translation": "var",
+    "translation": "gick, åkte (ir); var (ser)",
     "sentence_es": "Él fue a la tienda.",
     "sentence_sv": "Han gick till affären."
   },
@@ -805,9 +805,9 @@
   },
   {
     "word": "uno",
-    "translation": "en",
-    "sentence_es": "Tengo uno libro.",
-    "sentence_sv": "Jag har en bok."
+    "translation": "en; ett",
+    "sentence_es": "Quiero uno.",
+    "sentence_sv": "Jag vill ha en."
   },
   {
     "word": "noche",
@@ -967,7 +967,7 @@
   },
   {
     "word": "han",
-    "translation": "han (3:e person singular av verbet haber i presens perfekt)",
+    "translation": "har (haber, tredje person plural)",
     "sentence_es": "Ellos han comido mucho hoy.",
     "sentence_sv": "De har ätit mycket idag."
   },
@@ -1070,8 +1070,8 @@
   {
     "word": "donde",
     "translation": "där",
-    "sentence_es": "¿Dónde está el libro?",
-    "sentence_sv": "Var är boken?"
+    "sentence_es": "Esta es la casa donde vivo.",
+    "sentence_sv": "Det här är huset där jag bor."
   },
   {
     "word": "seguro",
@@ -1111,7 +1111,7 @@
   },
   {
     "word": "sido",
-    "translation": "vara (particip av verbet ser, 'att vara')",
+    "translation": "varit (particip av ser)",
     "sentence_es": "Él ha sido un buen amigo.",
     "sentence_sv": "Han har varit en god vän."
   },
@@ -1327,7 +1327,7 @@
   },
   {
     "word": "estas",
-    "translation": "dessa/dessa är (femininum, plural)",
+    "translation": "dessa; de här (feminin plural)",
     "sentence_es": "Estas flores son muy bonitas.",
     "sentence_sv": "Dessa blommor är mycket vackra."
   },
@@ -1483,9 +1483,9 @@
   },
   {
     "word": "quien",
-    "translation": "vem",
-    "sentence_es": "¿Quién eres?",
-    "sentence_sv": "Vem är du?"
+    "translation": "den som; som",
+    "sentence_es": "Quien estudia aprende.",
+    "sentence_sv": "Den som studerar lär sig."
   },
   {
     "word": "demasiado",
@@ -1507,7 +1507,7 @@
   },
   {
     "word": "ve",
-    "translation": "se",
+    "translation": "ser (ver, tredje person singular)",
     "sentence_es": "Ella ve la película.",
     "sentence_sv": "Hon ser filmen."
   },
@@ -2101,7 +2101,7 @@
   },
   {
     "word": "vi",
-    "translation": "vi (preteritum av verbet 'ver', att se)",
+    "translation": "jag såg (ver, preteritum)",
     "sentence_es": "Ayer vi una película muy interesante.",
     "sentence_sv": "Igår såg jag en mycket intressant film."
   },
@@ -2587,7 +2587,7 @@
   },
   {
     "word": "tenido",
-    "translation": "färgat",
+    "translation": "haft (particip av tener)",
     "sentence_es": "He tenido el cabello de color rojo.",
     "sentence_sv": "Jag har haft rött hår."
   },
@@ -2701,9 +2701,9 @@
   },
   {
     "word": "vete",
-    "translation": "vete (vete som spannmål, alltså vete)",
-    "sentence_es": "El trigo es un tipo de vete muy común.",
-    "sentence_sv": "Vete är en mycket vanlig typ av spannmål."
+    "translation": "gå din väg (uppmaning, irse)",
+    "sentence_es": "Vete a casa.",
+    "sentence_sv": "Gå hem."
   },
   {
     "word": "auto",
