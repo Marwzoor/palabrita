@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import type { Word, SessionResult } from '../types';
 import { ReviewQuality } from '../types';
 import Flashcard from './Flashcard';
@@ -8,13 +8,19 @@ import Button from './common/Button';
 
 interface LearningSessionProps {
   words: Word[];
+  onAnswer: (result: SessionResult) => void;
   onSessionComplete: (sessionWords: SessionResult[]) => void;
 }
 
-const LearningSession: React.FC<LearningSessionProps> = ({ words, onSessionComplete }) => {
+const LearningSession: React.FC<LearningSessionProps> = ({ words: initialWords, onAnswer, onSessionComplete }) => {
+  // Keep the lesson stable while each answer updates the parent word list.
+  const [words] = useState(initialWords);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [sessionResults, setSessionResults] = useState<SessionResult[]>([]);
   const [sessionFinished, setSessionFinished] = useState(false);
+
+  const summaryRef = useRef<HTMLHeadingElement>(null);
+  useEffect(() => { if (sessionFinished) summaryRef.current?.focus(); }, [sessionFinished]);
 
   const currentWord = words[currentIndex];
   const progress = words.length > 0 ? (currentIndex / words.length) * 100 : 0;
@@ -30,6 +36,7 @@ const LearningSession: React.FC<LearningSessionProps> = ({ words, onSessionCompl
       return;
     }
 
+    onAnswer({ wordId: currentWord.id, quality });
     const newResults = [...sessionResults, { wordId: currentWord.id, quality }];
     setSessionResults(newResults);
 
@@ -46,7 +53,7 @@ const LearningSession: React.FC<LearningSessionProps> = ({ words, onSessionCompl
 
     return (
       <div className="flex flex-col items-center justify-center h-full text-center">
-        <h2 className="text-3xl font-bold text-slate-800 dark:text-slate-100">Bra jobbat!</h2>
+        <h2 ref={summaryRef} tabIndex={-1} className="text-3xl font-bold text-slate-800 dark:text-slate-100">Bra jobbat!</h2>
         <p className="text-slate-500 dark:text-slate-400 mt-2">Du klarade {correctCount} av {totalCount} ord.</p>
         <div className="w-full max-w-xs my-8">
             <ProgressBar progress={(correctCount / (totalCount || 1)) * 100} />
@@ -69,6 +76,7 @@ const LearningSession: React.FC<LearningSessionProps> = ({ words, onSessionCompl
 
   return (
     <div className="flex flex-col h-full">
+      <button className="self-start mb-4 text-indigo-700 dark:text-indigo-300" onClick={() => onSessionComplete([])}>Avsluta lektionen</button>
       <ProgressBar progress={progress} />
       <div className="flex-grow flex items-center justify-center my-4">
         <Flashcard key={currentWord.id} word={currentWord} onAnswer={handleAnswer} />

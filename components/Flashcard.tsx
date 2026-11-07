@@ -90,11 +90,17 @@ const adjustElementFontSize = (element: HTMLElement, maxLines: number, minFontSi
 const Flashcard: React.FC<FlashcardProps> = ({ word, onAnswer }) => {
 	const [isFlipped, setIsFlipped] = useState(false);
 	const [isAnswered, setIsAnswered] = useState(false);
+	const [saveFailed, setSaveFailed] = useState(false);
+	const answerLocked = useRef(false);
+	const flipButtonRef = useRef<HTMLButtonElement>(null);
 	const swedishTextRef = useRef<HTMLHeadingElement>(null);
 	const againButtonRef = useRef<HTMLButtonElement>(null);
 	const hardButtonRef = useRef<HTMLButtonElement>(null);
 	const goodButtonRef = useRef<HTMLButtonElement>(null);
 	const easyButtonRef = useRef<HTMLButtonElement>(null);
+
+	useEffect(() => { flipButtonRef.current?.focus(); }, []);
+	useEffect(() => { if (isFlipped) againButtonRef.current?.focus(); }, [isFlipped]);
 
 	const handleFlip = () => {
 		if (!isAnswered) {
@@ -103,13 +109,14 @@ const Flashcard: React.FC<FlashcardProps> = ({ word, onAnswer }) => {
 	};
 
 	const handleGrade = (quality: ReviewQuality) => {
+		if (!isFlipped || answerLocked.current) return;
+		answerLocked.current = true;
 		setIsAnswered(true);
-		// Add a short delay to see the feedback before the next card loads
-		setTimeout(() => {
-			onAnswer(quality);
-			setIsFlipped(false);
+		try { onAnswer(quality); } catch {
+			answerLocked.current = false;
 			setIsAnswered(false);
-		}, 500);
+			setSaveFailed(true);
+		}
 	};
 
 	useEffect(() => {
@@ -145,21 +152,20 @@ const Flashcard: React.FC<FlashcardProps> = ({ word, onAnswer }) => {
 	return (
 		<div className="w-full max-w-sm h-[460px] perspective-[1000px]">
 			<div
-				className={`relative w-full h-full transform-3d transition-transform duration-700 ${isFlipped ? 'rotate-y-180' : ''}`}
-				onClick={handleFlip}
+				className={`relative w-full h-full transform-3d transition-transform duration-700 motion-reduce:transition-none ${isFlipped ? 'rotate-y-180' : ''}`}
 			>
 				{/* Front of card */}
-				<div className="absolute w-full h-full backface-hidden bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl shadow-lg flex flex-col justify-center items-center p-6 text-center cursor-pointer">
+				<button type="button" ref={flipButtonRef} onClick={(event) => { if (event.detail < 2) handleFlip(); }} aria-label={`Visa översättning av ${word.spanish}`} aria-hidden={isFlipped} tabIndex={isFlipped ? -1 : 0} inert={isFlipped} className="absolute w-full h-full backface-hidden bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl shadow-lg flex flex-col justify-center items-center p-6 text-center cursor-pointer">
 					<p className="text-slate-500 dark:text-slate-400 mb-4">Spanska</p>
 					<h2 className="text-5xl font-bold text-slate-900 dark:text-slate-100">{word.spanish}</h2>
 					<div className="absolute bottom-6 text-slate-400 dark:text-slate-500 flex items-center space-x-2">
 						<Icon name="flip" />
 						<span>Klicka för att vända</span>
 					</div>
-				</div>
+				</button>
 
 				{/* Back of card */}
-				<div className="absolute w-full h-full rotate-u-180 backface-hidden bg-indigo-50 dark:bg-indigo-500/10 border border-indigo-200 dark:border-indigo-500/40 rounded-2xl shadow-lg flex flex-col justify-center p-6 text-center rotate-y-180">
+				<div aria-hidden={!isFlipped} inert={!isFlipped} className="absolute w-full h-full rotate-u-180 backface-hidden bg-indigo-50 dark:bg-indigo-500/10 border border-indigo-200 dark:border-indigo-500/40 rounded-2xl shadow-lg flex flex-col justify-center p-6 text-center rotate-y-180">
 					<div>
 						<div>
 							<p className="text-indigo-500 dark:text-indigo-300 mb-2 font-semibold">Svenska</p>
@@ -184,9 +190,11 @@ const Flashcard: React.FC<FlashcardProps> = ({ word, onAnswer }) => {
 							</div>
 						</div>
 						<div className="mt-6">
+							{saveFailed && <p role="alert">Svaret kunde inte sparas. Frigör lagringsutrymme och försök igen.</p>}
 							<p className="text-sm text-slate-500 dark:text-slate-400 mb-8">Hur bra kan du detta ord?</p>
 							<div className="grid grid-cols-2 gap-3">
 								<button
+									disabled={!isFlipped || isAnswered}
 									ref={againButtonRef}
 									onClick={(e) => { e.stopPropagation(); handleGrade(ReviewQuality.Again); }}
 									className="py-3 px-4 border border-[currentColor] bg-red-100 dark:bg-red-500/20 text-red-700 dark:text-red-200 rounded-lg font-semibold hover:bg-red-200 dark:hover:bg-red-500/30 transition-colors text-sm leading-tight md:text-base"
@@ -194,6 +202,7 @@ const Flashcard: React.FC<FlashcardProps> = ({ word, onAnswer }) => {
 									Inte alls
 								</button>
 								<button
+									disabled={!isFlipped || isAnswered}
 									ref={hardButtonRef}
 									onClick={(e) => { e.stopPropagation(); handleGrade(ReviewQuality.Hard); }}
 									className="py-3 px-4 border border-[currentColor] bg-amber-100 dark:bg-amber-500/20 text-amber-700 dark:text-amber-200 rounded-lg font-semibold hover:bg-amber-200 dark:hover:bg-amber-500/30 transition-colors text-sm leading-tight md:text-base"
@@ -201,6 +210,7 @@ const Flashcard: React.FC<FlashcardProps> = ({ word, onAnswer }) => {
 									Svårt
 								</button>
 								<button
+									disabled={!isFlipped || isAnswered}
 									ref={goodButtonRef}
 									onClick={(e) => { e.stopPropagation(); handleGrade(ReviewQuality.Good); }}
 									className="py-3 px-4 border border-[currentColor] bg-sky-100 dark:bg-sky-500/20 text-sky-700 dark:text-sky-200 rounded-lg font-semibold hover:bg-sky-200 dark:hover:bg-sky-500/30 transition-colors text-sm leading-tight md:text-base"
@@ -208,6 +218,7 @@ const Flashcard: React.FC<FlashcardProps> = ({ word, onAnswer }) => {
 									Ganska bra
 								</button>
 								<button
+									disabled={!isFlipped || isAnswered}
 									ref={easyButtonRef}
 									onClick={(e) => { e.stopPropagation(); handleGrade(ReviewQuality.Easy); }}
 									className="py-3 px-4 border border-[currentColor] bg-emerald-100 dark:bg-emerald-500/20 text-emerald-700 dark:text-emerald-200 rounded-lg font-semibold hover:bg-emerald-200 dark:hover:bg-emerald-500/30 transition-colors text-sm leading-tight md:text-base"

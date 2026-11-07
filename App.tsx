@@ -6,6 +6,7 @@ import { registerSW } from 'virtual:pwa-register';
 import { View, Word, UserProgress, MasteryLevel, AppSettings, ThemePreference, ReviewQuality, SessionResult } from './types';
 import { getInitialWords } from './services/wordService';
 import Header from './components/Header';
+import { saveAnswer, recoverAnswer, persistProgress } from './services/answerStorage.mjs';
 import Dashboard from './components/Dashboard';
 import LearningSession from './components/LearningSession';
 import Achievements from './components/Achievements';
@@ -437,12 +438,12 @@ const App: React.FC = () => {
   useEffect(() => {
     if (!isLoading && typeof window !== 'undefined') {
       const progressSnapshot = serializeWordProgress(words);
-      localStorage.setItem(WORD_PROGRESS_STORAGE_KEY, JSON.stringify(progressSnapshot));
+      persistProgress(localStorage, WORD_PROGRESS_STORAGE_KEY, JSON.stringify(progressSnapshot));
     }
   }, [words, isLoading]);
 
   useEffect(() => {
-    localStorage.setItem('palabrita_progress', JSON.stringify({
+    persistProgress(localStorage, 'palabrita_progress', JSON.stringify({
       ...userProgress,
       lastSession: userProgress.lastSession.toISOString(),
       achievements: Array.from(userProgress.achievements), // Convert Set to array for JSON
@@ -644,33 +645,23 @@ const App: React.FC = () => {
     navigate(VIEW_PATHS[key]);
   }, [navigate]);
 
-  const handleSessionComplete = useCallback((sessionWords: SessionResult[]) => {
+  const handleAnswer = useCallback((result: SessionResult) => {
+    recoverAnswer(localStorage);
+    const sessionWords = [result];
     let pointsEarned = 0;
     const now = new Date();
 
     const isStrongAnswer = (quality: ReviewQuality) => quality >= ReviewQuality.Good;
-    const wasPerfect = sessionWords.length > 0 && sessionWords.every(r => isStrongAnswer(r.quality));
-    if (settings.enableConfetti && wasPerfect) {
-      setShowCelebration(true);
-    } else {
-      setShowCelebration(false);
-    }
-
     if (typeof window !== 'undefined') {
       localStorage.setItem('palabrita_last_reminder_dismissed', now.toISOString());
     }
     setShowReminder(false);
 
-    if (sessionWords.length > 0) {
-        const todayKey = now.toISOString().split('T')[0]; // YYYY-MM-DD
-        try {
-            const activityLog = JSON.parse(localStorage.getItem('palabrita_activity') || '{}');
-            activityLog[todayKey] = (activityLog[todayKey] || 0) + sessionWords.length;
-            localStorage.setItem('palabrita_activity', JSON.stringify(activityLog));
-        } catch (e) {
-            console.error("Failed to update activity log", e);
-        }
-    }
+    const todayKey = now.toISOString().split('T')[0];
+    let activityLog;
+    try { activityLog = JSON.parse(localStorage.getItem('palabrita_activity') || '{}'); }
+    catch { activityLog = {}; }
+    activityLog[todayKey] = (activityLog[todayKey] || 0) + 1;
 
     const updatedWords = words.map(word => {
       const sessionResult = sessionWords.find(sw => sw.wordId === word.id);
@@ -741,9 +732,10 @@ const App: React.FC = () => {
       };
     });
 
-    setWords(updatedWords);
+
     
-    setUserProgress(prev => {
+    const nextProgress = (() => {
+        const prev = userProgress;
         const newPoints = prev.points + pointsEarned;
         const newLevel = Math.floor(newPoints / 1000) + 1;
         
@@ -777,11 +769,6 @@ const App: React.FC = () => {
             newAchievements.add('7_day_streak');
         }
 
-        // Perfektionist: Avsluta en lektion med alla rätt.
-        if (sessionWords.length > 0 && sessionWords.every(r => isStrongAnswer(r.quality))) {
-            newAchievements.add('perfect_session');
-        }
-        
         return {
           points: newPoints,
           level: newLevel,
@@ -789,10 +776,27 @@ const App: React.FC = () => {
           lastSession: now,
           achievements: newAchievements,
         };
+    })();
+    saveAnswer(localStorage, {
+      [WORD_PROGRESS_STORAGE_KEY]: JSON.stringify(serializeWordProgress(updatedWords)),
+      palabrita_progress: JSON.stringify({
+        ...nextProgress, lastSession: nextProgress.lastSession.toISOString(),
+        achievements: Array.from(nextProgress.achievements),
+      }),
+      palabrita_activity: JSON.stringify(activityLog),
     });
+    setWords(updatedWords);
+    setUserProgress(nextProgress);
+  }, [words, userProgress]);
 
+  const handleSessionComplete = useCallback((results: SessionResult[]) => {
+    const perfect = results.length > 0 && results.every(result => result.quality >= ReviewQuality.Good);
+    setShowCelebration(settings.enableConfetti && perfect);
+    if (perfect) {
+      setUserProgress(prev => ({ ...prev, achievements: new Set([...prev.achievements, 'perfect_session']) }));
+    }
     navigate(VIEW_PATHS.Dashboard);
-  }, [words, settings.enableConfetti, navigate]);
+  }, [settings.enableConfetti, navigate]);
 
   if (isLoading) {
     return (
@@ -835,7 +839,7 @@ const App: React.FC = () => {
               />
               <Route
                 path={VIEW_PATHS.Learning}
-                element={<LearningSession words={learningQueue} onSessionComplete={handleSessionComplete} />}
+                element={<LearningSession words={learningQueue} onAnswer={handleAnswer} onSessionComplete={handleSessionComplete} />}
               />
               <Route
                 path={VIEW_PATHS.Achievements}
