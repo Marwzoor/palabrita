@@ -6,7 +6,7 @@ import { registerSW } from 'virtual:pwa-register';
 import { View, Word, UserProgress, MasteryLevel, AppSettings, ThemePreference, ReviewQuality, SessionResult } from './types';
 import { getInitialWords } from './services/wordService';
 import Header from './components/Header';
-import { saveAnswer, recoverAnswer } from './services/answerStorage.mjs';
+import { saveAnswer, recoverAnswer, persistProgress } from './services/answerStorage.mjs';
 import Dashboard from './components/Dashboard';
 import LearningSession from './components/LearningSession';
 import Achievements from './components/Achievements';
@@ -438,12 +438,12 @@ const App: React.FC = () => {
   useEffect(() => {
     if (!isLoading && typeof window !== 'undefined') {
       const progressSnapshot = serializeWordProgress(words);
-      localStorage.setItem(WORD_PROGRESS_STORAGE_KEY, JSON.stringify(progressSnapshot));
+      persistProgress(localStorage, WORD_PROGRESS_STORAGE_KEY, JSON.stringify(progressSnapshot));
     }
   }, [words, isLoading]);
 
   useEffect(() => {
-    localStorage.setItem('palabrita_progress', JSON.stringify({
+    persistProgress(localStorage, 'palabrita_progress', JSON.stringify({
       ...userProgress,
       lastSession: userProgress.lastSession.toISOString(),
       achievements: Array.from(userProgress.achievements), // Convert Set to array for JSON

@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { saveAnswer, recoverAnswer } from '../../services/answerStorage.mjs';
+import { saveAnswer, recoverAnswer, persistProgress } from '../../services/answerStorage.mjs';
 
 const values = { palabrita_word_progress: '{"version":2,"progress":{"tenido":{"repetitionCount":7}}}', palabrita_progress: '{"points":10}', palabrita_activity: '{"2026-11-07":1}' };
 function storage(failAt = Infinity) {
@@ -33,4 +33,29 @@ test('normal save mirrors values and clears journal', () => {
   saveAnswer(s, values);
   for (const [key, value] of Object.entries(values)) assert.equal(s.getItem(key), value);
   assert.equal(s.getItem('palabrita_pending_answer'), null);
+});
+
+test('persistent mirror failure keeps journal authoritative across effects and next answer', () => {
+  const s = storage();
+  const nativeSet = s.setItem;
+  let blocked = false;
+  s.setItem = (key, value) => {
+    if (blocked && key !== 'palabrita_pending_answer') throw Error('quota');
+    nativeSet(key, value);
+    if (key === 'palabrita_pending_answer') blocked = true;
+  };
+  saveAnswer(s, values);
+  const pending = s.getItem('palabrita_pending_answer');
+  persistProgress(s, 'palabrita_word_progress', 'stale');
+  persistProgress(s, 'palabrita_progress', 'stale');
+  assert.equal(s.getItem('palabrita_pending_answer'), pending);
+  assert.throws(() => saveAnswer(s, { ...values, palabrita_activity: 'wrong' }));
+  assert.equal(s.getItem('palabrita_pending_answer'), pending);
+  blocked = false;
+  recoverAnswer(s);
+  recoverAnswer(s);
+  for (const [key, value] of Object.entries(values)) assert.equal(s.getItem(key), value);
+  assert.equal(s.getItem('palabrita_pending_answer'), null);
+  persistProgress(s, 'palabrita_progress', '{"points":10,"achievements":["perfect_session"]}');
+  assert.deepEqual(JSON.parse(s.getItem('palabrita_progress')).achievements, ['perfect_session']);
 });

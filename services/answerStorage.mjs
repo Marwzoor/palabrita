@@ -14,9 +14,21 @@ export function recoverAnswer(storage) {
 }
 
 export function saveAnswer(storage, values) {
+  // Never replace an answer whose mirrors have not been recovered.
+  recoverAnswer(storage);
   storage.setItem(JOURNAL_KEY, JSON.stringify(values));
   // Once the journal exists the answer is durable, even if a mirror write fails.
   try { recoverAnswer(storage); } catch (error) {
     console.warn('Answer saved; storage recovery will retry on reload.', error);
+  }
+}
+
+// Effects also persist non-answer changes, but must not race a pending answer.
+export function persistProgress(storage, key, value) {
+  try {
+    recoverAnswer(storage);
+    storage.setItem(key, value);
+  } catch (error) {
+    console.warn('Progress write deferred; existing saved data retained.', error);
   }
 }
